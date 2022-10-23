@@ -29,12 +29,7 @@ class ProfileWhiteBackground extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        children: const [
-          Expanded(child: SubPagesList()),
-          SizedBox(height: 50),
-        ],
-      ),
+      child: const Expanded(child: SubPagesList()),
     );
   }
 }

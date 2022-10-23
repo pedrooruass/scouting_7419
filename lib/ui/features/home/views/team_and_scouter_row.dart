@@ -3,6 +3,7 @@ import 'package:scoring_7419/application/providers/team_provider.dart';
 import 'package:scoring_7419/application/providers/tournament_provider.dart';
 import 'package:scoring_7419/ui/features/home/views/input_dialog.dart';
 import 'package:scoring_7419/ui/features/home/views/show_dialog.dart';
+import 'package:scoring_7419/ui/features/profile/profile_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
 class TeamAndScouterRow extends StatelessWidget {

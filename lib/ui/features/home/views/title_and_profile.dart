@@ -12,21 +12,6 @@ class TitleAndProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Align(
-          alignment: Alignment.topRight,
-          child: IconButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const ProfilePage();
-              }));
-            },
-            icon: const Icon(
-              Icons.person,
-              size: 34,
-              color: white,
-            ),
-          ),
-        ),
         Text(
           "Score Match",
           style: TextStyle(
@@ -35,6 +20,21 @@ class TitleAndProfile extends StatelessWidget {
             color: white,
           ),
           textAlign: TextAlign.center,
+        ),
+        Align(
+          alignment: Alignment.topRight,
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const ProfilePage();
+              }));
+            },
+            child: const Icon(
+              Icons.person,
+              size: 34,
+              color: white,
+            ),
+          ),
         ),
       ],
     );
