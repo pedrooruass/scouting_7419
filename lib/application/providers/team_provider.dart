@@ -12,8 +12,7 @@ class TeamProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getTeamModelByNumber(
-      String teamId, Function(String errorMessage) onError) async {
+  Future<void> getTeamModelByNumber(String teamId, Function(String errorMessage) onError) async {
     int teamNumber = int.tryParse(teamId) ?? 0;
     if (teamNumber == 0) {
       onError("Invalid team number");
@@ -29,8 +28,7 @@ class TeamProvider extends ChangeNotifier {
     ); // left error, Right success
   }
 
-   void resetTeamModel() {
+  void reset() {
     teamModel = null;
-    notifyListeners();
   }
 }

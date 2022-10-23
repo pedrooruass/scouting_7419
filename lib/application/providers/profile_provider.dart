@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfileProvider extends ChangeNotifier {
@@ -7,7 +8,7 @@ class ProfileProvider extends ChangeNotifier {
   String profileImageAsset4 = "assets/images/option4.png";
   String profileImageChoice = "assets/images/option1.png";
   int profileImageChoiceId = 1;
-  // String? userEmail = FirebaseAuth.instance.currentUser!.email;
+  String? userName = FirebaseAuth.instance.currentUser!.email!.substring(0, FirebaseAuth.instance.currentUser!.email!.indexOf('@'));
 
   void changeProfileImage(int id) {
     if (id == 1) {
@@ -26,7 +27,7 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   } //TODO have to reset everything
 
-  String getCurrentnProfileImage() {
+  String getCurrentProfileImage() {
     if (profileImageChoiceId == 1) {
       profileImageChoice = "assets/images/option1.png";
     } else if (profileImageChoiceId == 2) {
@@ -38,5 +39,16 @@ class ProfileProvider extends ChangeNotifier {
     }
     notifyListeners();
     return profileImageChoice;
+  }
+
+  String getCurrentUserName() {
+    userName = FirebaseAuth.instance.currentUser!.email!.substring(0, FirebaseAuth.instance.currentUser!.email!.indexOf('@'));
+    notifyListeners();
+    return userName!;
+  }
+
+  void resetProfile() {
+    userName = null;
+    profileImageChoice = "assets/images/option1.png";
   }
 }

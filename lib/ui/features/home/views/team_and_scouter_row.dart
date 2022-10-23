@@ -1,15 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:scoring_7419/application/providers/profile_provider.dart';
 import 'package:scoring_7419/application/providers/team_provider.dart';
 import 'package:scoring_7419/application/providers/tournament_provider.dart';
 import 'package:scoring_7419/ui/features/home/views/input_dialog.dart';
 import 'package:scoring_7419/ui/features/home/views/show_dialog.dart';
-import 'package:scoring_7419/ui/features/profile/profile_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
 class TeamAndScouterRow extends StatelessWidget {
   final TeamProvider teamProvider;
   final TournamentProvider tournamentProvider;
+
   const TeamAndScouterRow({
     Key? key,
     required this.teamProvider,
@@ -18,7 +19,6 @@ class TeamAndScouterRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? userEmail = FirebaseAuth.instance.currentUser!.email;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -58,7 +58,7 @@ class TeamAndScouterRow extends StatelessWidget {
               ),
             ),
             child: Text(
-              userEmail!.substring(0, userEmail.indexOf('@')),
+              context.read<ProfileProvider>().getCurrentUserName(),
               style: const TextStyle(
                 color: black,
                 fontSize: 18,
@@ -70,8 +70,7 @@ class TeamAndScouterRow extends StatelessWidget {
     );
   }
 
-  void chooseTeamNumber(BuildContext context, TeamProvider teamProvider,
-      TournamentProvider tournamentProvider) async {
+  void chooseTeamNumber(BuildContext context, TeamProvider teamProvider, TournamentProvider tournamentProvider) async {
     String? teamNumber = await displayTextInputDialog(
       context,
       title: "Team Number",

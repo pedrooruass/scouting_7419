@@ -41,17 +41,14 @@ class TournamentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setYear(
-      int year, TeamModel teamModel, Function(String errorMessage) onError) {
+  void setYear(int year, TeamModel teamModel, Function(String errorMessage) onError) {
     this.year = year;
     getTournamentModels(teamModel, onError);
   }
 
-  Future<void> getTournamentModels(
-      TeamModel teamModel, Function(String errorMessage) onError) async {
+  Future<void> getTournamentModels(TeamModel teamModel, Function(String errorMessage) onError) async {
     TournamentRepository tournamentRepository = TournamentRepository();
-    var result =
-        await tournamentRepository.getTournamentModels(teamModel, year!);
+    var result = await tournamentRepository.getTournamentModels(teamModel, year!);
     result.fold(
       (l) => onError(l),
       (r) {
@@ -60,9 +57,10 @@ class TournamentProvider extends ChangeNotifier {
     );
   }
 
-  void resetTournamentModels() {
+  void reset() {
     tournamentModel = null;
     tournamentModels = [];
+    year = null;
     notifyListeners();
   }
 }

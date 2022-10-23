@@ -46,8 +46,7 @@ class _SignInScreenState extends State<SignInScreen> {
               flex: 7,
               child: Container(
                 alignment: Alignment.bottomCenter,
-                padding: const EdgeInsets.only(
-                    top: 8, left: 8, right: 8, bottom: 16),
+                padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 16),
                 decoration: const BoxDecoration(
                   color: white,
                   borderRadius: BorderRadius.only(
@@ -69,37 +68,22 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     Align(
                       alignment: Alignment.center,
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                            fontSize: 36, fontFamily: titleFont, color: black),
-                      ),
+                      child: Text("Login", style: TextStyle(fontSize: 36, fontFamily: titleFont, color: black)),
                     ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 44),
                         child: Column(
                           children: [
-                            const SizedBox(
-                              height: 24,
-                            ),
+                            const SizedBox(height: 24),
                             TextField(
                               controller: emailController,
                               cursorColor: darkGrey,
                               decoration: const InputDecoration(
                                 hintText: 'Email',
                                 prefixIcon: Icon(Icons.email, color: darkGrey),
-                                border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  borderSide: BorderSide(
-                                    color: darkGrey,
-                                  ),
-                                ),
+                                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+                                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)), borderSide: BorderSide(color: darkGrey)),
                                 fillColor: grey,
                                 filled: true,
                                 focusColor: darkGrey,
@@ -107,17 +91,14 @@ class _SignInScreenState extends State<SignInScreen> {
                                 hoverColor: darkGrey,
                               ),
                             ),
-                            const SizedBox(
-                              height: 24,
-                            ),
+                            const SizedBox(height: 24),
                             TextField(
                               controller: passwordController,
                               cursorColor: darkGrey,
                               obscureText: isVisible ? false : true,
                               decoration: InputDecoration(
                                 hintText: 'Password',
-                                prefixIcon:
-                                    const Icon(Icons.lock, color: darkGrey),
+                                prefixIcon: const Icon(Icons.lock, color: darkGrey),
                                 suffixIcon: GestureDetector(
                                   onTap: () {
                                     setState(() {
@@ -125,9 +106,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     });
                                   },
                                   child: Icon(
-                                    isVisible
-                                        ? Icons.visibility_outlined
-                                        : Icons.visibility_off_outlined,
+                                    isVisible ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                                     color: darkGrey,
                                   ),
                                 ),
@@ -137,8 +116,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   ),
                                 ),
                                 focusedBorder: const OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
                                   borderSide: BorderSide(
                                     color: darkGrey,
                                   ),
@@ -155,7 +133,6 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                             ElevatedButton(
                               onPressed: () {
-                                AuthRepository.resetAuthRepository();
                                 AuthRepository.signInWithEmailAndPassword(
                                   context: context,
                                   email: emailController.text,
@@ -234,10 +211,10 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  // Future signIn() async {
-  //   await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //     email: emailController.text.trim(),
-  //     password: passwordController.text.trim(),
-  //   );
-  // }
+// Future signIn() async {
+//   await FirebaseAuth.instance.signInWithEmailAndPassword(
+//     email: emailController.text.trim(),
+//     password: passwordController.text.trim(),
+//   );
+// }
 }

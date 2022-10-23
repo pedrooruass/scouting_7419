@@ -5,6 +5,7 @@ import 'package:scoring_7419/ui/themee/colors.dart';
 
 class ProfileCircularPhoto extends StatelessWidget {
   final ProfileProvider profileProvider;
+
   const ProfileCircularPhoto({
     super.key,
     required this.profileProvider,
@@ -29,7 +30,6 @@ class ProfileCircularPhoto extends StatelessWidget {
           GestureDetector(
             onTap: () {
               profileDialog(context, profileProvider);
-              // displayTextDialog(context, title: "Test");
             },
             child: Container(
               height: 40,

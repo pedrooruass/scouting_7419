@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scoring_7419/application/providers/profile_provider.dart';
 import 'package:scoring_7419/ui/features/profile/views/profile_circular_photo.dart';
@@ -7,11 +6,11 @@ import 'package:scoring_7419/ui/features/profile/views/profile_white_background.
 
 class ProfileBody extends StatelessWidget {
   final ProfileProvider profileProvider;
+
   const ProfileBody({super.key, required this.profileProvider});
 
   @override
   Widget build(BuildContext context) {
-    String? userEmail = FirebaseAuth.instance.currentUser!.email;
     return Column(
       children: [
         Expanded(
@@ -22,7 +21,7 @@ class ProfileBody extends StatelessWidget {
               ProfileCircularPhoto(profileProvider: profileProvider),
               const SizedBox(height: 12),
               ProfileUserName(
-                profileName: userEmail!.substring(0, userEmail.indexOf('@')),
+                profileName: profileProvider.getCurrentUserName(),
               ),
             ],
           ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:provider/provider.dart';
-import 'package:scoring_7419/application/providers/autonomous_provider.dart';
-import 'package:scoring_7419/application/providers/end_game_provider.dart';
+import 'package:scoring_7419/application/providers/game_provider.dart';
+import 'package:scoring_7419/application/providers/profile_provider.dart';
+import 'package:scoring_7419/application/providers/score_match_provider.dart';
 import 'package:scoring_7419/application/providers/team_provider.dart';
-import 'package:scoring_7419/application/providers/tele_op_provider.dart';
 import 'package:scoring_7419/application/providers/tournament_provider.dart';
 import 'package:scoring_7419/ui/features/home/views/comments_column_form.dart';
 import 'package:scoring_7419/ui/features/home/views/game_check_box.dart';
@@ -16,7 +17,6 @@ import 'package:scoring_7419/ui/features/home/views/title_and_profile.dart';
 import 'package:scoring_7419/ui/features/home/views/tournament_search_container.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
-import 'package:getwidget/getwidget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -64,24 +64,34 @@ class HomePage extends StatelessWidget {
               additionalCommentsContainer(),
               const SizedBox(height: 24),
               // Submit
-              Container(
-                height: 64,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  // color: Colors.green,
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: const LinearGradient(
-                    colors: gradient2,
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+              GestureDetector(
+                onTap: () {
+                  context.read<ScoreMatchProvider>().submitScore(
+                        teamProvider: teamProvider,
+                        tournamentProvider: tournamentProvider,
+                        profileProvider: context.read<ProfileProvider>(),
+                        gameProvider: context.read<GameProvider>(),
+                      );
+                },
+                child: Container(
+                  height: 64,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    // color: Colors.green,
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: const LinearGradient(
+                      colors: gradient2,
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
                   ),
-                ),
-                child: Text(
-                  "Submit",
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: white,
-                    fontFamily: titleFont,
+                  child: Text(
+                    "Submit",
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: white,
+                      fontFamily: titleFont,
+                    ),
                   ),
                 ),
               ),
@@ -107,46 +117,45 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Consumer<EndGameProvider> endGameContainer() {
-    return Consumer<EndGameProvider>(
-        builder: (context, endGameProvider, widget) {
+  Consumer<GameProvider> endGameContainer() {
+    return Consumer<GameProvider>(builder: (context, gameProvider, widget) {
       return ModeContainer(
-        totalPoints: endGameProvider.calcTotal(),
+        totalPoints: gameProvider.calcEndGameTotal(),
         modeTitle: "End Game",
         widgets: [
           PlusMinusTile(
             title: "Upper Hub",
-            hubPointsIn: endGameProvider.endGameUpperHubIn,
-            hubPointsOut: endGameProvider.endGameUpperHubOut,
+            hubPointsIn: gameProvider.gameModel.endGameUpperHubIn,
+            hubPointsOut: gameProvider.gameModel.endGameUpperHubOut,
             onPressedInMinus: () {
-              endGameProvider.decreaseUpperHubIn();
+              gameProvider.endGameDecreaseUpperHubIn();
             },
             onPressedInPlus: () {
-              endGameProvider.increaseUpperHubIn();
+              gameProvider.endGameIncreaseUpperHubIn();
             },
             onPressedOutMinus: () {
-              endGameProvider.decreaseUpperHubOut();
+              gameProvider.endGameDecreaseUpperHubOut();
             },
             onPressedOutPlus: () {
-              endGameProvider.increaseUpperHubOut();
+              gameProvider.endGameIncreaseUpperHubOut();
             },
           ),
           const SizedBox(height: 24),
           PlusMinusTile(
             title: "Lower Hub",
-            hubPointsIn: endGameProvider.endGameLowerHubIn,
-            hubPointsOut: endGameProvider.endGameLowerHubOut,
+            hubPointsIn: gameProvider.gameModel.endGameLowerHubIn,
+            hubPointsOut: gameProvider.gameModel.endGameLowerHubOut,
             onPressedInMinus: () {
-              endGameProvider.decreaseLowerHubIn();
+              gameProvider.endGameDecreaseLowerHubIn();
             },
             onPressedInPlus: () {
-              endGameProvider.increaseLowerHubIn();
+              gameProvider.endGameIncreaseLowerHubIn();
             },
             onPressedOutMinus: () {
-              endGameProvider.decreaseLowerHubOut();
+              gameProvider.endGameDecreaseLowerHubOut();
             },
             onPressedOutPlus: () {
-              endGameProvider.increaseLowerHubOut();
+              gameProvider.endGameIncreaseLowerHubOut();
             },
           ),
           const SizedBox(height: 12),
@@ -158,9 +167,9 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
               ),
               GFToggle(
-                value: endGameProvider.isRobotHanging,
+                value: gameProvider.gameModel.endGameIsRobotHanging,
                 onChanged: (value) {
-                  endGameProvider.checkIsRobotHanging(value!);
+                  gameProvider.endGameCheckIsRobotHanging(value!);
                 },
                 type: GFToggleType.square,
                 enabledThumbColor: darkGrey,
@@ -171,14 +180,15 @@ class HomePage extends StatelessWidget {
             ],
           ),
           Visibility(
-            visible: endGameProvider.isRobotHanging,
+            visible: gameProvider.gameModel.endGameIsRobotHanging,
             child: Column(
               children: [
                 const SizedBox(height: 24),
                 FlutterToggleTab(
                   borderRadius: 10,
                   height: 40,
-                  selectedIndex: endGameProvider.hangerIndexSelected,
+                  selectedIndex:
+                      gameProvider.gameModel.endGameHangerIndexSelected,
                   selectedBackgroundColors: gradient1,
                   selectedTextStyle: const TextStyle(
                       color: Colors.white,
@@ -196,7 +206,7 @@ class HomePage extends StatelessWidget {
                     "Traversal", // Scrollable
                   ],
                   selectedLabelIndex: (index) {
-                    endGameProvider.changeHangerIndexSelected(index);
+                    gameProvider.endGameChangeHangerIndexSelected(index);
                   },
                   isScroll: false,
                 ),
@@ -206,23 +216,23 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 24),
           GameCheckBoxTile(
             title: "Scoring Bonus",
-            icon: endGameProvider.haveScoreBonus
+            icon: gameProvider.gameModel.endGameHaveScoreBonus
                 ? Icons.check_box_outlined
                 : Icons.check_box_outline_blank,
             onPressed: () {
-              endGameProvider
-                  .checkHaveScoreBonus(!endGameProvider.haveScoreBonus);
+              gameProvider.endGameCheckHaveScoreBonus(
+                  !gameProvider.gameModel.endGameHaveScoreBonus);
             },
           ),
           const SizedBox(height: 24),
           GameCheckBoxTile(
             title: "Hanger Bonus",
-            icon: endGameProvider.haveHangerBonus
+            icon: gameProvider.gameModel.endGameHaveHangerBonus
                 ? Icons.check_box_outlined
                 : Icons.check_box_outline_blank,
             onPressed: () {
-              endGameProvider
-                  .checkHaveHangerBonus(!endGameProvider.haveHangerBonus);
+              gameProvider.endGameCheckHaveHangerBonus(
+                  !gameProvider.gameModel.endGameHaveHangerBonus);
             },
           ),
           const SizedBox(height: 24),
@@ -237,11 +247,11 @@ class HomePage extends StatelessWidget {
               const Spacer(),
               PlusMinusWidget(
                 onPressedMinus: () {
-                  endGameProvider.decreaseTimeHanging();
+                  gameProvider.endGameDecreaseTimeHanging();
                 },
-                hubPoints: endGameProvider.timeHanging,
+                hubPoints: gameProvider.gameModel.endGameTimeHanging,
                 onPressedPlus: () {
-                  endGameProvider.increaseTimeHanging();
+                  gameProvider.endGameIncreaseTimeHanging();
                 },
                 color: darkGrey,
               ),
@@ -253,45 +263,45 @@ class HomePage extends StatelessWidget {
     });
   }
 
-  Consumer<TeleOpProvider> teleOpContainer() {
-    return Consumer<TeleOpProvider>(builder: (context, teleOpProvider, widget) {
+  Consumer<GameProvider> teleOpContainer() {
+    return Consumer<GameProvider>(builder: (context, gameProvider, widget) {
       return ModeContainer(
-        totalPoints: teleOpProvider.calcTotal(),
+        totalPoints: gameProvider.calcTeleOpTotal(),
         modeTitle: "Tele Op",
         widgets: [
           PlusMinusTile(
             title: "Upper Hub",
-            hubPointsIn: teleOpProvider.teleOpUpperHubIn,
-            hubPointsOut: teleOpProvider.teleOpUpperHubOut,
+            hubPointsIn: gameProvider.gameModel.teleOpUpperHubIn,
+            hubPointsOut: gameProvider.gameModel.teleOpUpperHubOut,
             onPressedInMinus: () {
-              teleOpProvider.decreaseUpperHubIn();
+              gameProvider.teleOpDecreaseUpperHubIn();
             },
             onPressedInPlus: () {
-              teleOpProvider.increaseUpperHubIn();
+              gameProvider.teleOpIncreaseUpperHubIn();
             },
             onPressedOutMinus: () {
-              teleOpProvider.decreaseUpperHubOut();
+              gameProvider.teleOpDecreaseUpperHubOut();
             },
             onPressedOutPlus: () {
-              teleOpProvider.increaseUpperHubOut();
+              gameProvider.teleOpIncreaseUpperHubOut();
             },
           ),
           const SizedBox(height: 24),
           PlusMinusTile(
             title: "Lower Hub",
-            hubPointsIn: teleOpProvider.teleOpLowerHubIn,
-            hubPointsOut: teleOpProvider.teleOpLowerHubOut,
+            hubPointsIn: gameProvider.gameModel.teleOpLowerHubIn,
+            hubPointsOut: gameProvider.gameModel.teleOpLowerHubOut,
             onPressedInMinus: () {
-              teleOpProvider.decreaseLowerHubIn();
+              gameProvider.teleOpDecreaseLowerHubIn();
             },
             onPressedInPlus: () {
-              teleOpProvider.increaseLowerHubIn();
+              gameProvider.teleOpIncreaseLowerHubIn();
             },
             onPressedOutMinus: () {
-              teleOpProvider.decreaseLowerHubOut();
+              gameProvider.teleOpDecreaseLowerHubOut();
             },
             onPressedOutPlus: () {
-              teleOpProvider.increaseLowerHubOut();
+              gameProvider.teleOpIncreaseLowerHubOut();
             },
           ),
         ],
@@ -299,56 +309,56 @@ class HomePage extends StatelessWidget {
     });
   }
 
-  Consumer<AutonomousProvider> autonomousContainer() {
-    return Consumer<AutonomousProvider>(
-      builder: (context, autonomousProvider, widget) {
+  Consumer<GameProvider> autonomousContainer() {
+    return Consumer<GameProvider>(
+      builder: (context, gameProvider, widget) {
         return ModeContainer(
           modeTitle: "Autonomous",
-          totalPoints: autonomousProvider.calcTotal(),
+          totalPoints: gameProvider.calcAutoTotal(),
           widgets: [
             PlusMinusTile(
               title: "Upper Hub",
-              hubPointsIn: autonomousProvider.autoUpperHubIn,
-              hubPointsOut: autonomousProvider.autoUpperHubOut,
+              hubPointsIn: gameProvider.gameModel.autoUpperHubIn,
+              hubPointsOut: gameProvider.gameModel.autoUpperHubOut,
               onPressedInMinus: () {
-                autonomousProvider.decreaseUpperHubIn();
+                gameProvider.autoDecreaseUpperHubIn();
               },
               onPressedInPlus: () {
-                autonomousProvider.increaseUpperHubIn();
+                gameProvider.autoIncreaseUpperHubIn();
               },
               onPressedOutMinus: () {
-                autonomousProvider.decreaseUpperHubOut();
+                gameProvider.autoDecreaseUpperHubOut();
               },
               onPressedOutPlus: () {
-                autonomousProvider.increaseUpperHubOut();
+                gameProvider.autoIncreaseUpperHubOut();
               },
             ),
             const SizedBox(height: 24),
             PlusMinusTile(
               title: "Lower Hub",
-              hubPointsIn: autonomousProvider.autoLowerHubIn,
-              hubPointsOut: autonomousProvider.autoLowerHubOut,
+              hubPointsIn: gameProvider.gameModel.autoLowerHubIn,
+              hubPointsOut: gameProvider.gameModel.autoLowerHubOut,
               onPressedInMinus: () {
-                autonomousProvider.decreaseLowerHubIn();
+                gameProvider.autoDecreaseLowerHubIn();
               },
               onPressedInPlus: () {
-                autonomousProvider.increaseLowerHubIn();
+                gameProvider.autoIncreaseLowerHubIn();
               },
               onPressedOutMinus: () {
-                autonomousProvider.decreaseLowerHubOut();
+                gameProvider.autoDecreaseLowerHubOut();
               },
               onPressedOutPlus: () {
-                autonomousProvider.increaseLowerHubOut();
+                gameProvider.autoIncreaseLowerHubOut();
               },
             ),
             const SizedBox(height: 24),
             GameCheckBoxTile(
               title: "Moves Off Tarmac",
-              icon: autonomousProvider.autoMovesOffTarmac
+              icon: gameProvider.gameModel.autoMovesOffTarmac
                   ? Icons.check_box_outlined
                   : Icons.check_box_outline_blank,
               onPressed: () {
-                autonomousProvider.autoToggleTarmac();
+                gameProvider.autoToggleTarmac();
               },
             ),
             const SizedBox(height: 24),

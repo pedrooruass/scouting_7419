@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:scoring_7419/application/providers/game_provider.dart';
 import 'package:scoring_7419/application/repositories/auth_repository.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
+import '../../../../application/providers/profile_provider.dart';
+import '../../../../application/providers/team_provider.dart';
+import '../../../../application/providers/tournament_provider.dart';
 
 class ProfileTileSubScreens extends StatelessWidget {
   ProfileTileSubScreens({
@@ -10,6 +15,7 @@ class ProfileTileSubScreens extends StatelessWidget {
     this.onTap,
     this.isSignOut = false,
   });
+
   final void Function()? onTap;
   final String title;
   final IconData icon;
@@ -22,6 +28,12 @@ class ProfileTileSubScreens extends StatelessWidget {
         ListTile(
           onTap: isSignOut
               ? () {
+                  AuthRepository.resetAuthRepository(
+                    gameProvider: context.read<GameProvider>(),
+                    teamProvider: context.read<TeamProvider>(),
+                    tournamentProvider: context.read<TournamentProvider>(),
+                    profileProvider: context.read<ProfileProvider>(),
+                  );
                   AuthRepository.signOut();
                   Navigator.pop(context);
                 }

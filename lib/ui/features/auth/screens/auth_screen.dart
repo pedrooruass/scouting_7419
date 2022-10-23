@@ -11,8 +11,6 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final pageViewController = PageController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
