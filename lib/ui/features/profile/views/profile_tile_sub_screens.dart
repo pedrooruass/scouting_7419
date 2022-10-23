@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:scoring_7419/application/repositories/auth_repository.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
 class ProfileTileSubScreens extends StatelessWidget {
   ProfileTileSubScreens({
-    Key? key,
+    super.key,
     required this.title,
     required this.icon,
+    this.onTap,
     this.isSignOut = false,
-  }) : super(key: key);
-
+  });
+  final void Function()? onTap;
   final String title;
   final IconData icon;
   bool isSignOut;
@@ -18,11 +20,13 @@ class ProfileTileSubScreens extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          // onTap: isSignOut
-          //     ? () => AuthRepository.signOut()
-          //     : null,
+          onTap: isSignOut
+              ? () {
+                  AuthRepository.signOut();
+                  Navigator.pop(context);
+                }
+              : onTap,
           leading: Icon(icon, color: isSignOut ? Colors.red : darkGrey),
-          // leading: Icon(icon),
           trailing: isSignOut
               ? null
               : const Icon(

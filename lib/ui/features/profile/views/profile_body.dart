@@ -1,22 +1,29 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:scoring_7419/application/providers/profile_provider.dart';
 import 'package:scoring_7419/ui/features/profile/views/profile_circular_photo.dart';
 import 'package:scoring_7419/ui/features/profile/views/profile_user_name.dart';
 import 'package:scoring_7419/ui/features/profile/views/profile_white_background.dart';
 
 class ProfileBody extends StatelessWidget {
-  const ProfileBody({Key? key}) : super(key: key);
+  final ProfileProvider profileProvider;
+  const ProfileBody({super.key, required this.profileProvider});
 
   @override
   Widget build(BuildContext context) {
-    // final userEmail = FirebaseAuth.instance.currentUser!.email;
+    String? userEmail = FirebaseAuth.instance.currentUser!.email;
     return Column(
       children: [
         Expanded(
           flex: 2,
           child: Column(
-            children: const [
-              ProfileCircularPhoto(),
-              ProfileUserName(profileName: "uthonsuht"),
+            children: [
+              const SizedBox(height: 4),
+              ProfileCircularPhoto(profileProvider: profileProvider),
+              const SizedBox(height: 12),
+              ProfileUserName(
+                profileName: userEmail!.substring(0, userEmail.indexOf('@')),
+              ),
             ],
           ),
         ),

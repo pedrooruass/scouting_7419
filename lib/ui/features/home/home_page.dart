@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
         color: black,
         child: ListView(
           children: [
-            const TitleAndProfile(),
+            TitleAndProfile(),
             const SizedBox(height: 24),
             TeamAndScouterRow(
               teamProvider: teamProvider,

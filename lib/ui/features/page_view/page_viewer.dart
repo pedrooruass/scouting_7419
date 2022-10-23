@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
 import 'package:scoring_7419/ui/features/home/home_page.dart';
-import 'package:scoring_7419/ui/features/profile/profile_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
 class PageViewer extends StatefulWidget {
@@ -13,9 +12,7 @@ class PageViewer extends StatefulWidget {
 }
 
 class _PageViewerState extends State<PageViewer> {
-  final _controller = PageController();
-  final int _selectedIndex = 1;
-  dynamic selected;
+  final _controller = PageController(initialPage: 1);
   var heart = false;
 
   @override
@@ -32,8 +29,7 @@ class _PageViewerState extends State<PageViewer> {
         children: const <Widget>[
           ColoredBox(color: black),
           HomePage(),
-          ProfilePage(),
-          // const ColoredBox(color: black),
+          ColoredBox(color: black),
         ],
       ),
       extendBody: true,

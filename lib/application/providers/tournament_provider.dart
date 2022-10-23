@@ -18,7 +18,7 @@ class TournamentProvider extends ChangeNotifier {
   List<TournamentModel> get tournamentModels => _tournamentModels;
 
   set tournamentModels(List<TournamentModel> tournamentModels) {
-     tournamentModel = null;
+    tournamentModel = null;
     _tournamentModels = tournamentModels;
     notifyListeners();
   }
@@ -58,5 +58,11 @@ class TournamentProvider extends ChangeNotifier {
         tournamentModels = r;
       },
     );
+  }
+
+  void resetTournamentModels() {
+    tournamentModel = null;
+    tournamentModels = [];
+    notifyListeners();
   }
 }
