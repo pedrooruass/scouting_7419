@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class GameModel {
   // Autonomous
   int autoUpperHubIn = 0;
@@ -25,4 +27,9 @@ class GameModel {
   bool endGameHaveHangerBonus = false;
   int endGameTimeHanging = 0;
   int endGameHangerIndexSelected = 0;
+
+  //Comments
+  TextEditingController commentsAutoController = TextEditingController();
+  TextEditingController commentsTeleOpController = TextEditingController();
+  TextEditingController commentsEndGameController = TextEditingController();
 }

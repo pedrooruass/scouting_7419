@@ -32,7 +32,7 @@ class TournamentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<int> _years = [2019, 2020, 2021, 2022, 2023];
+  List<int> _years = [2022, 2023, 2024];
 
   List<int> get years => _years;
 

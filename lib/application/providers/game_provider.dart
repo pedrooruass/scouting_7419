@@ -227,6 +227,7 @@ class GameProvider extends ChangeNotifier {
 
   int calcEndGameTotal() => calcEndGameUpperHub() + calcEndGameLowerHub() + calcEndGameHanging() + calcEndGameScoreBonus() + calcEndGameHangerBonus();
 
+
   void reset() {
     gameModel.autoUpperHubIn = 0;
     gameModel.autoLowerHubIn = 0;
@@ -243,12 +244,16 @@ class GameProvider extends ChangeNotifier {
     gameModel.endGameLowerHubIn = 0;
     gameModel.endGameUpperHubOut = 0;
     gameModel.endGameLowerHubOut = 0;
-    gameModel.endGameTotalPoints = 0;
     gameModel.endGameIsRobotHanging = false;
     gameModel.endGameHaveScoreBonus = false;
     gameModel.endGameHaveHangerBonus = false;
     gameModel.endGameTimeHanging = 0;
     gameModel.endGameHangerIndexSelected = 0;
+    gameModel.endGameTotalPoints = 0;
+
+    gameModel.commentsAutoController.text = "";
+    gameModel.commentsTeleOpController.text = "";
+    gameModel.commentsEndGameController.text = "";
 
     notifyListeners();
   }

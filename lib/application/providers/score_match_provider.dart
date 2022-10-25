@@ -19,7 +19,6 @@ class ScoreMatchProvider extends ChangeNotifier {
       tournamentName: tournamentProvider.tournamentModel!.name,
       scouterName: profileProvider.userName!,
       teamNumber: teamProvider.teamModel!.teamNumber,
-      gameNumber: 0,
       autoUpperHubIn: gameProvider.gameModel.autoUpperHubIn,
       autoUpperHubOut: gameProvider.gameModel.autoUpperHubOut,
       autoLowerHubIn: gameProvider.gameModel.autoLowerHubIn,
@@ -41,9 +40,9 @@ class ScoreMatchProvider extends ChangeNotifier {
       endGameHaveHangerBonus: gameProvider.gameModel.endGameHaveHangerBonus,
       endGameTimeHanging: gameProvider.gameModel.endGameTimeHanging,
       endGameHangerIndexSelected: gameProvider.gameModel.endGameHangerIndexSelected,
-      commentsAuto: "",
-      commentsEndGame: "",
-      commentsTeleOp: "",
+      commentsAuto: gameProvider.gameModel.commentsAutoController.text,
+      commentsTeleOp: gameProvider.gameModel.commentsTeleOpController.text,
+      commentsEndGame: gameProvider.gameModel.commentsEndGameController.text,
     );
 
     ScoringRepository scoringRepository = ScoringRepository();

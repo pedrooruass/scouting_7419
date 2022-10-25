@@ -23,8 +23,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<TeamProvider, TournamentProvider>(
-        builder: (context, teamProvider, tournamentProvider, widget) {
+    return Consumer2<TeamProvider, TournamentProvider>(builder: (context, teamProvider, tournamentProvider, widget) {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 22),
         color: black,
@@ -45,9 +44,7 @@ class HomePage extends StatelessWidget {
             ],
             if (teamProvider.teamModel != null) ...[
               const SizedBox(height: 24),
-              TournamentSearchContainer(
-                  tournamentProvider: tournamentProvider,
-                  teamProvider: teamProvider),
+              TournamentSearchContainer(tournamentProvider: tournamentProvider, teamProvider: teamProvider),
             ],
             if (tournamentProvider.tournamentModel != null) ...[
               const SizedBox(height: 24),
@@ -61,7 +58,7 @@ class HomePage extends StatelessWidget {
               endGameContainer(),
               const SizedBox(height: 24),
               // Additional Comments
-              additionalCommentsContainer(),
+              additionalCommentsContainer(context),
               const SizedBox(height: 24),
               // Submit
               GestureDetector(
@@ -102,16 +99,16 @@ class HomePage extends StatelessWidget {
     });
   }
 
-  ModeContainer additionalCommentsContainer() {
+  ModeContainer additionalCommentsContainer(BuildContext context) {
     return ModeContainer(
       isComments: true,
       modeTitle: "Aditional Comments",
       widgets: [
-        CommentsColumnForm(title: "Auto"),
+        CommentsColumnForm(title: "Auto", commentsController: context.read<GameProvider>().gameModel.commentsAutoController),
         const SizedBox(height: 24),
-        CommentsColumnForm(title: "Tele Op"),
+        CommentsColumnForm(title: "Tele Op", commentsController: context.read<GameProvider>().gameModel.commentsTeleOpController),
         const SizedBox(height: 24),
-        CommentsColumnForm(title: "Eng Game"),
+        CommentsColumnForm(title: "End Game", commentsController: context.read<GameProvider>().gameModel.commentsEndGameController),
         const SizedBox(height: 24),
       ],
     );
@@ -187,17 +184,10 @@ class HomePage extends StatelessWidget {
                 FlutterToggleTab(
                   borderRadius: 10,
                   height: 40,
-                  selectedIndex:
-                      gameProvider.gameModel.endGameHangerIndexSelected,
+                  selectedIndex: gameProvider.gameModel.endGameHangerIndexSelected,
                   selectedBackgroundColors: gradient1,
-                  selectedTextStyle: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700),
-                  unSelectedTextStyle: const TextStyle(
-                      color: Colors.black87,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500),
+                  selectedTextStyle: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
+                  unSelectedTextStyle: const TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.w500),
                   labels: const [
                     "Low",
                     "Mid",
@@ -216,23 +206,17 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 24),
           GameCheckBoxTile(
             title: "Scoring Bonus",
-            icon: gameProvider.gameModel.endGameHaveScoreBonus
-                ? Icons.check_box_outlined
-                : Icons.check_box_outline_blank,
+            icon: gameProvider.gameModel.endGameHaveScoreBonus ? Icons.check_box_outlined : Icons.check_box_outline_blank,
             onPressed: () {
-              gameProvider.endGameCheckHaveScoreBonus(
-                  !gameProvider.gameModel.endGameHaveScoreBonus);
+              gameProvider.endGameCheckHaveScoreBonus(!gameProvider.gameModel.endGameHaveScoreBonus);
             },
           ),
           const SizedBox(height: 24),
           GameCheckBoxTile(
             title: "Hanger Bonus",
-            icon: gameProvider.gameModel.endGameHaveHangerBonus
-                ? Icons.check_box_outlined
-                : Icons.check_box_outline_blank,
+            icon: gameProvider.gameModel.endGameHaveHangerBonus ? Icons.check_box_outlined : Icons.check_box_outline_blank,
             onPressed: () {
-              gameProvider.endGameCheckHaveHangerBonus(
-                  !gameProvider.gameModel.endGameHaveHangerBonus);
+              gameProvider.endGameCheckHaveHangerBonus(!gameProvider.gameModel.endGameHaveHangerBonus);
             },
           ),
           const SizedBox(height: 24),
@@ -354,9 +338,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 24),
             GameCheckBoxTile(
               title: "Moves Off Tarmac",
-              icon: gameProvider.gameModel.autoMovesOffTarmac
-                  ? Icons.check_box_outlined
-                  : Icons.check_box_outline_blank,
+              icon: gameProvider.gameModel.autoMovesOffTarmac ? Icons.check_box_outlined : Icons.check_box_outline_blank,
               onPressed: () {
                 gameProvider.autoToggleTarmac();
               },

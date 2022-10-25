@@ -9,6 +9,7 @@ import 'package:scoring_7419/ui/themee/fonts.dart';
 class TournamentSearchContainer extends StatelessWidget {
   final TournamentProvider tournamentProvider;
   final TeamProvider teamProvider;
+
   const TournamentSearchContainer({
     super.key,
     required this.tournamentProvider,
@@ -55,8 +56,7 @@ class TournamentSearchContainer extends StatelessWidget {
               tournamentProvider.setYear(
                 year!,
                 teamProvider.teamModel!,
-                (errorMessage) =>
-                    displayTextDialog(context, title: errorMessage),
+                (errorMessage) => displayTextDialog(context, title: errorMessage),
               );
             },
           ),
@@ -69,8 +69,7 @@ class TournamentSearchContainer extends StatelessWidget {
                 color: black,
               ),
             ),
-            items: tournamentProvider.tournamentModels
-                .map((TournamentModel tournamentModel) {
+            items: tournamentProvider.tournamentModels.map((TournamentModel tournamentModel) {
               return DropdownMenuItem<TournamentModel>(
                 value: tournamentModel,
                 child: Text(
@@ -89,34 +88,5 @@ class TournamentSearchContainer extends StatelessWidget {
         ],
       ),
     );
-
-    /*
-    return Container(
-      height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: const BoxDecoration(
-        color: white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: const [
-          Icon(
-            Icons.search,
-            color: black,
-            size: 24,
-          ),
-          Text(
-            "Search Tournament",
-            style: TextStyle(
-              color: black,
-              fontSize: 18,
-            ),
-          ),
-        ],
-      ),
-    ); */
   }
 }

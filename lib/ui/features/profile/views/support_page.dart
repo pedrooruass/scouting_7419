@@ -15,7 +15,7 @@ class SupportPage extends StatelessWidget {
         title: Text(
           "Support",
           style: TextStyle(
-            fontSize: 44,
+            fontSize: 38,
             fontFamily: titleFont,
             color: white,
           ),

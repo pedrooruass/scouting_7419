@@ -3,7 +3,6 @@ class ScoringModel {
   final String tournamentName;
   final String scouterName;
   final int teamNumber;
-  final int gameNumber;
 
   // Autonomous
   final int autoUpperHubIn;
@@ -25,12 +24,12 @@ class ScoringModel {
   final int endGameLowerHubIn;
   final int endGameUpperHubOut;
   final int endGameLowerHubOut;
-  final int endGameTotalPoints;
   final bool endGameIsRobotHanging;
   final bool endGameHaveScoreBonus;
   final bool endGameHaveHangerBonus;
   final int endGameTimeHanging;
   final int endGameHangerIndexSelected;
+  final int endGameTotalPoints;
 
   //Comments
   final String commentsAuto;
@@ -42,7 +41,6 @@ class ScoringModel {
     required this.tournamentName,
     required this.scouterName,
     required this.teamNumber,
-    required this.gameNumber,
     required this.autoUpperHubIn,
     required this.autoLowerHubIn,
     required this.autoUpperHubOut,
@@ -53,7 +51,6 @@ class ScoringModel {
     required this.teleOpLowerHubIn,
     required this.teleOpUpperHubOut,
     required this.teleOpLowerHubOut,
-    required this.teleOpTotalPoints,
     required this.endGameUpperHubIn,
     required this.endGameLowerHubIn,
     required this.endGameUpperHubOut,
@@ -64,6 +61,7 @@ class ScoringModel {
     required this.endGameHaveHangerBonus,
     required this.endGameTimeHanging,
     required this.endGameHangerIndexSelected,
+    required this.teleOpTotalPoints,
     required this.commentsAuto,
     required this.commentsTeleOp,
     required this.commentsEndGame,
@@ -75,7 +73,6 @@ class ScoringModel {
       tournamentName: json['tournamentName'],
       scouterName: json['scouterName'],
       teamNumber: json['teamNumber'],
-      gameNumber: json['gameNumber'],
       autoUpperHubIn: json['autoUpperHubIn'],
       autoLowerHubIn: json['autoLowerHubIn'],
       autoUpperHubOut: json['autoUpperHubOut'],
@@ -91,30 +88,29 @@ class ScoringModel {
       endGameLowerHubIn: json['endGameLowerHubIn'],
       endGameUpperHubOut: json['endGameUpperHubOut'],
       endGameLowerHubOut: json['endGameLowerHubOut'],
-      endGameTotalPoints: json['endGameTotalPoints'],
       endGameIsRobotHanging: json['endGameIsRobotHanging'],
       endGameHaveScoreBonus: json['endGameHaveScoreBonus'],
       endGameHaveHangerBonus: json['endGameHaveHangerBonus'],
       endGameTimeHanging: json['endGameTimeHanging'],
       endGameHangerIndexSelected: json['endGameHangerIndexSelected'],
+      endGameTotalPoints: json['endGameTotalPoints'],
       commentsAuto: json['commentsAuto'],
       commentsTeleOp: json['commentsTeleOp'],
       commentsEndGame: json['commentsEndGame'],
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
+  Map<String, dynamic> toJson() =>
+      {
         'tournamentName': tournamentName,
         'scouterName': scouterName,
         'teamNumber': teamNumber,
-        'gameNumber': gameNumber,
         'autoUpperHubIn': autoUpperHubIn,
         'autoLowerHubIn': autoLowerHubIn,
         'autoUpperHubOut': autoUpperHubOut,
         'autoLowerHubOut': autoLowerHubOut,
-        'autoTotalPoints': autoTotalPoints,
         'autoMovesOffTarmac': autoMovesOffTarmac,
+        'autoTotalPoints': autoTotalPoints,
         'teleOpUpperHubIn': teleOpUpperHubIn,
         'teleOpLowerHubIn': teleOpLowerHubIn,
         'teleOpUpperHubOut': teleOpUpperHubOut,
@@ -124,12 +120,12 @@ class ScoringModel {
         'endGameLowerHubIn': endGameLowerHubIn,
         'endGameUpperHubOut': endGameUpperHubOut,
         'endGameLowerHubOut': endGameLowerHubOut,
-        'endGameTotalPoints': endGameTotalPoints,
         'endGameIsRobotHanging': endGameIsRobotHanging,
+        'endGameHangerIndexSelected': endGameHangerIndexSelected,
         'endGameHaveScoreBonus': endGameHaveScoreBonus,
         'endGameHaveHangerBonus': endGameHaveHangerBonus,
         'endGameTimeHanging': endGameTimeHanging,
-        'endGameHangerIndexSelected': endGameHangerIndexSelected,
+        'endGameTotalPoints': endGameTotalPoints,
         'commentsAuto': commentsAuto,
         'commentsTeleOp': commentsTeleOp,
         'commentsEndGame': commentsEndGame,
