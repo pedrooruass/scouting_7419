@@ -15,6 +15,7 @@ class GameModel {
   int teleOpUpperHubOut = 0;
   int teleOpLowerHubOut = 0;
   int teleOpTotalPoints = 0;
+  bool teleOpIsRobotDefensive = false;
 
   // End Game
   int endGameUpperHubIn = 0;

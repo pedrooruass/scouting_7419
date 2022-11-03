@@ -288,6 +288,14 @@ class HomePage extends StatelessWidget {
               gameProvider.teleOpIncreaseLowerHubOut();
             },
           ),
+          const SizedBox(height: 24),
+          GameCheckBoxTile(
+            title: "Is Robot Defensive",
+            icon: gameProvider.gameModel.teleOpIsRobotDefensive? Icons.check_box_outlined : Icons.check_box_outline_blank,
+            onPressed: () {
+              gameProvider.teleOpToggleIsRobotDefensive(!gameProvider.gameModel.teleOpIsRobotDefensive);
+            },
+          ),
         ],
       );
     });

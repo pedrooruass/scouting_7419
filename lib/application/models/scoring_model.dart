@@ -17,8 +17,8 @@ class ScoringModel {
   final int teleOpLowerHubIn;
   final int teleOpUpperHubOut;
   final int teleOpLowerHubOut;
+  final bool teleOpIsRobotDefensive;
   final int teleOpTotalPoints;
-
   // End Game
   final int endGameUpperHubIn;
   final int endGameLowerHubIn;
@@ -31,11 +31,11 @@ class ScoringModel {
   final int endGameHangerIndexSelected;
   final int endGameTotalPoints;
 
-  //Comments
   final String commentsAuto;
   final String commentsTeleOp;
   final String commentsEndGame;
 
+  //Comments
   ScoringModel({
     required this.id,
     required this.tournamentName,
@@ -51,6 +51,8 @@ class ScoringModel {
     required this.teleOpLowerHubIn,
     required this.teleOpUpperHubOut,
     required this.teleOpLowerHubOut,
+    required this.teleOpIsRobotDefensive,
+    required this.teleOpTotalPoints,
     required this.endGameUpperHubIn,
     required this.endGameLowerHubIn,
     required this.endGameUpperHubOut,
@@ -61,7 +63,6 @@ class ScoringModel {
     required this.endGameHaveHangerBonus,
     required this.endGameTimeHanging,
     required this.endGameHangerIndexSelected,
-    required this.teleOpTotalPoints,
     required this.commentsAuto,
     required this.commentsTeleOp,
     required this.commentsEndGame,
@@ -83,6 +84,7 @@ class ScoringModel {
       teleOpLowerHubIn: json['teleOpLowerHubIn'],
       teleOpUpperHubOut: json['teleOpUpperHubOut'],
       teleOpLowerHubOut: json['teleOpLowerHubOut'],
+      teleOpIsRobotDefensive: json["teleOpIsRobotDefensive"],
       teleOpTotalPoints: json['teleOpTotalPoints'],
       endGameUpperHubIn: json['endGameUpperHubIn'],
       endGameLowerHubIn: json['endGameLowerHubIn'],
@@ -115,6 +117,7 @@ class ScoringModel {
         'teleOpLowerHubIn': teleOpLowerHubIn,
         'teleOpUpperHubOut': teleOpUpperHubOut,
         'teleOpLowerHubOut': teleOpLowerHubOut,
+        'teleOpIsRobotDefensive': teleOpIsRobotDefensive,
         'teleOpTotalPoints': teleOpTotalPoints,
         'endGameUpperHubIn': endGameUpperHubIn,
         'endGameLowerHubIn': endGameLowerHubIn,

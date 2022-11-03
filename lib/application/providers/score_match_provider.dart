@@ -29,6 +29,7 @@ class ScoreMatchProvider extends ChangeNotifier {
       teleOpUpperHubOut: gameProvider.gameModel.teleOpUpperHubOut,
       teleOpLowerHubIn: gameProvider.gameModel.teleOpLowerHubIn,
       teleOpLowerHubOut: gameProvider.gameModel.teleOpLowerHubOut,
+      teleOpIsRobotDefensive: gameProvider.gameModel.teleOpIsRobotDefensive,
       teleOpTotalPoints: gameProvider.gameModel.teleOpTotalPoints,
       endGameUpperHubIn: gameProvider.gameModel.endGameUpperHubIn,
       endGameUpperHubOut: gameProvider.gameModel.endGameUpperHubOut,

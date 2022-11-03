@@ -111,7 +111,10 @@ class GameProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-
+  void teleOpToggleIsRobotDefensive(bool value){
+    gameModel.teleOpIsRobotDefensive = value;
+    notifyListeners();
+  }
   int calcTeleOpUpperHub() => gameModel.teleOpUpperHubIn * 2;
 
   int calcTeleOpLowerHub() => gameModel.teleOpLowerHubIn * 1;
@@ -239,6 +242,7 @@ class GameProvider extends ChangeNotifier {
     gameModel.teleOpLowerHubIn = 0;
     gameModel.teleOpUpperHubOut = 0;
     gameModel.teleOpLowerHubOut = 0;
+    gameModel.teleOpIsRobotDefensive = false;
 
     gameModel.endGameUpperHubIn = 0;
     gameModel.endGameLowerHubIn = 0;

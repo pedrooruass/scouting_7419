@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
 import 'package:scoring_7419/ui/features/home/home_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
+import 'package:scoring_7419/ui/themee/fonts.dart';
 
 class PageViewer extends StatefulWidget {
   const PageViewer({Key? key}) : super(key: key);
@@ -26,10 +28,10 @@ class _PageViewerState extends State<PageViewer> {
     return Scaffold(
       body: PageView(
         controller: _controller,
-        children: const <Widget>[
-          ColoredBox(color: black),
-          HomePage(),
-          ColoredBox(color: black),
+        children:  <Widget>[
+          inDevelopmentScreen(),
+          const HomePage(),
+          inDevelopmentScreen(),
         ],
       ),
       extendBody: true,
@@ -39,8 +41,8 @@ class _PageViewerState extends State<PageViewer> {
         useActiveColorByDefault: false,
         color: grey,
         itemColor: black,
-        items: const [
-          RollingBottomBarItem(
+        items:  const [
+           RollingBottomBarItem(
             Icons.data_saver_off,
             label: 'Data',
             activeColor: darkGrey,
@@ -51,8 +53,8 @@ class _PageViewerState extends State<PageViewer> {
             activeColor: darkGrey,
           ),
           RollingBottomBarItem(
-            Icons.chat,
-            label: 'Chat',
+            FontAwesomeIcons.doorOpen,
+            label: 'Visits',
             activeColor: darkGrey,
           ),
         ],
@@ -67,4 +69,6 @@ class _PageViewerState extends State<PageViewer> {
       ),
     );
   }
+
+  Container inDevelopmentScreen() => Container(color: black,child:  Center(child: Text("In Development", style: TextStyle(color: white, fontSize: 18, fontFamily: titleFont,),),),);
 }
