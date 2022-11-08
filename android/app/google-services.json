@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:648489734651:android:6283c6007a19225493fb5e",
+        "mobilesdk_app_id": "1:648489734651:android:c6b2757fd8b9a75593fb5e",
         "android_client_info": {
           "package_name": "com.example.scoring_7419"
         }
@@ -29,6 +29,85 @@
             {
               "client_id": "648489734651-p8bat3dlioqeg9cgf7ct0054so8073kh.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "648489734651-3437n456li284vlkce4859kr7b0b3eua.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.scoring7419"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648489734651:android:c597944d964cead193fb5e",
+        "android_client_info": {
+          "package_name": "com.pedrooruass.scoring7419"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648489734651-p8bat3dlioqeg9cgf7ct0054so8073kh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4RYdkAbdbEA4j3FAu7VZGmmIL_6lonM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648489734651-p8bat3dlioqeg9cgf7ct0054so8073kh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "648489734651-3437n456li284vlkce4859kr7b0b3eua.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.scoring7419"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648489734651:android:f09ac4ed1eaf66ca93fb5e",
+        "android_client_info": {
+          "package_name": "com.pedrooruass.scouting7419"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648489734651-p8bat3dlioqeg9cgf7ct0054so8073kh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4RYdkAbdbEA4j3FAu7VZGmmIL_6lonM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648489734651-p8bat3dlioqeg9cgf7ct0054so8073kh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "648489734651-3437n456li284vlkce4859kr7b0b3eua.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.scoring7419"
+              }
             }
           ]
         }

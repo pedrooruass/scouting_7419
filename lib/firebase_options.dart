@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyA4RYdkAbdbEA4j3FAu7VZGmmIL_6lonM4',
-    appId: '1:648489734651:android:6283c6007a19225493fb5e',
+    appId: '1:648489734651:android:f09ac4ed1eaf66ca93fb5e',
     messagingSenderId: '648489734651',
     projectId: 'scoring-50753',
     storageBucket: 'scoring-50753.appspot.com',
@@ -63,21 +63,21 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBT8gepRdkOhtiPxtUB7dQ4wPF9hoN-cRY',
-    appId: '1:648489734651:ios:22d9d2a5a1c6b1a093fb5e',
+    appId: '1:648489734651:ios:31f55d307104fb9093fb5e',
     messagingSenderId: '648489734651',
     projectId: 'scoring-50753',
     storageBucket: 'scoring-50753.appspot.com',
-    iosClientId: '648489734651-3437n456li284vlkce4859kr7b0b3eua.apps.googleusercontent.com',
-    iosBundleId: 'com.example.scoring7419',
+    iosClientId: '648489734651-99vhn3i7rlfo2on4af73s5mjqlal9d4r.apps.googleusercontent.com',
+    iosBundleId: 'com.pedrooruass.scouting7419',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyBT8gepRdkOhtiPxtUB7dQ4wPF9hoN-cRY',
-    appId: '1:648489734651:ios:22d9d2a5a1c6b1a093fb5e',
+    appId: '1:648489734651:ios:31f55d307104fb9093fb5e',
     messagingSenderId: '648489734651',
     projectId: 'scoring-50753',
     storageBucket: 'scoring-50753.appspot.com',
-    iosClientId: '648489734651-3437n456li284vlkce4859kr7b0b3eua.apps.googleusercontent.com',
-    iosBundleId: 'com.example.scoring7419',
+    iosClientId: '648489734651-99vhn3i7rlfo2on4af73s5mjqlal9d4r.apps.googleusercontent.com',
+    iosBundleId: 'com.pedrooruass.scouting7419',
   );
 }
