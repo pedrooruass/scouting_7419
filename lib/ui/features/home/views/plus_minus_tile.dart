@@ -3,14 +3,15 @@ import 'package:scoring_7419/ui/features/home/views/plus_minus_widget.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
 class PlusMinusTile extends StatelessWidget {
-  String title;
-  int hubPointsIn;
-  int hubPointsOut;
-  void Function() onPressedInMinus;
-  void Function() onPressedOutPlus;
-  void Function() onPressedInPlus;
-  void Function() onPressedOutMinus;
-  PlusMinusTile({
+  final String title;
+  final int hubPointsIn;
+  final int hubPointsOut;
+  final void Function() onPressedInMinus;
+  final void Function() onPressedOutPlus;
+  final void Function() onPressedInPlus;
+  final void Function() onPressedOutMinus;
+
+  const PlusMinusTile({
     Key? key,
     required this.title,
     required this.hubPointsIn,

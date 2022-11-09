@@ -58,10 +58,14 @@ class GameProvider extends ChangeNotifier {
     }
   }
 
-  int calcAutoUpperHub() => gameModel.autoUpperHubIn * 4; //TODO change values
-  int calcAutoLowerHub() => gameModel.autoLowerHubIn * 2; //TODO change values
-  int calcAutoTarmac() => gameModel.autoMovesOffTarmac ? 2 : 0; //TODO change values
-  int calcAutoTotal() => calcAutoUpperHub() + calcAutoLowerHub() + calcAutoTarmac();
+  int calcAutoUpperHub() => gameModel.autoUpperHubIn * 4;
+
+  int calcAutoLowerHub() => gameModel.autoLowerHubIn * 2;
+
+  int calcAutoTarmac() => gameModel.autoMovesOffTarmac ? 2 : 0;
+
+  int calcAutoTotal() =>
+      calcAutoUpperHub() + calcAutoLowerHub() + calcAutoTarmac();
 
   //TeleOp
   void teleOpIncreaseUpperHubIn() {
@@ -111,10 +115,12 @@ class GameProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-  void teleOpToggleIsRobotDefensive(bool value){
+
+  void teleOpToggleIsRobotDefensive(bool value) {
     gameModel.teleOpIsRobotDefensive = value;
     notifyListeners();
   }
+
   int calcTeleOpUpperHub() => gameModel.teleOpUpperHubIn * 2;
 
   int calcTeleOpLowerHub() => gameModel.teleOpLowerHubIn * 1;
@@ -192,7 +198,6 @@ class GameProvider extends ChangeNotifier {
     }
   }
 
-  //TODO dont forget to get the maximuns
   void endGameDecreaseTimeHanging() {
     if (gameModel.endGameTimeHanging > 0) {
       gameModel.endGameTimeHanging--;
@@ -217,7 +222,8 @@ class GameProvider extends ChangeNotifier {
         return 6;
       } else if (gameModel.endGameHangerIndexSelected == 2) {
         return 10;
-      } else if (gameModel.endGameHangerIndexSelected == 3 || gameModel.endGameHangerIndexSelected == 4) {
+      } else if (gameModel.endGameHangerIndexSelected == 3 ||
+          gameModel.endGameHangerIndexSelected == 4) {
         return 15;
       }
     }
@@ -228,8 +234,12 @@ class GameProvider extends ChangeNotifier {
 
   int calcEndGameHangerBonus() => gameModel.endGameHaveHangerBonus ? 1 : 0;
 
-  int calcEndGameTotal() => calcEndGameUpperHub() + calcEndGameLowerHub() + calcEndGameHanging() + calcEndGameScoreBonus() + calcEndGameHangerBonus();
-
+  int calcEndGameTotal() =>
+      calcEndGameUpperHub() +
+      calcEndGameLowerHub() +
+      calcEndGameHanging() +
+      calcEndGameScoreBonus() +
+      calcEndGameHangerBonus();
 
   void reset() {
     gameModel.autoUpperHubIn = 0;

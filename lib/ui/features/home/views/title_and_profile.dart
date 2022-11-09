@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:scoring_7419/application/providers/team_provider.dart';
-import 'package:scoring_7419/application/repositories/auth_repository.dart';
 import 'package:scoring_7419/ui/features/profile/profile_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
 
 class TitleAndProfile extends StatelessWidget {
-   TitleAndProfile({
+  TitleAndProfile({
     Key? key,
   }) : super(key: key);
 
-final TeamProvider teamProvider = TeamProvider();
+  final TeamProvider teamProvider = TeamProvider();
+
   @override
   Widget build(BuildContext context) {
     return Stack(

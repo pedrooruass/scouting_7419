@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:scoring_7419/application/providers/game_provider.dart';
 import 'package:scoring_7419/application/providers/profile_provider.dart';
 import 'package:scoring_7419/application/providers/score_match_provider.dart';
-import 'package:scoring_7419/application/providers/tournament_provider.dart';
 import 'package:scoring_7419/firebase_options.dart';
 import 'package:scoring_7419/ui/features/auth/screens/auth_screen.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => GameProvider()),
-        ChangeNotifierProvider(create: (_) => TournamentProvider()),
+        // ChangeNotifierProvider(create: (_) => TournamentProvider()),
         ChangeNotifierProvider(create: (_) => TeamProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ChangeNotifierProvider(create: (_) => ScoreMatchProvider()),

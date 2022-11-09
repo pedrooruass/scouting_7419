@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:scoring_7419/application/providers/profile_provider.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
 
 class ProfileUserName extends StatelessWidget {
   final String profileName;
+
   const ProfileUserName({
     super.key,
     required this.profileName,

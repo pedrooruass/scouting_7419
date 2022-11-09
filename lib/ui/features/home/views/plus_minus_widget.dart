@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PlusMinusWidget extends StatelessWidget {
-  void Function() onPressedMinus;
-  int hubPoints;
-  void Function() onPressedPlus;
-  Color color;
-  PlusMinusWidget({
+  final void Function() onPressedMinus;
+  final int hubPoints;
+  final void Function() onPressedPlus;
+  final Color color;
+
+  const PlusMinusWidget({
     Key? key,
     required this.onPressedMinus,
     required this.hubPoints,

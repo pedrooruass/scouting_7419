@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scoring_7419/ui/features/auth/screens/sign_in_screen.dart';
 import 'package:scoring_7419/ui/features/page_view/page_viewer.dart';
+import 'package:scoring_7419/ui/themee/colors.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -19,7 +20,7 @@ class _AuthScreenState extends State<AuthScreen> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(color: darkGrey,),
             );
           } else if (snapshot.hasError) {
             return const Center(

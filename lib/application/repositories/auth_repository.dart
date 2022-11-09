@@ -25,12 +25,12 @@ class AuthRepository {
   static void resetAuthRepository({
     required GameProvider gameProvider,
     required TeamProvider teamProvider,
-    required TournamentProvider tournamentProvider,
+    // required TournamentProvider tournamentProvider,
     required ProfileProvider profileProvider,
   }) {
     gameProvider.reset();
     teamProvider.reset();
-    tournamentProvider.reset();
+    // tournamentProvider.reset();
     profileProvider.resetProfile();
   }
 

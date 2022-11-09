@@ -11,12 +11,12 @@ class ScoreMatchProvider extends ChangeNotifier {
   Future<void> submitScore({
     required TeamProvider teamProvider,
     required ProfileProvider profileProvider,
-    required TournamentProvider tournamentProvider,
+    // required TournamentProvider tournamentProvider,
     required GameProvider gameProvider,
   }) async {
     ScoringModel scoringModel = ScoringModel(
       id: const Uuid().v4(),
-      tournamentName: tournamentProvider.tournamentModel!.name,
+      // tournamentName: tournamentProvider.tournamentModel!.name,
       scouterName: profileProvider.userName!,
       teamNumber: teamProvider.teamModel!.teamNumber,
       autoUpperHubIn: gameProvider.gameModel.autoUpperHubIn,
@@ -40,7 +40,8 @@ class ScoreMatchProvider extends ChangeNotifier {
       endGameHaveScoreBonus: gameProvider.gameModel.endGameHaveScoreBonus,
       endGameHaveHangerBonus: gameProvider.gameModel.endGameHaveHangerBonus,
       endGameTimeHanging: gameProvider.gameModel.endGameTimeHanging,
-      endGameHangerIndexSelected: gameProvider.gameModel.endGameHangerIndexSelected,
+      endGameHangerIndexSelected:
+          gameProvider.gameModel.endGameHangerIndexSelected,
       commentsAuto: gameProvider.gameModel.commentsAutoController.text,
       commentsTeleOp: gameProvider.gameModel.commentsTeleOpController.text,
       commentsEndGame: gameProvider.gameModel.commentsEndGameController.text,
@@ -50,7 +51,7 @@ class ScoreMatchProvider extends ChangeNotifier {
     await scoringRepository.submitScoring(scoringModel); // reset game number
     gameProvider.reset();
     teamProvider.reset();
-    tournamentProvider.reset();
+    // tournamentProvider.reset();
   }
 //game provider
 //comments provider

@@ -67,15 +67,6 @@ class SubPagesList extends StatelessWidget {
           icon: FontAwesomeIcons.robot,
         ),
         ProfileTileSubScreens(
-          onTap: () {},
-          title: 'Notifications',
-          icon: FontAwesomeIcons.solidBell,
-        ),
-        ProfileTileSubScreens(
-            onTap: () {},
-            title: 'Community Guidelines',
-            icon: FontAwesomeIcons.peopleGroup),
-        ProfileTileSubScreens(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return const SupportPage();

@@ -71,92 +71,94 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: Text("Login", style: TextStyle(fontSize: 36, fontFamily: titleFont, color: black)),
                     ),
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 44),
-                        child: Column(
-                          children: [
-                            const SizedBox(height: 24),
-                            TextField(
-                              controller: emailController,
-                              cursorColor: darkGrey,
-                              decoration: const InputDecoration(
-                                hintText: 'Email',
-                                prefixIcon: Icon(Icons.email, color: darkGrey),
-                                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)), borderSide: BorderSide(color: darkGrey)),
-                                fillColor: grey,
-                                filled: true,
-                                focusColor: darkGrey,
-                                iconColor: darkGrey,
-                                hoverColor: darkGrey,
-                              ),
-                            ),
-                            const SizedBox(height: 24),
-                            TextField(
-                              controller: passwordController,
-                              cursorColor: darkGrey,
-                              obscureText: isVisible ? false : true,
-                              decoration: InputDecoration(
-                                hintText: 'Password',
-                                prefixIcon: const Icon(Icons.lock, color: darkGrey),
-                                suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      isVisible = !isVisible;
-                                    });
-                                  },
-                                  child: Icon(
-                                    isVisible ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                                    color: darkGrey,
-                                  ),
-                                ),
-                                border: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
-                                  ),
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  borderSide: BorderSide(
-                                    color: darkGrey,
-                                  ),
-                                ),
-                                fillColor: grey,
-                                filled: true,
-                                focusColor: darkGrey,
-                                iconColor: darkGrey,
-                                hoverColor: darkGrey,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 24,
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                AuthRepository.signInWithEmailAndPassword(
-                                  context: context,
-                                  email: emailController.text,
-                                  password: passwordController.text,
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: darkGrey,
-                                foregroundColor: white,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
-                                  ),
+                      child: SingleChildScrollView(
+                        child:  Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 44),
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 24),
+                              TextField(
+                                controller: emailController,
+                                cursorColor: darkGrey,
+                                decoration: const InputDecoration(
+                                  hintText: 'Email',
+                                  prefixIcon: Icon(Icons.email, color: darkGrey),
+                                  border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+                                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)), borderSide: BorderSide(color: darkGrey)),
+                                  fillColor: grey,
+                                  filled: true,
+                                  focusColor: darkGrey,
+                                  iconColor: darkGrey,
+                                  hoverColor: darkGrey,
                                 ),
                               ),
-                              child: const Text(
-                                'Sign In',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
+                              const SizedBox(height: 24),
+                              TextField(
+                                controller: passwordController,
+                                cursorColor: darkGrey,
+                                obscureText: isVisible ? false : true,
+                                decoration: InputDecoration(
+                                  hintText: 'Password',
+                                  prefixIcon: const Icon(Icons.lock, color: darkGrey),
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        isVisible = !isVisible;
+                                      });
+                                    },
+                                    child: Icon(
+                                      isVisible ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                                      color: darkGrey,
+                                    ),
+                                  ),
+                                  border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    borderSide: BorderSide(
+                                      color: darkGrey,
+                                    ),
+                                  ),
+                                  fillColor: grey,
+                                  filled: true,
+                                  focusColor: darkGrey,
+                                  iconColor: darkGrey,
+                                  hoverColor: darkGrey,
                                 ),
                               ),
-                            ),
-                          ],
+                              const SizedBox(
+                                height: 24,
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  AuthRepository.signInWithEmailAndPassword(
+                                    context: context,
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: darkGrey,
+                                  foregroundColor: white,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                                child: const Text(
+                                  'Sign In',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

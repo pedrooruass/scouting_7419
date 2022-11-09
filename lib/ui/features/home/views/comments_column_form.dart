@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
 class CommentsColumnForm extends StatelessWidget {
-  String title;
-  TextEditingController commentsController;
+  final String title;
+  final TextEditingController commentsController;
 
-  CommentsColumnForm({super.key, this.title = "Title", required this.commentsController});
+  const CommentsColumnForm(
+      {super.key, this.title = "Title", required this.commentsController});
 
   @override
   Widget build(BuildContext context) {

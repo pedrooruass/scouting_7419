@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class GameCheckBoxTile extends StatelessWidget {
-  String title;
-  void Function() onPressed;
-  IconData icon;
-  GameCheckBoxTile({
+  final String title;
+  final void Function() onPressed;
+  final IconData icon;
+
+  const GameCheckBoxTile({
     super.key,
     this.title = "Title",
     required this.onPressed,

@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scoring_7419/application/providers/profile_provider.dart';
 import 'package:scoring_7419/application/providers/team_provider.dart';
-import 'package:scoring_7419/application/providers/tournament_provider.dart';
 import 'package:scoring_7419/ui/features/home/views/input_dialog.dart';
 import 'package:scoring_7419/ui/features/home/views/show_dialog.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
+//!TODO NOT USING YET, this is the like that ask for the year and tournament
+
 class TeamAndScouterRow extends StatelessWidget {
   final TeamProvider teamProvider;
-  final TournamentProvider tournamentProvider;
+
+  // final TournamentProvider tournamentProvider;
 
   const TeamAndScouterRow({
     Key? key,
     required this.teamProvider,
-    required this.tournamentProvider,
+    // required this.tournamentProvider,
   }) : super(key: key);
 
   @override
@@ -27,7 +29,7 @@ class TeamAndScouterRow extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
-                chooseTeamNumber(context, teamProvider, tournamentProvider);
+                chooseTeamNumber(context, teamProvider);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: white,
@@ -70,7 +72,11 @@ class TeamAndScouterRow extends StatelessWidget {
     );
   }
 
-  void chooseTeamNumber(BuildContext context, TeamProvider teamProvider, TournamentProvider tournamentProvider) async {
+  void chooseTeamNumber(
+    BuildContext context,
+    TeamProvider teamProvider,
+    /* TournamentProvider tournamentProvider*/
+  ) async {
     String? teamNumber = await displayTextInputDialog(
       context,
       title: "Team Number",

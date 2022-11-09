@@ -8,7 +8,8 @@ class ProfileProvider extends ChangeNotifier {
   String profileImageAsset4 = "assets/images/option4.png";
   String profileImageChoice = "assets/images/option1.png";
   int profileImageChoiceId = 1;
-  String? userName = FirebaseAuth.instance.currentUser!.email!.substring(0, FirebaseAuth.instance.currentUser!.email!.indexOf('@'));
+  String? userName = FirebaseAuth.instance.currentUser!.email!
+      .substring(0, FirebaseAuth.instance.currentUser!.email!.indexOf('@'));
 
   void changeProfileImage(int id) {
     if (id == 1) {
@@ -25,7 +26,7 @@ class ProfileProvider extends ChangeNotifier {
       profileImageChoiceId = id;
     }
     notifyListeners();
-  } //TODO have to reset everything
+  }
 
   String getCurrentProfileImage() {
     if (profileImageChoiceId == 1) {
@@ -42,7 +43,8 @@ class ProfileProvider extends ChangeNotifier {
   }
 
   String getCurrentUserName() {
-    userName = FirebaseAuth.instance.currentUser!.email!.substring(0, FirebaseAuth.instance.currentUser!.email!.indexOf('@'));
+    userName = FirebaseAuth.instance.currentUser!.email!
+        .substring(0, FirebaseAuth.instance.currentUser!.email!.indexOf('@'));
     notifyListeners();
     return userName!;
   }

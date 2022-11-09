@@ -20,7 +20,7 @@ class ProfileCircularPhoto extends StatelessWidget {
           Container(
             height: 100,
             width: 100,
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
             decoration: const BoxDecoration(
               color: white,
               shape: BoxShape.circle,
@@ -34,6 +34,7 @@ class ProfileCircularPhoto extends StatelessWidget {
             child: Container(
               height: 40,
               width: 40,
+              padding: const EdgeInsets.all(8),
               decoration: const BoxDecoration(
                 color: grey,
                 borderRadius: BorderRadius.all(

@@ -14,10 +14,10 @@ class ProfileBody extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          flex: 2,
+          flex: 3,
           child: Column(
             children: [
-              const SizedBox(height: 4),
+              const SizedBox(height: 12),
               ProfileCircularPhoto(profileProvider: profileProvider),
               const SizedBox(height: 12),
               ProfileUserName(
