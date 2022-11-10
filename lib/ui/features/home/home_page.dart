@@ -35,6 +35,8 @@ class HomePage extends StatelessWidget {
               teamProvider: teamProvider,
               // tournamentProvider: tournamentProvider,
             ),
+            // const SizedBox(height: 24),
+            // SecondRow(),
             if (teamProvider.teamModel == null) ...[
               Image.asset(
                 'assets/gif/7419_3.gif',

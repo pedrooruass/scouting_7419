@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scoring_7419/ui/features/auth/screens/sign_in_screen.dart';
-import 'package:scoring_7419/ui/features/page_view/page_viewer.dart';
+import 'package:scoring_7419/ui/features/home/home_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -20,14 +20,17 @@ class _AuthScreenState extends State<AuthScreen> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
-              child: CircularProgressIndicator(color: darkGrey,),
+              child: CircularProgressIndicator(
+                color: darkGrey,
+              ),
             );
           } else if (snapshot.hasError) {
             return const Center(
               child: Text('Error'),
             );
           } else if (snapshot.hasData) {
-            return const PageViewer();
+            // return const PageViewer(); // Change it after
+            return const HomePage();
           } else {
             return const SignInScreen();
           }

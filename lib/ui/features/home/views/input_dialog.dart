@@ -12,8 +12,9 @@ Future<String?> displayTextInputDialog(BuildContext context,
         title: Text(title),
         content: TextField(
           controller: textFieldController,
-          decoration: const InputDecoration(
-            hintText: "Team #",
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            hintText: title,
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: black, width: 2.0),
             ),

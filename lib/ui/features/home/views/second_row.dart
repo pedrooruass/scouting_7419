@@ -1,23 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:scoring_7419/application/providers/profile_provider.dart';
 import 'package:scoring_7419/application/providers/team_provider.dart';
 import 'package:scoring_7419/ui/features/home/views/input_dialog.dart';
-import 'package:scoring_7419/ui/features/home/views/show_dialog.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
-//!TODO NOT USING YET, this is the like that ask for the year and tournament
-
-class TeamAndScouterRow extends StatelessWidget {
-  final TeamProvider teamProvider;
-
-  // final TournamentProvider tournamentProvider;
-
-  const TeamAndScouterRow({
-    Key? key,
-    required this.teamProvider,
-    // required this.tournamentProvider,
-  }) : super(key: key);
+class SecondRow extends StatelessWidget {
+  const SecondRow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +17,7 @@ class TeamAndScouterRow extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
-                chooseTeamNumber(context, teamProvider);
+                chooseMatchNumber(context, context.read<TeamProvider>());
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: white,
@@ -38,7 +26,8 @@ class TeamAndScouterRow extends StatelessWidget {
                 ),
               ),
               child: Text(
-                teamProvider.teamModel?.teamNumber.toString() ?? "Team #",
+                "Match Number",
+                // teamProvider.teamModel?.teamNumber.toString() ?? "Team #",
                 style: const TextStyle(
                   color: black,
                   fontSize: 18,
@@ -49,21 +38,25 @@ class TeamAndScouterRow extends StatelessWidget {
         ),
         const SizedBox(width: 24),
         Expanded(
-          child: Container(
+          child: SizedBox(
             height: 50,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              color: white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(10),
+            child: ElevatedButton(
+              onPressed: () {
+                // context.read<SecondRowProvider>.
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-            ),
-            child: Text(
-              context.read<ProfileProvider>().getCurrentUserName(),
-              style: const TextStyle(
-                color: black,
-                fontSize: 18,
+              child: Text(
+                "Alliance Color",
+                // teamProvider.teamModel?.teamNumber.toString() ?? "Team #",
+                style: const TextStyle(
+                  color: black,
+                  fontSize: 18,
+                ),
               ),
             ),
           ),
@@ -72,20 +65,14 @@ class TeamAndScouterRow extends StatelessWidget {
     );
   }
 
-  void chooseTeamNumber(
+  void chooseMatchNumber(
     BuildContext context,
     TeamProvider teamProvider,
     /* TournamentProvider tournamentProvider*/
   ) async {
     String? teamNumber = await displayTextInputDialog(
       context,
-      title: "Team Number",
+      title: "Match Number",
     );
-    if (teamNumber != null) {
-      teamProvider.getTeamModelByNumber(
-        teamNumber,
-        (errorMessage) => displayTextDialog(context, title: errorMessage),
-      );
-    }
   }
 }

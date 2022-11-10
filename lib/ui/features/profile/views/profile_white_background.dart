@@ -61,11 +61,11 @@ class SubPagesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        ProfileTileSubScreens(
-          onTap: () {},
-          title: 'ROBOTS',
-          icon: FontAwesomeIcons.robot,
-        ),
+        // ProfileTileSubScreens(
+        //   onTap: () {},
+        //   title: 'ROBOTS',
+        //   icon: FontAwesomeIcons.robot,
+        // ),
         ProfileTileSubScreens(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:scoring_7419/application/providers/game_provider.dart';
 import 'package:scoring_7419/application/providers/profile_provider.dart';
 import 'package:scoring_7419/application/providers/score_match_provider.dart';
+import 'package:scoring_7419/application/providers/second_row_provider.dart';
 import 'package:scoring_7419/firebase_options.dart';
 import 'package:scoring_7419/ui/features/auth/screens/auth_screen.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
@@ -31,9 +32,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => TeamProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ChangeNotifierProvider(create: (_) => ScoreMatchProvider()),
+        ChangeNotifierProvider(create: (_) => SecondRowProvider()),
       ],
       child: MaterialApp(
-        title: "7419 Scoring",
+        title: "7419 Scouting",
         theme: ThemeData(
           primaryColor: black,
           fontFamily: bodyFont,
