@@ -4,6 +4,17 @@ import 'package:scoring_7419/application/models/game_model.dart';
 class GameProvider extends ChangeNotifier {
   GameModel gameModel = GameModel();
 
+  //Basic Info
+  void changeAllianceColor() {
+    gameModel.isAllianceBlue = !gameModel.isAllianceBlue;
+    notifyListeners();
+  }
+
+  void changeMatchNumber(String matchNumber) {
+    gameModel.matchNumber = int.parse(matchNumber);
+    notifyListeners();
+  }
+
   //Autonomous
   void autoToggleTarmac() {
     gameModel.autoMovesOffTarmac = !gameModel.autoMovesOffTarmac;
@@ -64,8 +75,11 @@ class GameProvider extends ChangeNotifier {
 
   int calcAutoTarmac() => gameModel.autoMovesOffTarmac ? 2 : 0;
 
-  int calcAutoTotal() =>
-      calcAutoUpperHub() + calcAutoLowerHub() + calcAutoTarmac();
+  int calcAutoTotal() {
+    gameModel.autoTotalPoints =
+        calcAutoUpperHub() + calcAutoLowerHub() + calcAutoTarmac();
+    return gameModel.autoTotalPoints;
+  }
 
   //TeleOp
   void teleOpIncreaseUpperHubIn() {
@@ -125,7 +139,10 @@ class GameProvider extends ChangeNotifier {
 
   int calcTeleOpLowerHub() => gameModel.teleOpLowerHubIn * 1;
 
-  int calcTeleOpTotal() => calcTeleOpUpperHub() + calcTeleOpLowerHub();
+  int calcTeleOpTotal() {
+    gameModel.teleOpTotalPoints = calcTeleOpUpperHub() + calcTeleOpLowerHub();
+    return gameModel.teleOpTotalPoints;
+  }
 
 // End Game
   void endGameIncreaseUpperHubIn() {
@@ -234,25 +251,37 @@ class GameProvider extends ChangeNotifier {
 
   int calcEndGameHangerBonus() => gameModel.endGameHaveHangerBonus ? 1 : 0;
 
-  int calcEndGameTotal() =>
-      calcEndGameUpperHub() +
-      calcEndGameLowerHub() +
-      calcEndGameHanging() +
-      calcEndGameScoreBonus() +
-      calcEndGameHangerBonus();
+  int calcEndGameTotal() {
+    gameModel.endGameTotalPoints = calcEndGameUpperHub() +
+        calcEndGameLowerHub() +
+        calcEndGameHanging() +
+        calcEndGameScoreBonus() +
+        calcEndGameHangerBonus();
+    return gameModel.endGameTotalPoints;
+  }
+
+  void isWinnerToggle() {
+    gameModel.isWinner = !gameModel.isWinner;
+    notifyListeners();
+  }
 
   void reset() {
+    gameModel.isAllianceBlue = true;
+    gameModel.matchNumber = 0;
+
     gameModel.autoUpperHubIn = 0;
     gameModel.autoLowerHubIn = 0;
     gameModel.autoUpperHubOut = 0;
     gameModel.autoLowerHubOut = 0;
     gameModel.autoMovesOffTarmac = false;
+    gameModel.autoTotalPoints = 0;
 
     gameModel.teleOpUpperHubIn = 0;
     gameModel.teleOpLowerHubIn = 0;
     gameModel.teleOpUpperHubOut = 0;
     gameModel.teleOpLowerHubOut = 0;
     gameModel.teleOpIsRobotDefensive = false;
+    gameModel.teleOpTotalPoints = 0;
 
     gameModel.endGameUpperHubIn = 0;
     gameModel.endGameLowerHubIn = 0;
@@ -265,6 +294,7 @@ class GameProvider extends ChangeNotifier {
     gameModel.endGameHangerIndexSelected = 0;
     gameModel.endGameTotalPoints = 0;
 
+    gameModel.isWinner = false;
     gameModel.commentsAutoController.text = "";
     gameModel.commentsTeleOpController.text = "";
     gameModel.commentsEndGameController.text = "";

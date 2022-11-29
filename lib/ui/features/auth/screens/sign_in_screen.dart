@@ -37,6 +37,8 @@ class _SignInScreenState extends State<SignInScreen> {
               flex: 3,
               child: Image.asset(
                 'assets/images/7419_logo.png',
+                width: 300, // maybe take it off
+                fit: BoxFit.fitWidth, // maybe take it off
               ),
             ),
             const SizedBox(

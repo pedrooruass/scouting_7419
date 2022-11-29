@@ -36,6 +36,7 @@ class PlusMinusTile extends StatelessWidget {
               hubPoints: hubPointsOut,
               onPressedPlus: onPressedOutPlus,
               color: red,
+              subTitle: "Out",
             ),
             const SizedBox(width: 16),
             PlusMinusWidget(
@@ -43,6 +44,7 @@ class PlusMinusTile extends StatelessWidget {
               hubPoints: hubPointsIn,
               onPressedPlus: onPressedInPlus,
               color: green,
+              subTitle: "In",
             ),
           ],
         ),

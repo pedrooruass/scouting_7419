@@ -41,9 +41,10 @@ class ProfileTileSubScreens extends StatelessWidget {
           leading: Icon(icon, color: isSignOut ? Colors.red : darkGrey),
           trailing: isSignOut
               ? null
-              : const Icon(
-                  Icons.arrow_forward_ios,
-                  color: darkGrey,
+              : Image.asset(
+                  "assets/icons/arrow_right.png",
+                  height: 22,
+                  fit: BoxFit.cover,
                 ),
           title: Text(
             title,

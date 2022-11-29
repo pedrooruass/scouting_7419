@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class GameModel {
+  //Basic Info
+  int matchNumber = 0;
+  bool isAllianceBlue = true;
+
   // Autonomous
   int autoUpperHubIn = 0;
   int autoLowerHubIn = 0;
@@ -29,7 +33,8 @@ class GameModel {
   int endGameTimeHanging = 0;
   int endGameHangerIndexSelected = 0;
 
-  //Comments
+  //Extra && Comments
+  bool isWinner = false;
   TextEditingController commentsAutoController = TextEditingController();
   TextEditingController commentsTeleOpController = TextEditingController();
   TextEditingController commentsEndGameController = TextEditingController();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:scoring_7419/application/providers/team_provider.dart';
+import 'package:scoring_7419/application/providers/game_provider.dart';
 import 'package:scoring_7419/ui/features/home/views/input_dialog.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
@@ -17,7 +17,7 @@ class SecondRow extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
-                chooseMatchNumber(context, context.read<TeamProvider>());
+                chooseMatchNumber(context, context.read<GameProvider>());
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: white,
@@ -26,8 +26,14 @@ class SecondRow extends StatelessWidget {
                 ),
               ),
               child: Text(
-                "Match Number",
-                // teamProvider.teamModel?.teamNumber.toString() ?? "Team #",
+                context.read<GameProvider>().gameModel.matchNumber.toString() !=
+                        "0"
+                    ? context
+                        .read<GameProvider>()
+                        .gameModel
+                        .matchNumber
+                        .toString()
+                    : "Match #",
                 style: const TextStyle(
                   color: black,
                   fontSize: 18,
@@ -42,10 +48,13 @@ class SecondRow extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
-                // context.read<SecondRowProvider>.
+                context.read<GameProvider>().changeAllianceColor();
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: white,
+                backgroundColor:
+                    context.watch<GameProvider>().gameModel.isAllianceBlue
+                        ? Colors.blueAccent
+                        : Colors.redAccent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -66,13 +75,15 @@ class SecondRow extends StatelessWidget {
   }
 
   void chooseMatchNumber(
-    BuildContext context,
-    TeamProvider teamProvider,
-    /* TournamentProvider tournamentProvider*/
-  ) async {
-    String? teamNumber = await displayTextInputDialog(
+      BuildContext context,
+      GameProvider
+          gameProvider /* TournamentProvider tournamentProvider*/) async {
+    String? matchNumber = await displayTextInputDialog(
       context,
       title: "Match Number",
     );
+    if (matchNumber != null) {
+      gameProvider.changeMatchNumber(matchNumber);
+    }
   }
 }

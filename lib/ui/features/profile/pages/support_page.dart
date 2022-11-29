@@ -12,6 +12,11 @@ class SupportPage extends StatelessWidget {
         backgroundColor: black,
         elevation: 0,
         centerTitle: true,
+        leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Image.asset("assets/icons/arrow_left.png")),
         title: Text(
           "Support",
           style: TextStyle(

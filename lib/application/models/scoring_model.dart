@@ -1,8 +1,11 @@
 class ScoringModel {
   final String id;
-  // final String tournamentName;
+
+  final String tournamentName;
   final String scouterName;
   final int teamNumber;
+  final int matchNumber;
+  final bool isAllianceBlue;
 
   // Autonomous
   final int autoUpperHubIn;
@@ -19,6 +22,7 @@ class ScoringModel {
   final int teleOpLowerHubOut;
   final bool teleOpIsRobotDefensive;
   final int teleOpTotalPoints;
+
   // End Game
   final int endGameUpperHubIn;
   final int endGameLowerHubIn;
@@ -31,6 +35,7 @@ class ScoringModel {
   final int endGameHangerIndexSelected;
   final int endGameTotalPoints;
 
+  final bool isWinner;
   final String commentsAuto;
   final String commentsTeleOp;
   final String commentsEndGame;
@@ -38,9 +43,11 @@ class ScoringModel {
   //Comments
   ScoringModel({
     required this.id,
-    // required this.tournamentName,
+    required this.tournamentName,
     required this.scouterName,
     required this.teamNumber,
+    required this.matchNumber,
+    required this.isAllianceBlue,
     required this.autoUpperHubIn,
     required this.autoLowerHubIn,
     required this.autoUpperHubOut,
@@ -63,6 +70,7 @@ class ScoringModel {
     required this.endGameHaveHangerBonus,
     required this.endGameTimeHanging,
     required this.endGameHangerIndexSelected,
+    required this.isWinner,
     required this.commentsAuto,
     required this.commentsTeleOp,
     required this.commentsEndGame,
@@ -71,9 +79,11 @@ class ScoringModel {
   factory ScoringModel.fromJson(Map<String, dynamic> json) {
     return ScoringModel(
       id: json['id'],
-      // tournamentName: json['tournamentName'],
+      tournamentName: json['tournamentName'],
       scouterName: json['scouterName'],
       teamNumber: json['teamNumber'],
+      matchNumber: json['matchNumber'],
+      isAllianceBlue: json['isAllianceBlue'],
       autoUpperHubIn: json['autoUpperHubIn'],
       autoLowerHubIn: json['autoLowerHubIn'],
       autoUpperHubOut: json['autoUpperHubOut'],
@@ -96,17 +106,19 @@ class ScoringModel {
       endGameTimeHanging: json['endGameTimeHanging'],
       endGameHangerIndexSelected: json['endGameHangerIndexSelected'],
       endGameTotalPoints: json['endGameTotalPoints'],
+      isWinner: json['isWinner'],
       commentsAuto: json['commentsAuto'],
       commentsTeleOp: json['commentsTeleOp'],
       commentsEndGame: json['commentsEndGame'],
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
-        'tournamentName': "N/A", //TODO change this later to tournament name
+  Map<String, dynamic> toJson() => {
+        'tournamentName': "MadTown", //TODO change this later to tournament name
         'scouterName': scouterName,
         'teamNumber': teamNumber,
+        'matchNumber': matchNumber,
+        'isAllianceBlue': isAllianceBlue == true ? "Blue" : "Red",
         'autoUpperHubIn': autoUpperHubIn,
         'autoLowerHubIn': autoLowerHubIn,
         'autoUpperHubOut': autoUpperHubOut,
@@ -129,6 +141,7 @@ class ScoringModel {
         'endGameHaveHangerBonus': endGameHaveHangerBonus,
         'endGameTimeHanging': endGameTimeHanging,
         'endGameTotalPoints': endGameTotalPoints,
+        'isWinner': isWinner,
         'commentsAuto': commentsAuto,
         'commentsTeleOp': commentsTeleOp,
         'commentsEndGame': commentsEndGame,

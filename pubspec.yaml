@@ -49,6 +49,8 @@ dependencies:
   cloud_firestore: ^3.4.0
   uuid: ^3.0.6
   gsheets: ^0.4.2
+  syncfusion_flutter_charts: ^20.3.58
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
