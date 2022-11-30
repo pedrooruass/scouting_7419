@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
+import 'package:scoring_7419/application/providers/tournament_provider.dart';
 import 'package:scoring_7419/ui/features/data/data_page.dart';
 import 'package:scoring_7419/ui/features/home/home_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
@@ -124,6 +125,7 @@ class _TestDataPageState extends State<TestDataPage> {
 
   @override
   void initState() {
+    TournamentProvider().getTournamentModels();
     scoringIds = []; // Try to reset the list
     getDocIds();
     super.initState();
@@ -179,7 +181,6 @@ class _TestDataPageState extends State<TestDataPage> {
             return Center(
               child: Text(snapshot.error.toString()),
             );
-            print(snapshot.error);
           } else if (snapshot.hasData) {
             return ListView.builder(
               itemCount: snapshot.data!.length,

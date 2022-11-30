@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => TeamProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ChangeNotifierProvider(create: (_) => ScoreMatchProvider()),
-        // ChangeNotifierProvider (create: (_) => SecondRowProvider()),
       ],
       child: MaterialApp(
         title: "7419 Scouting",

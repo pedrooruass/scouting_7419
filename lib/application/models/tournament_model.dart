@@ -1,6 +1,5 @@
 // !TODO NOT USING YET, this is what allows the api to find the tournaments by it self
 
-
 class TournamentModel {
   final String city;
   final String country;
@@ -8,8 +7,6 @@ class TournamentModel {
   final String name;
   final String state_prov;
   final int year;
-
-  // List<TeamModel> teams;
 
   TournamentModel({
     required this.city,
@@ -31,11 +28,3 @@ class TournamentModel {
     );
   }
 }
-
-// class TournamentModel {
-//   final String name;
-//
-//   TournamentModel({
-//     required this.name,
-//   });
-// }

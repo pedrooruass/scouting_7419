@@ -16,8 +16,8 @@ class DataPage extends StatefulWidget {
 
 class _DataPageState extends State<DataPage> {
   @override
-  void initState() {
-    TournamentProvider().getTournamentModels(); // ideally change to provider
+  initState() {
+    context.read<TournamentProvider>().getTournamentModels();
     super.initState();
   }
 
@@ -29,43 +29,21 @@ class _DataPageState extends State<DataPage> {
         backgroundColor: Colors.black,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          "Data",
-          style: TextStyle(
-            fontSize: 48,
-            fontFamily: titleFont,
-            color: Colors.white,
-          ),
-        ),
+        title: Text("Data", style: TextStyle(fontSize: 48, fontFamily: titleFont, color: Colors.white)),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
-            SizedBox(
-              height: 16,
-            ),
+            SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // displayTextInputDialog(context, title: "Tournament Name");
-                // context
-                //     .read<TournamentProvider>()
-                //     .getTournamentModels((errorMessage) => "null");
-                // tournamentList = tournamentR.getTournamentModels(2022);
-                showSearch(
-                  context: context,
-                  delegate: CustomSearchTournamentDelegate(
-                    tournamentList:
-                        context.read<TournamentProvider>().tournaments,
-                  ),
-                );
-                TournamentProvider().getTournamentModels();
+                showSearch(context: context, delegate: CustomSearchTournamentDelegate(tournamentList: context.read<TournamentProvider>().tournamentModels));
+                print(context.read<TournamentProvider>().tournamentModels);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -84,41 +62,6 @@ class _DataPageState extends State<DataPage> {
                 ),
               ),
             ),
-            // GestureDetector(
-            //   onTap: () {
-            //     displayTextInputDialog(context, title: "Tournament Name");
-            //     context.read<TournamentProvider>().getTournamentModels(
-            //         TeamModel(
-            //           teamNumber: 7419,
-            //           key: "frc7419",
-            //           name: "TechSupport",
-            //           city: "Dublin",
-            //           stateProv: "CA",
-            //           country: "USA",
-            //           nickname: "Techsupport",
-            //         ),
-            //         (errorMessage) => "null");
-            //   },
-            //   child: Container(
-            //     height: 50,
-            //     decoration: BoxDecoration(
-            //       color: white,
-            //       borderRadius: BorderRadius.circular(10),
-            //     ),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //       children: [
-            //         Image.asset("assets/icons/search_icon.png"),
-            //         Text(
-            //           "Search Tournament",
-            //           style: TextStyle(
-            //             fontSize: 20,
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
             SizedBox(height: 16),
             Expanded(
               child: Container(
@@ -127,68 +70,34 @@ class _DataPageState extends State<DataPage> {
                   color: grey,
                   borderRadius: BorderRadius.circular(33),
                 ),
-                child: CupertinoScrollbar(
-                  child: ListView.separated(
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          // context.read<TournamentProvider>().getTournamentModels(
-                          //     context.read<TournamentProvider>().tournaments[index],
-                          //     (errorMessage) => "null"); // Copilot code
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => TournamentPage(
-                                tournament: context
-                                    .read<TournamentProvider>()
-                                    .tournamentModels[index],
-                              ),
+                child: Consumer<TournamentProvider>(
+                  builder: (context, tournamentProvider, widget) {
+                    return tournamentProvider.tournamentModels.isNotEmpty
+                        ? CupertinoScrollbar(
+                            child: ListView.separated(
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => TournamentPage(tournament: tournamentProvider.tournamentModels[index])));
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(4),
+                                    decoration: BoxDecoration(color: white, borderRadius: BorderRadius.circular(10)),
+                                    child: ListTile(
+                                      leading: Container(alignment: Alignment.center, height: 44, width: 44, decoration: BoxDecoration(color: darkGrey, borderRadius: BorderRadius.circular(10)), child: Text(tournamentProvider.tournamentModels[index].year.toString(), style: TextStyle(fontSize: 14, color: white))),
+                                      title: Text(tournamentProvider.tournamentModels[index].name, style: TextStyle(fontSize: 18)),
+                                      subtitle: Text(tournamentProvider.tournamentModels[index].city + ", " + tournamentProvider.tournamentModels[index].state_prov, style: TextStyle(fontSize: 14)),
+                                      trailing: Image.asset("assets/icons/arrow_right.png"),
+                                    ),
+                                  ),
+                                );
+                              },
+                              separatorBuilder: (context, index) => SizedBox(height: 16),
+                              itemCount: tournamentProvider.tournamentModels.length,
                             ),
-                          );
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: ListTile(
-                            leading: Container(
-                              height: 44,
-                              width: 44,
-                              decoration: BoxDecoration(
-                                color: darkGrey,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              // child: Text(
-                              //   "${context.read<TournamentProvider>().tournaments[index].year}",
-                              //   style: TextStyle(
-                              //     color: Colors.white,
-                              //   ),
-                              // ),
-                            ),
-                            title: Text(
-                              context
-                                  .read<TournamentProvider>()
-                                  .tournamentModels[index]
-                                  .name,
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                            trailing:
-                                Image.asset("assets/icons/arrow_right.png"),
-                          ),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return SizedBox(height: 16);
-                    },
-                    itemCount: context
-                        .read<TournamentProvider>()
-                        .tournamentModels
-                        .length,
-                  ),
+                          )
+                        : Center(child: CircularProgressIndicator(color: darkGrey));
+                  },
                 ),
               ),
             ),

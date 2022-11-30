@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoring_7419/application/models/tournament_model.dart';
 import 'package:scoring_7419/ui/features/data/tournament_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
@@ -49,8 +50,7 @@ class CustomSearchTournamentDelegate extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     List<TournamentModel> matchQuery = tournamentList
         .where(
-          (tournament) =>
-              tournament.name.toLowerCase().startsWith(query.toLowerCase()),
+          (tournament) => tournament.name.toLowerCase().startsWith(query.toLowerCase()),
         )
         .toList();
     return SearchListTile(matchQuery: matchQuery);
@@ -62,8 +62,7 @@ class CustomSearchTournamentDelegate extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     List<TournamentModel> matchQuery = tournamentList
         .where(
-          (tournament) =>
-              tournament.name.toLowerCase().startsWith(query.toLowerCase()),
+          (tournament) => tournament.name.toLowerCase().startsWith(query.toLowerCase()),
         )
         .toList();
     return SearchListTile(matchQuery: matchQuery);
@@ -87,6 +86,13 @@ class SearchListTile extends StatelessWidget {
         return ListTile(
           leading: CircleAvatar(
             backgroundColor: darkGrey,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 2.5),
+              child: Icon(
+                FontAwesomeIcons.trophy,
+                color: grey,
+              ),
+            ),
           ),
           title: Text(tournament.name),
           subtitle: Text("${tournament.country}, ${tournament.state_prov}"),

@@ -48,13 +48,6 @@ class ScoringRepository {
           .map((snapshot) =>
           snapshot.docs.map((doc) => DataModel.fromJson(doc.data())).toList());
 
-  Stream<List<UserModel>> readUsersData() =>
-      FirebaseFirestore.instance
-          .collection("users")
-          .snapshots()
-          .map((snapshot) =>
-          snapshot.docs.map((doc) => UserModel.fromJson(doc.data())).toList());
-
 //  Read the data from a specific Team Number
   Stream<List<DataModel>> readTeamData(int teamNumber) =>
       FirebaseFirestore
