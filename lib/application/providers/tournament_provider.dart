@@ -6,6 +6,7 @@ import 'package:scoring_7419/application/repositories/tournament_repository.dart
 
 class TournamentProvider extends ChangeNotifier {
   TournamentModel? _tournamentModel;
+  List<String> teamsInTournament = [];
 
   TournamentModel? get tournamentModel => _tournamentModel;
 
@@ -47,8 +48,7 @@ class TournamentProvider extends ChangeNotifier {
   //   getTournamentModels(teamModel, onError);
   // }
 
-  Future<void> getTournamentModels(/*TeamModel teamModel,*/
-      /* Function(String errorMessage) onError */) async {
+  Future<void> getTournamentModels() async {
     TournamentRepository tournamentRepository = TournamentRepository();
     var result = await tournamentRepository.getTournamentModels(/* teamModel, year!*/);
     result.fold(
@@ -60,9 +60,21 @@ class TournamentProvider extends ChangeNotifier {
     );
   }
 
+  Future<void> getTeamsListInTournament(String eventKey) async {
+    TournamentRepository tournamentRepository = TournamentRepository();
+    var result = await tournamentRepository.getTeamModelInTournament(eventKey);
+    result.fold(
+      (l) => print(l),
+      (r) {
+        teamsInTournament = r;
+      },
+    );
+  }
+
   void reset() {
     tournamentModel = null;
     tournamentModels = [];
+    teamsInTournament = [];
     year = null;
     notifyListeners();
   }

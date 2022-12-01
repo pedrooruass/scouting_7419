@@ -87,10 +87,10 @@ class SearchListTile extends StatelessWidget {
           leading: CircleAvatar(
             backgroundColor: darkGrey,
             child: Padding(
-              padding: const EdgeInsets.only(right: 2.5),
+              padding: const EdgeInsets.only(right: 3),
               child: Icon(
                 FontAwesomeIcons.trophy,
-                color: grey,
+                color: white,
               ),
             ),
           ),

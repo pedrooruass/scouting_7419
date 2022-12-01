@@ -9,9 +9,10 @@ import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
 
 class TeamPage extends StatelessWidget {
-  final TeamModel team; // shouldnt be TeamDataModel?
+  // final TeamModel team; // shouldnt be TeamDataModel?
+  final String teamKey;
 
-  const TeamPage({Key? key, required this.team}) : super(key: key);
+  const TeamPage({Key? key, required this.teamKey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +75,7 @@ class TeamPage extends StatelessWidget {
                   maxRadius: 70,
                   backgroundColor: grey,
                   child: AutoSizeText(
-                    "7419",
+                    teamKey.substring(3, teamKey.length),
                     style: TextStyle(
                       color: black,
                       fontFamily: titleFont,
@@ -117,14 +118,8 @@ class TeamPage extends StatelessWidget {
               // selectedIndex:
               // gameProvider.gameModel.endGameHangerIndexSelected,
               selectedBackgroundColors: gradient1,
-              selectedTextStyle: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700),
-              unSelectedTextStyle: const TextStyle(
-                  color: Colors.black87,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500),
+              selectedTextStyle: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
+              unSelectedTextStyle: const TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.w500),
               labels: const [
                 "General",
                 "S-Auto",
@@ -155,19 +150,12 @@ class TeamPage extends StatelessWidget {
     // How to get the data
     ScoringRepository s = ScoringRepository();
     Stream<List<DataModel>> teamDataList;
-    teamDataList = s.readTeamData(team.teamNumber);
+    teamDataList = s.readTeamData(int.parse(teamKey.substring(3, teamKey.length)));
   }
 
 //  add all games of the team into a list, and filter how many they won and how many they lost
   Stream<List<DataModel>> readWinsTeamData(
     int teamNumber,
   ) =>
-      FirebaseFirestore.instance
-          .collection("scoring")
-          .where("teamNumber", isEqualTo: teamNumber)
-          .where("isWinner", isEqualTo: true)
-          .snapshots()
-          .map((snapshot) => snapshot.docs
-              .map((doc) => DataModel.fromJson(doc.data()))
-              .toList());
+      FirebaseFirestore.instance.collection("scoring").where("teamNumber", isEqualTo: teamNumber).where("isWinner", isEqualTo: true).snapshots().map((snapshot) => snapshot.docs.map((doc) => DataModel.fromJson(doc.data())).toList());
 }

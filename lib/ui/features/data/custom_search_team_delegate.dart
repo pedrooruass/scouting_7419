@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scoring_7419/application/models/team_model.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoring_7419/ui/features/data/team_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
@@ -9,11 +9,10 @@ class CustomSearchTeamDelegate extends SearchDelegate {
   });
 
 // Demo list to show querying
-  List<TeamModel> teamList;
+  List<String> teamList;
 
   @override
-  TextStyle? get searchFieldStyle =>
-      const TextStyle(
+  TextStyle? get searchFieldStyle => const TextStyle(
         color: black,
       );
 
@@ -48,11 +47,10 @@ class CustomSearchTeamDelegate extends SearchDelegate {
 // third overwrite to show query result
   @override
   Widget buildResults(BuildContext context) {
-    List<TeamModel> matchQuery = teamList
+    List<String> matchQuery = teamList
         .where(
-          (tournament) =>
-          tournament.name.toLowerCase().startsWith(query.toLowerCase()),
-    )
+          (team) => team.substring(3, team.length).toLowerCase().startsWith(query.toLowerCase()),
+        )
         .toList();
     return SearchListTile(matchQuery: matchQuery);
   }
@@ -61,12 +59,10 @@ class CustomSearchTeamDelegate extends SearchDelegate {
 // querying process at the runtime
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<TeamModel> matchQuery = teamList
-
+    List<String> matchQuery = teamList
         .where(
-          (tournament) =>
-          tournament.name.toLowerCase().startsWith(query.toLowerCase()),
-    )
+          (team) => team.substring(3, team.length).toLowerCase().startsWith(query.toLowerCase()),
+        )
         .toList();
     return SearchListTile(matchQuery: matchQuery);
   }
@@ -78,28 +74,31 @@ class SearchListTile extends StatelessWidget {
     required this.matchQuery,
   }) : super(key: key);
 
-  final List<TeamModel> matchQuery;
+  final List<String> matchQuery;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
-        TeamModel team = matchQuery[index];
+        String team = matchQuery[index];
         return ListTile(
           leading: CircleAvatar(
             backgroundColor: darkGrey,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 5, 4),
+              child: Icon(
+                FontAwesomeIcons.robot,
+                color: white,
+              ),
+            ),
           ),
-          title: Text(team.name),
-          subtitle: Text("${team.country}, ${team.city}"),
-          trailing: Text(
-            team.teamNumber.toString(),
-          ),
+          title: Text(team.substring(3, team.length)),
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => TeamPage(team: team),
+                builder: (context) => TeamPage(teamKey: team),
               ),
             );
           },
