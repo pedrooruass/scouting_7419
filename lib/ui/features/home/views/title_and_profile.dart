@@ -32,10 +32,10 @@ class TitleAndProfile extends StatelessWidget {
                 return const ProfilePage();
               }));
             },
-            child: const Icon(
-              Icons.person,
-              size: 34,
-              color: white,
+            child: Image.asset(
+              "assets/icons/profile.png",
+              height: 36,
+              fit: BoxFit.cover,
             ),
           ),
         ),

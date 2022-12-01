@@ -11,6 +11,7 @@ import 'package:scoring_7419/ui/features/home/views/game_check_box.dart';
 import 'package:scoring_7419/ui/features/home/views/mode_container.dart';
 import 'package:scoring_7419/ui/features/home/views/plus_minus_tile.dart';
 import 'package:scoring_7419/ui/features/home/views/plus_minus_widget.dart';
+import 'package:scoring_7419/ui/features/home/views/second_row.dart';
 import 'package:scoring_7419/ui/features/home/views/team_and_scouter_row.dart';
 import 'package:scoring_7419/ui/features/home/views/title_and_profile.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
@@ -49,6 +50,8 @@ class HomePage extends StatelessWidget {
             // if (tournamentProvider.tournamentModel != null) ...[
             if (teamProvider.teamModel != null) ...[
               const SizedBox(height: 24),
+              SecondRow(),
+              const SizedBox(height: 24),
               // Autonomous
               autonomousContainer(),
               const SizedBox(height: 24),
@@ -68,8 +71,11 @@ class HomePage extends StatelessWidget {
                         teamProvider: teamProvider,
                         // tournamentProvider: tournamentProvider,
                         profileProvider: context.read<ProfileProvider>(),
+                        // secondRowProvider: context.read<SecondRowProvider>(),
                         gameProvider: context.read<GameProvider>(),
+                        context: context,
                       );
+                  // Navigator.pop(context);
                 },
                 child: Container(
                   height: 64,
@@ -100,32 +106,46 @@ class HomePage extends StatelessWidget {
     });
   }
 
-  ModeContainer additionalCommentsContainer(BuildContext context) {
-    return ModeContainer(
-      isComments: true,
-      modeTitle: "Aditional Comments",
-      widgets: [
-        CommentsColumnForm(
-            title: "Auto",
-            commentsController:
-                context.read<GameProvider>().gameModel.commentsAutoController),
-        const SizedBox(height: 24),
-        CommentsColumnForm(
-            title: "Tele Op",
-            commentsController: context
-                .read<GameProvider>()
-                .gameModel
-                .commentsTeleOpController),
-        const SizedBox(height: 24),
-        CommentsColumnForm(
-            title: "End Game",
-            commentsController: context
-                .read<GameProvider>()
-                .gameModel
-                .commentsEndGameController),
-        const SizedBox(height: 24),
-      ],
-    );
+  Consumer<GameProvider> additionalCommentsContainer(BuildContext context) {
+    return Consumer<GameProvider>(builder: (context, gameProvider, widget) {
+      return ModeContainer(
+        isComments: true,
+        modeTitle: "Aditional Info",
+        widgets: [
+          GameCheckBoxTile(
+            title: "Is winner?",
+            icon: gameProvider.gameModel.isWinner
+                ? Icons.check_box_outlined
+                : Icons.check_box_outline_blank,
+            onPressed: () {
+              gameProvider.isWinnerToggle();
+            },
+          ),
+          const SizedBox(height: 24),
+          CommentsColumnForm(
+              title: "Auto",
+              commentsController: context
+                  .read<GameProvider>()
+                  .gameModel
+                  .commentsAutoController),
+          const SizedBox(height: 24),
+          CommentsColumnForm(
+              title: "Tele Op",
+              commentsController: context
+                  .read<GameProvider>()
+                  .gameModel
+                  .commentsTeleOpController),
+          const SizedBox(height: 24),
+          CommentsColumnForm(
+              title: "End Game",
+              commentsController: context
+                  .read<GameProvider>()
+                  .gameModel
+                  .commentsEndGameController),
+          const SizedBox(height: 24),
+        ],
+      );
+    });
   }
 
   Consumer<GameProvider> endGameContainer() {

@@ -54,11 +54,12 @@ class _ModeContainerState extends State<ModeContainer> {
             }),
             child: Row(
               children: [
-                Icon(
+                Image.asset(
                   isToggled
-                      ? Icons.keyboard_arrow_up_rounded
-                      : Icons.keyboard_arrow_down_outlined,
-                  size: 28,
+                      ? "assets/icons/arrow_down.png"
+                      : "assets/icons/arrow_up.png",
+                  height: 18,
+                  fit: BoxFit.cover,
                 ),
                 const SizedBox(width: 18),
                 Text(
@@ -72,13 +73,13 @@ class _ModeContainerState extends State<ModeContainer> {
                 widget.isComments
                     ? const SizedBox()
                     : Text(
-                  widget.totalPoints.toString(),
-                  style: const TextStyle(
-                    fontSize: 26,
-                    color: grey,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                        widget.totalPoints.toString(),
+                        style: const TextStyle(
+                          fontSize: 26,
+                          color: grey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
               ],
             ),
           ),

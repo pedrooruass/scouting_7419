@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:scoring_7419/ui/features/profile/pages/robot_info_page.dart';
+import 'package:scoring_7419/ui/features/profile/pages/support_page.dart';
 import 'package:scoring_7419/ui/features/profile/views/profile_tile_sub_screens.dart';
-import 'package:scoring_7419/ui/features/profile/views/support_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
 
@@ -62,10 +63,16 @@ class SubPagesList extends StatelessWidget {
     return ListView(
       children: [
         ProfileTileSubScreens(
-          onTap: () {},
-          title: 'ROBOTS',
-          icon: FontAwesomeIcons.robot,
-        ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const RobotInfo(),
+                ),
+              );
+            },
+            title: 'Robot Info',
+            icon: FontAwesomeIcons.robot),
         ProfileTileSubScreens(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {

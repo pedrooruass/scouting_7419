@@ -3,7 +3,6 @@ import 'package:scoring_7419/application/models/scoring_model.dart';
 import 'package:scoring_7419/application/providers/game_provider.dart';
 import 'package:scoring_7419/application/providers/profile_provider.dart';
 import 'package:scoring_7419/application/providers/team_provider.dart';
-import 'package:scoring_7419/application/providers/tournament_provider.dart';
 import 'package:scoring_7419/application/repositories/scoring_repository.dart';
 import 'package:uuid/uuid.dart';
 
@@ -11,14 +10,25 @@ class ScoreMatchProvider extends ChangeNotifier {
   Future<void> submitScore({
     required TeamProvider teamProvider,
     required ProfileProvider profileProvider,
+    // required SecondRowProvider secondRowProvider,
     // required TournamentProvider tournamentProvider,
     required GameProvider gameProvider,
+    required BuildContext context,
   }) async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          // return Center(child: CircularProgressIndicator(color: grey));
+          return Center(child: Image.asset("assets/gif/7419_2.gif"));
+        });
     ScoringModel scoringModel = ScoringModel(
       id: const Uuid().v4(),
+      tournamentName: "N/A",
       // tournamentName: tournamentProvider.tournamentModel!.name,
       scouterName: profileProvider.userName!,
       teamNumber: teamProvider.teamModel!.teamNumber,
+      matchNumber: gameProvider.gameModel.matchNumber,
+      isAllianceBlue: gameProvider.gameModel.isAllianceBlue,
       autoUpperHubIn: gameProvider.gameModel.autoUpperHubIn,
       autoUpperHubOut: gameProvider.gameModel.autoUpperHubOut,
       autoLowerHubIn: gameProvider.gameModel.autoLowerHubIn,
@@ -42,6 +52,7 @@ class ScoreMatchProvider extends ChangeNotifier {
       endGameTimeHanging: gameProvider.gameModel.endGameTimeHanging,
       endGameHangerIndexSelected:
           gameProvider.gameModel.endGameHangerIndexSelected,
+      isWinner: gameProvider.gameModel.isWinner,
       commentsAuto: gameProvider.gameModel.commentsAutoController.text,
       commentsTeleOp: gameProvider.gameModel.commentsTeleOpController.text,
       commentsEndGame: gameProvider.gameModel.commentsEndGameController.text,
@@ -51,6 +62,8 @@ class ScoreMatchProvider extends ChangeNotifier {
     await scoringRepository.submitScoring(scoringModel); // reset game number
     gameProvider.reset();
     teamProvider.reset();
+    Navigator.pop(context);
+    // secondRowProvider.reset();
     // tournamentProvider.reset();
   }
 //game provider

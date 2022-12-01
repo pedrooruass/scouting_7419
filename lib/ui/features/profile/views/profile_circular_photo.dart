@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scoring_7419/application/providers/profile_provider.dart';
-import 'package:scoring_7419/ui/features/auth/screens/views/profile_dialog.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
 class ProfileCircularPhoto extends StatelessWidget {
@@ -27,32 +26,32 @@ class ProfileCircularPhoto extends StatelessWidget {
             ),
             child: Image.asset(profileProvider.profileImageChoice),
           ),
-          GestureDetector(
-            onTap: () {
-              profileDialog(context, profileProvider);
-            },
-            child: Container(
-              height: 40,
-              width: 40,
-              padding: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                color: grey,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: black,
-                    spreadRadius: 4,
-                  )
-                ],
-              ),
-              child: const Icon(
-                Icons.settings,
-                color: black,
-              ),
-            ),
-          ),
+          // GestureDetector(
+          //   onTap: () {
+          //     profileDialog(context, profileProvider);
+          //   },
+          //   child: Container(
+          //     height: 40,
+          //     width: 40,
+          //     padding: const EdgeInsets.all(8),
+          //     decoration: const BoxDecoration(
+          //       color: grey,
+          //       borderRadius: BorderRadius.all(
+          //         Radius.circular(30),
+          //       ),
+          //       boxShadow: [
+          //         BoxShadow(
+          //           color: black,
+          //           spreadRadius: 4,
+          //         )
+          //       ],
+          //     ),
+          //     child: const Icon(
+          //       Icons.settings,
+          //       color: black,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
