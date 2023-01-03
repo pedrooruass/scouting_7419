@@ -18,7 +18,9 @@ class TournamentsPage extends StatefulWidget {
 class _TournamentsPageState extends State<TournamentsPage> {
   @override
   initState() {
-    context.read<TournamentProvider>().getTournamentModels();
+    if (context.read<TournamentProvider>().tournamentModels.isEmpty) {
+      context.read<TournamentProvider>().getTournamentModels();
+    }
     super.initState();
   }
 
@@ -26,12 +28,7 @@ class _TournamentsPageState extends State<TournamentsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: black,
-      appBar: AppBar(
-        backgroundColor: black,
-        elevation: 0,
-        centerTitle: true,
-        title: AutoSizeText("Tournaments", maxFontSize: 36, maxLines: 1, style: TextStyle(fontSize: 48, fontFamily: titleFont, color: Colors.white)),
-      ),
+      appBar: AppBar(backgroundColor: black, elevation: 0, centerTitle: true, title: AutoSizeText("Tournaments", maxFontSize: 36, maxLines: 1, style: TextStyle(fontSize: 48, fontFamily: titleFont, color: Colors.white))),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -42,23 +39,14 @@ class _TournamentsPageState extends State<TournamentsPage> {
                 showSearch(context: context, delegate: CustomSearchTournamentDelegate(tournamentList: context.read<TournamentProvider>().tournamentModels));
                 print(context.read<TournamentProvider>().tournamentModels);
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: white,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              ),
+              style: ElevatedButton.styleFrom(backgroundColor: white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Image.asset("assets/icons/search_icon.png"),
-                    Text(
-                      "Search Tournament",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: black,
-                      ),
-                    ),
+                    Text("Search Tournament", style: TextStyle(fontSize: 20, color: black)),
                   ],
                 ),
               ),
@@ -67,10 +55,7 @@ class _TournamentsPageState extends State<TournamentsPage> {
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(22),
-                decoration: BoxDecoration(
-                  color: grey,
-                  borderRadius: BorderRadius.circular(33),
-                ),
+                decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(33)),
                 child: Consumer<TournamentProvider>(
                   builder: (context, tournamentProvider, widget) {
                     return tournamentProvider.tournamentModels.isNotEmpty

@@ -15,7 +15,6 @@ class TournamentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
   TournamentModel? get tournamentModel => _tournamentModel;
 
   set tournamentModel(TournamentModel? tournamentModel) {
@@ -50,7 +49,6 @@ class TournamentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
   // void setYear(
   //     int year, TeamModel teamModel, Function(String errorMessage) onError) {
   //   this.year = year;
@@ -62,8 +60,8 @@ class TournamentProvider extends ChangeNotifier {
     var result = await tournamentRepository.getTournamentModels(/* teamModel, year!*/);
     result.fold(
       // (l) => onError(l),
-          (l) => print(l),
-          (r) {
+      (l) => print(l),
+      (r) {
         tournamentModels = r;
       },
     );
@@ -74,8 +72,8 @@ class TournamentProvider extends ChangeNotifier {
     TournamentRepository tournamentRepository = TournamentRepository();
     var result = await tournamentRepository.getTeamModelInTournament(eventKey);
     result.fold(
-          (l) => print(l),
-          (r) {
+      (l) => print(l),
+      (r) {
         teamsInTournament = r;
       },
     );
@@ -83,7 +81,6 @@ class TournamentProvider extends ChangeNotifier {
 
   void reset() {
     tournamentModel = null;
-    tournamentModels = [];
     teamsInTournament = [];
     year = null;
     notifyListeners();

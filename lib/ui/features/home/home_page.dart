@@ -20,8 +20,21 @@ import 'package:scoring_7419/ui/themee/fonts.dart';
 
 import '../../../application/providers/tournament_provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  initState() {
+    if (context.read<TournamentProvider>().tournamentModels.isEmpty) {
+      context.read<TournamentProvider>().getTournamentModels();
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:scoring_7419/application/models/tournament_model.dart';
 import 'package:scoring_7419/application/providers/team_provider.dart';
@@ -34,7 +35,7 @@ class TournamentSearchContainer extends StatelessWidget {
               items: tournamentProvider.tournamentModels.map((TournamentModel tournamentModel) {
                 return DropdownMenuItem<TournamentModel>(
                   value: tournamentModel,
-                  child: Text(tournamentModel.name, maxLines: 1, style: const TextStyle(color: black)),
+                  child: AutoSizeText(tournamentModel.name, maxLines: 1, style: const TextStyle(color: black)),
                 );
               }).toList(),
               onChanged: (TournamentModel? tournamentModel) {
