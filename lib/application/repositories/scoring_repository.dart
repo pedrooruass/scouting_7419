@@ -21,10 +21,10 @@ class ScoringRepository {
   final _spreadSheetId = "1R0Il5LIjUnzXalyPzP2nz6uzG502k1iqacdwDc7sXjw";
 
   Future<bool> submitScoring(ScoringModel scoring) async {
-    return _put(scoring.id, scoring.toJson());
+    return _put(scoring.id, scoring.toJson(), scoring.tournamentKey);
   }
 
-  Future<bool> _put(String id, Map<String, dynamic> map) async {
+  Future<bool> _put(String id, Map<String, dynamic> map, String tournamentKey) async {
     CollectionReference collectionReference = FirebaseFirestore.instance.collection('scoring');
     WriteBatch batch = FirebaseFirestore.instance.batch();
     batch.set(collectionReference.doc(id), map);
@@ -33,7 +33,7 @@ class ScoringRepository {
     //Init Gsheets
     final gsheets = GSheets(_credentials);
     final ss = await gsheets.spreadsheet(_spreadSheetId);
-    final sheet = ss.worksheetByTitle('Sheet1');
+    final sheet = ss.worksheetByTitle(tournamentKey);
     //update a cell
     await sheet!.values.appendRow(map.values.toList());
     return true;

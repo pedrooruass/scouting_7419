@@ -20,29 +20,29 @@ class TournamentSearchContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(color: white, borderRadius: BorderRadius.circular(10), boxShadow: <BoxShadow>[]),
-      child: Align(
-        alignment: Alignment.center,
-        child: DropdownButton<TournamentModel>(
-          value: tournamentProvider.tournamentModel,
-          style: const TextStyle(color: black, fontSize: 18),
-          elevation: 0,
-          hint: const Text("Choose Tournament"),
-          items: tournamentProvider.tournamentModels.map((TournamentModel tournamentModel) {
-            return DropdownMenuItem<TournamentModel>(
-              value: tournamentModel,
-              child: Text(
-                tournamentModel.name,
-                maxLines: 1,
-                style: const TextStyle(
-                  color: black,
-                ),
-              ),
-            );
-          }).toList(),
-          onChanged: (TournamentModel? tournamentModel) {
-            tournamentProvider.tournamentModel = tournamentModel;
-          },
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Image.asset("assets/icons/search_icon.png"),
+          Align(
+            alignment: Alignment.center,
+            child: DropdownButton<TournamentModel>(
+              value: tournamentProvider.tournamentModel,
+              style: const TextStyle(color: black, fontSize: 18),
+              elevation: 0,
+              hint: const Text("Choose Tournament"),
+              items: tournamentProvider.tournamentModels.map((TournamentModel tournamentModel) {
+                return DropdownMenuItem<TournamentModel>(
+                  value: tournamentModel,
+                  child: Text(tournamentModel.name, maxLines: 1, style: const TextStyle(color: black)),
+                );
+              }).toList(),
+              onChanged: (TournamentModel? tournamentModel) {
+                tournamentProvider.tournamentModel = tournamentModel;
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

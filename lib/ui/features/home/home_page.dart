@@ -14,6 +14,7 @@ import 'package:scoring_7419/ui/features/home/views/plus_minus_widget.dart';
 import 'package:scoring_7419/ui/features/home/views/second_row.dart';
 import 'package:scoring_7419/ui/features/home/views/team_and_scouter_row.dart';
 import 'package:scoring_7419/ui/features/home/views/title_and_profile.dart';
+import 'package:scoring_7419/ui/features/home/views/tournament_search_container.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
 
@@ -34,11 +35,11 @@ class HomePage extends StatelessWidget {
           children: [
             TitleAndProfile(),
             const SizedBox(height: 24),
-            // TournamentSearchContainer(
-            //   tournamentProvider: Provider.of<TournamentProvider>(context),
-            //   teamProvider: teamProvider,
-            // ),
-            // const SizedBox(height: 24),
+            TournamentSearchContainer(
+              tournamentProvider: Provider.of<TournamentProvider>(context),
+              teamProvider: teamProvider,
+            ),
+            const SizedBox(height: 24),
             TeamAndScouterRow(
               teamProvider: teamProvider,
               // tournamentProvider: tournamentProvider,

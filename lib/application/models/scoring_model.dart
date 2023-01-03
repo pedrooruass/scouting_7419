@@ -114,7 +114,7 @@ class ScoringModel {
   }
 
   Map<String, dynamic> toJson() => {
-        'tournamentKey': "2022mttd", //TODO change this later to tournament name
+        'tournamentKey': tournamentKey, //TODO change this later to tournament name
         'scouterName': scouterName,
         'teamNumber': teamNumber,
         'matchNumber': matchNumber,

@@ -24,7 +24,7 @@ class ScoreMatchProvider extends ChangeNotifier {
         });
     ScoringModel scoringModel = ScoringModel(
       id: const Uuid().v4(),
-      tournamentKey: "N/A",
+      tournamentKey: tournamentProvider.tournamentModel!.key,
       // tournamentName: tournamentProvider.tournamentModel!.name,
       scouterName: profileProvider.userName!,
       teamNumber: teamProvider.teamModel!.teamNumber,
