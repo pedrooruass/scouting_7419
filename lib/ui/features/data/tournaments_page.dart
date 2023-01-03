@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,14 +8,14 @@ import 'package:scoring_7419/ui/features/data/tournament_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
 
-class DataPage extends StatefulWidget {
-  const DataPage({Key? key}) : super(key: key);
+class TournamentsPage extends StatefulWidget {
+  const TournamentsPage({Key? key}) : super(key: key);
 
   @override
-  State<DataPage> createState() => _DataPageState();
+  State<TournamentsPage> createState() => _TournamentsPageState();
 }
 
-class _DataPageState extends State<DataPage> {
+class _TournamentsPageState extends State<TournamentsPage> {
   @override
   initState() {
     context.read<TournamentProvider>().getTournamentModels();
@@ -24,12 +25,12 @@ class _DataPageState extends State<DataPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: black,
         elevation: 0,
         centerTitle: true,
-        title: Text("Data", style: TextStyle(fontSize: 48, fontFamily: titleFont, color: Colors.white)),
+        title: AutoSizeText("Tournaments", maxFontSize: 36, maxLines: 1, style: TextStyle(fontSize: 48, fontFamily: titleFont, color: Colors.white)),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),

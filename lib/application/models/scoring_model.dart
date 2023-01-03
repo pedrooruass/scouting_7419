@@ -1,7 +1,7 @@
 class ScoringModel {
   final String id;
 
-  final String tournamentName;
+  final String tournamentKey;
   final String scouterName;
   final int teamNumber;
   final int matchNumber;
@@ -43,7 +43,7 @@ class ScoringModel {
   //Comments
   ScoringModel({
     required this.id,
-    required this.tournamentName,
+    required this.tournamentKey,
     required this.scouterName,
     required this.teamNumber,
     required this.matchNumber,
@@ -79,7 +79,7 @@ class ScoringModel {
   factory ScoringModel.fromJson(Map<String, dynamic> json) {
     return ScoringModel(
       id: json['id'],
-      tournamentName: json['tournamentName'],
+      tournamentKey: json['tournamentKey'],
       scouterName: json['scouterName'],
       teamNumber: json['teamNumber'],
       matchNumber: json['matchNumber'],
@@ -114,7 +114,7 @@ class ScoringModel {
   }
 
   Map<String, dynamic> toJson() => {
-        'tournamentName': "MadTown", //TODO change this later to tournament name
+        'tournamentKey': "2022mttd", //TODO change this later to tournament name
         'scouterName': scouterName,
         'teamNumber': teamNumber,
         'matchNumber': matchNumber,

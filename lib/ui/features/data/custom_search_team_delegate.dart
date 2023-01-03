@@ -6,15 +6,15 @@ import 'package:scoring_7419/ui/themee/colors.dart';
 class CustomSearchTeamDelegate extends SearchDelegate {
   CustomSearchTeamDelegate({
     required this.teamList,
+    required this.tournamentKey,
   });
 
 // Demo list to show querying
   List<String> teamList;
+  String tournamentKey;
 
   @override
-  TextStyle? get searchFieldStyle => const TextStyle(
-        color: black,
-      );
+  TextStyle? get searchFieldStyle => const TextStyle(color: black);
 
 // first overwrite to
 // clear the search text
@@ -22,14 +22,10 @@ class CustomSearchTeamDelegate extends SearchDelegate {
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
-        onPressed: () {
-          query = '';
-        },
-        icon: const Icon(
-          Icons.clear,
-          color: Colors.red,
-        ),
-      ),
+          onPressed: () {
+            query = '';
+          },
+          icon: const Icon(Icons.clear, color: Colors.red))
     ];
   }
 
@@ -37,34 +33,25 @@ class CustomSearchTeamDelegate extends SearchDelegate {
   @override
   Widget? buildLeading(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        close(context, null);
-      },
-      child: Image.asset("assets/icons/arrow_left_darkT.png"),
-    );
+        onTap: () {
+          close(context, null);
+        },
+        child: Image.asset("assets/icons/arrow_left_darkT.png"));
   }
 
 // third overwrite to show query result
   @override
   Widget buildResults(BuildContext context) {
-    List<String> matchQuery = teamList
-        .where(
-          (team) => team.substring(3, team.length).toLowerCase().startsWith(query.toLowerCase()),
-        )
-        .toList();
-    return SearchListTile(matchQuery: matchQuery);
+    List<String> matchQuery = teamList.where((team) => team.substring(3, team.length).toLowerCase().startsWith(query.toLowerCase())).toList();
+    return SearchListTile(matchQuery: matchQuery, tournamentKey: tournamentKey);
   }
 
 // last overwrite to show the
 // querying process at the runtime
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = teamList
-        .where(
-          (team) => team.substring(3, team.length).toLowerCase().startsWith(query.toLowerCase()),
-        )
-        .toList();
-    return SearchListTile(matchQuery: matchQuery);
+    List<String> matchQuery = teamList.where((team) => team.substring(3, team.length).toLowerCase().startsWith(query.toLowerCase())).toList();
+    return SearchListTile(matchQuery: matchQuery, tournamentKey: tournamentKey);
   }
 }
 
@@ -72,8 +59,9 @@ class SearchListTile extends StatelessWidget {
   const SearchListTile({
     Key? key,
     required this.matchQuery,
+    required this.tournamentKey,
   }) : super(key: key);
-
+  final String tournamentKey;
   final List<String> matchQuery;
 
   @override
@@ -85,20 +73,14 @@ class SearchListTile extends StatelessWidget {
         return ListTile(
           leading: CircleAvatar(
             backgroundColor: darkGrey,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 5, 4),
-              child: Icon(
-                FontAwesomeIcons.robot,
-                color: white,
-              ),
-            ),
+            child: Padding(padding: const EdgeInsets.fromLTRB(0, 0, 5, 4), child: Icon(FontAwesomeIcons.robot, color: white)),
           ),
           title: Text(team.substring(3, team.length)),
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => TeamPage(teamKey: team),
+                builder: (context) => TeamPage(teamNumber: int.parse(team.substring(3, team.length)), tournamentKey: tournamentKey),
               ),
             );
           },

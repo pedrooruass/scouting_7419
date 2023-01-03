@@ -3,6 +3,7 @@ import 'package:scoring_7419/application/models/scoring_model.dart';
 import 'package:scoring_7419/application/providers/game_provider.dart';
 import 'package:scoring_7419/application/providers/profile_provider.dart';
 import 'package:scoring_7419/application/providers/team_provider.dart';
+import 'package:scoring_7419/application/providers/tournament_provider.dart';
 import 'package:scoring_7419/application/repositories/scoring_repository.dart';
 import 'package:uuid/uuid.dart';
 
@@ -11,7 +12,7 @@ class ScoreMatchProvider extends ChangeNotifier {
     required TeamProvider teamProvider,
     required ProfileProvider profileProvider,
     // required SecondRowProvider secondRowProvider,
-    // required TournamentProvider tournamentProvider,
+    required TournamentProvider tournamentProvider,
     required GameProvider gameProvider,
     required BuildContext context,
   }) async {
@@ -23,7 +24,7 @@ class ScoreMatchProvider extends ChangeNotifier {
         });
     ScoringModel scoringModel = ScoringModel(
       id: const Uuid().v4(),
-      tournamentName: "N/A",
+      tournamentKey: "N/A",
       // tournamentName: tournamentProvider.tournamentModel!.name,
       scouterName: profileProvider.userName!,
       teamNumber: teamProvider.teamModel!.teamNumber,
@@ -50,8 +51,7 @@ class ScoreMatchProvider extends ChangeNotifier {
       endGameHaveScoreBonus: gameProvider.gameModel.endGameHaveScoreBonus,
       endGameHaveHangerBonus: gameProvider.gameModel.endGameHaveHangerBonus,
       endGameTimeHanging: gameProvider.gameModel.endGameTimeHanging,
-      endGameHangerIndexSelected:
-          gameProvider.gameModel.endGameHangerIndexSelected,
+      endGameHangerIndexSelected: gameProvider.gameModel.endGameHangerIndexSelected,
       isWinner: gameProvider.gameModel.isWinner,
       commentsAuto: gameProvider.gameModel.commentsAutoController.text,
       commentsTeleOp: gameProvider.gameModel.commentsTeleOpController.text,
@@ -64,7 +64,7 @@ class ScoreMatchProvider extends ChangeNotifier {
     teamProvider.reset();
     Navigator.pop(context);
     // secondRowProvider.reset();
-    // tournamentProvider.reset();
+    tournamentProvider.reset();
   }
 //game provider
 //comments provider

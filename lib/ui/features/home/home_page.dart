@@ -17,6 +17,8 @@ import 'package:scoring_7419/ui/features/home/views/title_and_profile.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
 
+import '../../../application/providers/tournament_provider.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -32,6 +34,11 @@ class HomePage extends StatelessWidget {
           children: [
             TitleAndProfile(),
             const SizedBox(height: 24),
+            // TournamentSearchContainer(
+            //   tournamentProvider: Provider.of<TournamentProvider>(context),
+            //   teamProvider: teamProvider,
+            // ),
+            // const SizedBox(height: 24),
             TeamAndScouterRow(
               teamProvider: teamProvider,
               // tournamentProvider: tournamentProvider,
@@ -69,7 +76,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   context.read<ScoreMatchProvider>().submitScore(
                         teamProvider: teamProvider,
-                        // tournamentProvider: tournamentProvider,
+                        tournamentProvider: context.read<TournamentProvider>(),
                         profileProvider: context.read<ProfileProvider>(),
                         // secondRowProvider: context.read<SecondRowProvider>(),
                         gameProvider: context.read<GameProvider>(),
@@ -114,34 +121,17 @@ class HomePage extends StatelessWidget {
         widgets: [
           GameCheckBoxTile(
             title: "Is winner?",
-            icon: gameProvider.gameModel.isWinner
-                ? Icons.check_box_outlined
-                : Icons.check_box_outline_blank,
+            icon: gameProvider.gameModel.isWinner ? Icons.check_box_outlined : Icons.check_box_outline_blank,
             onPressed: () {
               gameProvider.isWinnerToggle();
             },
           ),
           const SizedBox(height: 24),
-          CommentsColumnForm(
-              title: "Auto",
-              commentsController: context
-                  .read<GameProvider>()
-                  .gameModel
-                  .commentsAutoController),
+          CommentsColumnForm(title: "Auto", commentsController: context.read<GameProvider>().gameModel.commentsAutoController),
           const SizedBox(height: 24),
-          CommentsColumnForm(
-              title: "Tele Op",
-              commentsController: context
-                  .read<GameProvider>()
-                  .gameModel
-                  .commentsTeleOpController),
+          CommentsColumnForm(title: "Tele Op", commentsController: context.read<GameProvider>().gameModel.commentsTeleOpController),
           const SizedBox(height: 24),
-          CommentsColumnForm(
-              title: "End Game",
-              commentsController: context
-                  .read<GameProvider>()
-                  .gameModel
-                  .commentsEndGameController),
+          CommentsColumnForm(title: "End Game", commentsController: context.read<GameProvider>().gameModel.commentsEndGameController),
           const SizedBox(height: 24),
         ],
       );
@@ -218,17 +208,10 @@ class HomePage extends StatelessWidget {
                 FlutterToggleTab(
                   borderRadius: 10,
                   height: 40,
-                  selectedIndex:
-                      gameProvider.gameModel.endGameHangerIndexSelected,
+                  selectedIndex: gameProvider.gameModel.endGameHangerIndexSelected,
                   selectedBackgroundColors: gradient1,
-                  selectedTextStyle: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700),
-                  unSelectedTextStyle: const TextStyle(
-                      color: Colors.black87,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500),
+                  selectedTextStyle: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
+                  unSelectedTextStyle: const TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.w500),
                   labels: const [
                     "Low",
                     "Mid",
@@ -247,23 +230,17 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 24),
           GameCheckBoxTile(
             title: "Scoring Bonus",
-            icon: gameProvider.gameModel.endGameHaveScoreBonus
-                ? Icons.check_box_outlined
-                : Icons.check_box_outline_blank,
+            icon: gameProvider.gameModel.endGameHaveScoreBonus ? Icons.check_box_outlined : Icons.check_box_outline_blank,
             onPressed: () {
-              gameProvider.endGameCheckHaveScoreBonus(
-                  !gameProvider.gameModel.endGameHaveScoreBonus);
+              gameProvider.endGameCheckHaveScoreBonus(!gameProvider.gameModel.endGameHaveScoreBonus);
             },
           ),
           const SizedBox(height: 24),
           GameCheckBoxTile(
             title: "Hanger Bonus",
-            icon: gameProvider.gameModel.endGameHaveHangerBonus
-                ? Icons.check_box_outlined
-                : Icons.check_box_outline_blank,
+            icon: gameProvider.gameModel.endGameHaveHangerBonus ? Icons.check_box_outlined : Icons.check_box_outline_blank,
             onPressed: () {
-              gameProvider.endGameCheckHaveHangerBonus(
-                  !gameProvider.gameModel.endGameHaveHangerBonus);
+              gameProvider.endGameCheckHaveHangerBonus(!gameProvider.gameModel.endGameHaveHangerBonus);
             },
           ),
           const SizedBox(height: 24),
@@ -338,12 +315,9 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 24),
           GameCheckBoxTile(
             title: "Is Robot Defensive",
-            icon: gameProvider.gameModel.teleOpIsRobotDefensive
-                ? Icons.check_box_outlined
-                : Icons.check_box_outline_blank,
+            icon: gameProvider.gameModel.teleOpIsRobotDefensive ? Icons.check_box_outlined : Icons.check_box_outline_blank,
             onPressed: () {
-              gameProvider.teleOpToggleIsRobotDefensive(
-                  !gameProvider.gameModel.teleOpIsRobotDefensive);
+              gameProvider.teleOpToggleIsRobotDefensive(!gameProvider.gameModel.teleOpIsRobotDefensive);
             },
           ),
         ],
@@ -396,9 +370,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 24),
             GameCheckBoxTile(
               title: "Moves Off Tarmac",
-              icon: gameProvider.gameModel.autoMovesOffTarmac
-                  ? Icons.check_box_outlined
-                  : Icons.check_box_outline_blank,
+              icon: gameProvider.gameModel.autoMovesOffTarmac ? Icons.check_box_outlined : Icons.check_box_outline_blank,
               onPressed: () {
                 gameProvider.autoToggleTarmac();
               },

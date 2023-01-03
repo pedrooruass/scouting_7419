@@ -17,7 +17,8 @@ class TournamentRepository {
     try {
       var response =
           // await dio.get("/team/${teamModel.key}/events/$year/simple");
-          await dio.get("https://www.thebluealliance.com/api/v3/team/frc7419/events/2022/simple"); // Just for 7419
+          await dio.get("https://www.thebluealliance.com/api/v3/events/2023/simple"); // All tournaments in 2022
+      // await dio.get("https://www.thebluealliance.com/api/v3/team/frc7419/events/2023/simple"); // Just for 7419
       if (response.statusCode == HttpStatus.ok) {
         List<TournamentModel> tournamentModels = [];
         for (var tournament in response.data) {
