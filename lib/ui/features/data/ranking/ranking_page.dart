@@ -42,10 +42,48 @@ class RankingPage extends StatelessWidget {
                     SizedBox(height: 14),
                     Expanded(
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text("for :", style: TextStyle(fontSize: 20)),
                           SizedBox(width: 10),
-                          Expanded(child: Container(height: 30, decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(10)))),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 16),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: grey),
+                              child: DropdownButton<int>(
+                                dropdownColor: grey,
+                                value: 0,
+                                style: TextStyle(fontSize: 20, color: black),
+                                underline: SizedBox.shrink(),
+                                items: [
+                                  DropdownMenuItem(
+                                    child: Text("Most Victories"),
+                                    value: 0,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text("Autonomous"),
+                                    value: 1,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text("Tele Op"),
+                                    value: 2,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text("End Game"),
+                                    value: 3,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text("Time Hanging"),
+                                    value: 4,
+                                  ),
+                                ],
+                                onChanged: (value) {
+                                  // context.read<TournamentProvider>().getRankingList(value!);
+                                },
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

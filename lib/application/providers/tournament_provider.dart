@@ -79,6 +79,10 @@ class TournamentProvider extends ChangeNotifier {
     );
   }
 
+  _getRankingList() {
+    //TODO get the top 8 best teams in the tournament by its win to loss ratio
+  }
+
   void reset() {
     tournamentModel = null;
     teamsInTournament = [];
