@@ -10,6 +10,7 @@ import 'package:scoring_7419/ui/features/auth/screens/auth_screen.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
 
+import 'application/providers/data_provider.dart';
 import 'application/providers/team_provider.dart';
 
 void main(List<String> args) async {
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => TeamProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ChangeNotifierProvider(create: (_) => ScoreMatchProvider()),
+        ChangeNotifierProvider(create: (_) => DataProvider()),
       ],
       child: MaterialApp(
         title: "7419 Scouting",

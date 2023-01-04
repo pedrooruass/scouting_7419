@@ -5,12 +5,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
 import 'package:scoring_7419/application/providers/tournament_provider.dart';
-import 'package:scoring_7419/ui/features/data/data_page.dart';
+import 'package:scoring_7419/ui/features/data/tournaments_page.dart';
 import 'package:scoring_7419/ui/features/home/home_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
-
-import '../../../application/repositories/scoring_repository.dart';
 
 class PageViewer extends StatefulWidget {
   const PageViewer({Key? key}) : super(key: key);
@@ -35,7 +33,7 @@ class _PageViewerState extends State<PageViewer> {
       body: PageView(
         controller: _controller,
         children: <Widget>[
-          const DataPage(),
+          const TournamentsPage(),
           const HomePage(),
           const TestDataPage(),
           // inDevelopmentScreen(),
@@ -104,23 +102,17 @@ class _TestDataPageState extends State<TestDataPage> {
   List<String> tournaments = [];
 
   Future getDocIds() async {
-    await FirebaseFirestore.instance
-        .collection('users')
-        .get()
-        .then((snapshot) => snapshot.docs.forEach((doc) {
-              print(doc.id);
-            }));
+    await FirebaseFirestore.instance.collection('users').get().then((snapshot) => snapshot.docs.forEach((doc) {
+          print(doc.id);
+        }));
   }
 
   // Get tournaments //Not working yet
   getTournaments() {
-    FirebaseFirestore.instance
-        .collection('scoring')
-        .get()
-        .then((snapshot) => snapshot.docs.forEach((doc) {
-              print(doc.id);
-              tournaments.add(doc.id);
-            }));
+    FirebaseFirestore.instance.collection('scoring').get().then((snapshot) => snapshot.docs.forEach((doc) {
+          print(doc.id);
+          tournaments.add(doc.id);
+        }));
   }
 
   @override
@@ -174,28 +166,28 @@ class _TestDataPageState extends State<TestDataPage> {
       //     );
       //   },
       // ),
-      body: StreamBuilder<List<DataModel>>(
-        stream: ScoringRepository().readTournamentData("MadTown"),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Center(
-              child: Text(snapshot.error.toString()),
-            );
-          } else if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(snapshot.data![index].scouterName!),
-                  subtitle: Text(snapshot.data![index].teamNumber.toString()),
-                );
-              },
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
+      // body: StreamBuilder<List<DataModel>>(
+      //   stream: DataRepository().startListenTeamDataInTournament(teamNumber: 7419, tournamentKey: "2022mttd"),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.hasError) {
+      //       return Center(
+      //         child: Text(snapshot.error.toString()),
+      //       );
+      //     } else if (snapshot.hasData) {
+      //       return ListView.builder(
+      //         itemCount: snapshot.data!.length,
+      //         itemBuilder: (context, index) {
+      //           return ListTile(
+      //             title: Text(snapshot.data![index].scouterName!),
+      //             subtitle: Text(snapshot.data![index].teamNumber.toString()),
+      //           );
+      //         },
+      //       );
+      //     } else {
+      //       return Center(child: CircularProgressIndicator());
+      //     }
+      //   },
+      // ),
     );
   }
 }

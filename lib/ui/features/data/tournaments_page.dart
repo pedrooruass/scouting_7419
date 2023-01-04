@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,30 +8,27 @@ import 'package:scoring_7419/ui/features/data/tournament_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
 
-class DataPage extends StatefulWidget {
-  const DataPage({Key? key}) : super(key: key);
+class TournamentsPage extends StatefulWidget {
+  const TournamentsPage({Key? key}) : super(key: key);
 
   @override
-  State<DataPage> createState() => _DataPageState();
+  State<TournamentsPage> createState() => _TournamentsPageState();
 }
 
-class _DataPageState extends State<DataPage> {
+class _TournamentsPageState extends State<TournamentsPage> {
   @override
   initState() {
-    context.read<TournamentProvider>().getTournamentModels();
+    if (context.read<TournamentProvider>().tournamentModels.isEmpty) {
+      context.read<TournamentProvider>().getTournamentModels();
+    }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        centerTitle: true,
-        title: Text("Data", style: TextStyle(fontSize: 48, fontFamily: titleFont, color: Colors.white)),
-      ),
+      backgroundColor: black,
+      appBar: AppBar(backgroundColor: black, elevation: 0, centerTitle: true, title: AutoSizeText("Tournaments", maxFontSize: 36, maxLines: 1, style: TextStyle(fontSize: 48, fontFamily: titleFont, color: Colors.white))),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -41,23 +39,14 @@ class _DataPageState extends State<DataPage> {
                 showSearch(context: context, delegate: CustomSearchTournamentDelegate(tournamentList: context.read<TournamentProvider>().tournamentModels));
                 print(context.read<TournamentProvider>().tournamentModels);
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: white,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              ),
+              style: ElevatedButton.styleFrom(backgroundColor: white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Image.asset("assets/icons/search_icon.png"),
-                    Text(
-                      "Search Tournament",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: black,
-                      ),
-                    ),
+                    Text("Search Tournament", style: TextStyle(fontSize: 20, color: black)),
                   ],
                 ),
               ),
@@ -66,10 +55,7 @@ class _DataPageState extends State<DataPage> {
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(22),
-                decoration: BoxDecoration(
-                  color: grey,
-                  borderRadius: BorderRadius.circular(33),
-                ),
+                decoration: BoxDecoration(color: grey, borderRadius: BorderRadius.circular(33)),
                 child: Consumer<TournamentProvider>(
                   builder: (context, tournamentProvider, widget) {
                     return tournamentProvider.tournamentModels.isNotEmpty
