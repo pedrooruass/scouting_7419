@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scoring_7419/application/providers/tournament_provider.dart';
 import 'package:scoring_7419/ui/features/data/custom_search_tournament_delegate.dart';
-import 'package:scoring_7419/ui/features/data/tournament_page.dart';
+import 'package:scoring_7419/ui/features/data/teams_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
 
@@ -64,7 +64,7 @@ class _TournamentsPageState extends State<TournamentsPage> {
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => TournamentPage(tournament: tournamentProvider.tournamentModels[index])));
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => TeamsPage(tournamentModel: tournamentProvider.tournamentModels[index])));
                                   },
                                   child: Container(
                                     padding: EdgeInsets.all(4),

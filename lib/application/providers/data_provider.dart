@@ -5,7 +5,11 @@ import 'package:scoring_7419/application/models/data_model.dart';
 class DataProvider extends ChangeNotifier {
   // Map<String, DataModel> teamDatas = {};
   List<DataModel> ld = [];
-  List<DataModel> ldTop8 = [];
+  List<DataModel> ldTop8 = []; // Win loss ratio
+  List<DataModel> ldTop8AutoAverage = [];
+  List<DataModel> ldTop8TeleOpAverage = [];
+  List<DataModel> ldTop8EndGameAverage = [];
+  List<DataModel> ldTopHangerAverage = [];
   int teamWins = 0;
   int teamLoss = 0;
   double averageAutonomousPoints = 0;
@@ -48,8 +52,7 @@ class DataProvider extends ChangeNotifier {
     averageAutonomousPoints = 0;
     averageTeleOpPoints = 0;
     averageEndGamePoints = 0;
-    FirebaseFirestore.instance.collection('scoring').where("tournamentKey", isEqualTo: tournamentKey).where("teamNumber", isEqualTo: teamNumber).get().then((snapshot) =>
-        snapshot.docs.forEach((doc) {
+    FirebaseFirestore.instance.collection('scoring').where("tournamentKey", isEqualTo: tournamentKey).where("teamNumber", isEqualTo: teamNumber).get().then((snapshot) => snapshot.docs.forEach((doc) {
           print(doc.id);
           ld += [DataModel.fromJson(doc.data())];
           _calculateTeamWins();
@@ -107,14 +110,14 @@ class DataProvider extends ChangeNotifier {
 
   getGeneralTournamentData() {
     ld = [];
-    FirebaseFirestore.instance.collection('scoring').get().then((snapshot) =>
-        snapshot.docs.forEach((doc) {
+    FirebaseFirestore.instance.collection('scoring').get().then((snapshot) => snapshot.docs.forEach((doc) {
           print(doc.id);
           ld += [DataModel.fromJson(doc.data())];
           _calculateTeamWins();
           _calculateAverageAutonomousPoints();
           _calculateAverageTeleOpPoints();
           _calculateAverageEndGamePoints();
+          _calculateTop8TeamsInTournament();
           notifyListeners();
         }));
   }

@@ -62,7 +62,7 @@ class _GeneralTeamDataChartState extends State<GeneralTeamDataChart> {
         xValueMapper: (DataModel teamData, _) => "AutoPoints",
         color: autoColor,
         yValueMapper: (DataModel teamData, _) => double.parse(dataProvider.averageAutonomousPoints.toString().substring(0, 3)),
-        dataLabelSettings: const DataLabelSettings(isVisible: true, textStyle: TextStyle(fontSize: 25, color: white, fontWeight: FontWeight.bold), labelAlignment: ChartDataLabelAlignment.middle),
+        dataLabelSettings: const DataLabelSettings(isVisible: true, textStyle: TextStyle(fontSize: 27, color: white, fontWeight: FontWeight.bold), labelAlignment: ChartDataLabelAlignment.middle),
       ),
       ColumnSeries<DataModel, String>(
         name: "TeleOp",

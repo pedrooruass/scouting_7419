@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scoring_7419/application/models/tournament_model.dart';
 import 'package:scoring_7419/application/providers/tournament_provider.dart';
-import 'package:scoring_7419/ui/features/data/general_team_data_chart.dart';
 import 'package:scoring_7419/ui/features/data/ranking/ranking_page.dart';
 import 'package:scoring_7419/ui/features/data/teams_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
+
+import 'general_team_data_chart.dart';
 
 class TournamentPage extends StatefulWidget {
   final TournamentModel tournament;
@@ -48,6 +49,7 @@ class _TournamentPageState extends State<TournamentPage> {
             children: [
               SizedBox(height: 16),
               GeneralTeamDataChart(title: widget.tournament.name + " - " + widget.tournament.year.toString()),
+              // PyramidTournamentDataChart(title: 'oeu', indexSelected: 0),
               SizedBox(height: 24),
               ElevatedButton(
                   onPressed: () {
