@@ -58,17 +58,13 @@ class _HomePageState extends State<HomePage> {
               // tournamentProvider: tournamentProvider,
             ),
             if (teamProvider.teamModel == null) ...[
-              Image.asset(
-                'assets/gif/7419_3.gif',
-                height: 500,
-                fit: BoxFit.cover,
+              Expanded(
+                child: Image.asset(
+                  'assets/gif/7419_3.gif',
+                  fit: BoxFit.cover,
+                ),
               ),
             ],
-            // if (teamProvider.teamModel != null) ...[
-            //   const SizedBox(height: 24),
-            //   TournamentSearchContainer(tournamentProvider: tournamentProvider, teamProvider: teamProvider),
-            // ],
-            // if (tournamentProvider.tournamentModel != null) ...[
             if (teamProvider.teamModel != null) ...[
               const SizedBox(height: 24),
               SecondRow(),

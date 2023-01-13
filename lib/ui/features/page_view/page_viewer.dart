@@ -4,8 +4,8 @@ import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
 import 'package:scoring_7419/ui/features/data/tournaments_page.dart';
 import 'package:scoring_7419/ui/features/home/home_page.dart';
+import 'package:scoring_7419/ui/features/team_visits/team_visits_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
-import 'package:scoring_7419/ui/themee/fonts.dart';
 
 class PageViewer extends StatefulWidget {
   const PageViewer({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _PageViewerState extends State<PageViewer> {
         children: <Widget>[
           const TournamentsPage(),
           const HomePage(),
-          inDevelopmentScreen(),
+          const TeamVisitsPage(),
         ],
       ),
       extendBody: true,
@@ -70,18 +70,4 @@ class _PageViewerState extends State<PageViewer> {
       ),
     );
   }
-
-  Container inDevelopmentScreen() => Container(
-        color: black,
-        child: Center(
-          child: Text(
-            "In Development",
-            style: TextStyle(
-              color: white,
-              fontSize: 18,
-              fontFamily: titleFont,
-            ),
-          ),
-        ),
-      );
 }

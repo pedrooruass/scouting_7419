@@ -66,10 +66,6 @@ class _TeamPageState extends State<TeamPage> {
               SizedBox(
                 height: 24,
               ),
-              // Text("List Length: " + dataProvider.ld.length.toString(), style: TextStyle(color: white)),
-              // Text("Team Loss: " + dataProvider.teamLoss.toString(), style: TextStyle(color: white)),
-              // Text("Team Wins: " + dataProvider.teamWins.toString(), style: TextStyle(color: white)),
-              // Text("Average Points Tele Op: " + dataProvider.averageTeleOpPoints.toString(), style: TextStyle(color: white)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

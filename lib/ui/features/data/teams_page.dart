@@ -8,6 +8,8 @@ import 'package:scoring_7419/ui/features/data/custom_search_team_delegate.dart';
 import 'package:scoring_7419/ui/features/data/ranking/ranking_page.dart';
 import 'package:scoring_7419/ui/features/data/team_page.dart';
 
+import '../../../application/providers/data_provider.dart';
+import '../../../application/providers/ranking_provider.dart';
 import '../../../application/providers/tournament_provider.dart';
 import '../../themee/colors.dart';
 import '../../themee/fonts.dart';
@@ -45,7 +47,7 @@ class _TeamsPageState extends State<TeamsPage> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => RankingPage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => RankingPage(/*teamsStringList: context.read<TournamentProvider>().teamsInTournament, tournamentKey: widget.tournamentModel.key*/ dataList: context.read<RankingProvider>().getTheListForTeamWins(context.read<DataProvider>(), context.read<TournamentProvider>().teamsInTournament, widget.tournamentModel.key))));
                 },
                 icon: Icon(FontAwesomeIcons.rankingStar, color: yellow))
           ],

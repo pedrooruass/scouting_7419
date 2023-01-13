@@ -7,8 +7,26 @@ import '../../../../application/providers/tournament_provider.dart';
 import '../../../themee/colors.dart';
 import '../../../themee/fonts.dart';
 
-class RankingPage extends StatelessWidget {
-  const RankingPage({Key? key}) : super(key: key);
+class RankingPage extends StatefulWidget {
+  const RankingPage({Key? key, required this.dataList /* required this.teamsStringList, required this.tournamentKey */
+      })
+      : super(key: key);
+
+  // final List<String> teamsStringList;
+  // final String tournamentKey;
+  final dynamic dataList;
+
+  @override
+  State<RankingPage> createState() => _RankingPageState();
+}
+
+class _RankingPageState extends State<RankingPage> {
+  @override
+  void initState() {
+    // context.read<RankingProvider>().getTheListForTeamWins(context.read<DataProvider>(), widget.teamsStringList, widget.tournamentKey);
+    // print(widget.dataList);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +56,7 @@ class RankingPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Center(child: Text("Top 8 Robots", style: TextStyle(fontSize: 20))),
+                    Center(child: Text("Top Robots", style: TextStyle(fontSize: 20))),
                     SizedBox(height: 14),
                     Expanded(
                       child: Row(
@@ -69,14 +87,6 @@ class RankingPage extends StatelessWidget {
                                     child: Text("Tele Op"),
                                     value: 2,
                                   ),
-                                  DropdownMenuItem(
-                                    child: Text("End Game"),
-                                    value: 3,
-                                  ),
-                                  DropdownMenuItem(
-                                    child: Text("Time Hanging"),
-                                    value: 4,
-                                  ),
                                 ],
                                 onChanged: (value) {
                                   // context.read<TournamentProvider>().getRankingList(value!);
@@ -93,7 +103,7 @@ class RankingPage extends StatelessWidget {
             ),
             SizedBox(height: 24),
             Expanded(
-              flex: 5,
+              flex: 4,
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 8.0),
                 padding: EdgeInsets.all(22),
