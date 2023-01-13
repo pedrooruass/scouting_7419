@@ -31,7 +31,6 @@ class TeamVisitsPage extends StatelessWidget {
               const SizedBox(height: 24),
               TeamAndScouterRow(
                 teamProvider: teamProvider,
-                // tournamentProvider: tournamentProvider,
               ),
               const SizedBox(height: 24),
               ModeContainer(
@@ -65,6 +64,40 @@ class TeamVisitsPage extends StatelessWidget {
                   ),
                 ],
                 modeTitle: "General",
+              ),
+              const SizedBox(height: 24),
+              GestureDetector(
+                onTap: () {
+                  // context.read<ScoreMatchProvider>().submitScore(
+                  //       teamProvider: teamProvider,
+                  //       tournamentProvider: context.read<TournamentProvider>(),
+                  //       profileProvider: context.read<ProfileProvider>(),
+                  //       // secondRowProvider: context.read<SecondRowProvider>(),
+                  //       gameProvider: context.read<GameProvider>(),
+                  //       context: context,
+                  //     );
+                  // Navigator.pop(context);
+                },
+                child: Container(
+                  height: 64,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: const LinearGradient(
+                      colors: gradient2,
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: Text(
+                    "Submit",
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: white,
+                      fontFamily: titleFont,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

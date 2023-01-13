@@ -109,13 +109,13 @@ class GameProvider extends ChangeNotifier {
 
   int calcAutoMiddleRow() => gameModel.autoMiddleRowIn * 4;
 
-  int calcAutoBottomRow() => gameModel.autoBottomRowIn * 2;
+  int calcAutoBottomRow() => gameModel.autoBottomRowIn * 3;
 
   int calcAutoLeavesCommunity() => gameModel.autoLeavesCommunity ? 3 : 0;
 
-  int calcAutoIsDocked() => gameModel.autoIsDocked ? 5 : 0;
+  int calcAutoIsDocked() => gameModel.autoIsDocked ? 8 : 0;
 
-  int calcAutoIsEngaged() => gameModel.autoIsEngaged ? 5 : 0;
+  int calcAutoIsEngaged() => gameModel.autoIsEngaged ? 4 : 0;
 
   int calcAutoTotal() {
     gameModel.autoTotalPoints = calcAutoTopRow() + calcAutoMiddleRow() + calcAutoBottomRow() + calcAutoLeavesCommunity() + calcAutoIsDocked() + calcAutoIsEngaged();
@@ -227,22 +227,22 @@ class GameProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  int calcTopRow() => gameModel.teleOpTopRowIn * 5;
+  int calcTeleOpTopRow() => gameModel.teleOpTopRowIn * 5;
 
-  int calcMiddleRow() => gameModel.teleOpMiddleRowIn * 3;
+  int calcTeleOpMiddleRow() => gameModel.teleOpMiddleRowIn * 3;
 
-  int calcBottomRow() => gameModel.teleOpBottomRowIn * 2;
+  int calcTeleOpBottomRow() => gameModel.teleOpBottomRowIn * 2;
 
-  int calcLinks() => gameModel.teleOpLinks * 2;
+  int calcTeleOpLinks() => gameModel.teleOpLinks * 5;
 
-  int calcTeleOpIsDocked() => gameModel.teleOpIsDocked ? 5 : 0;
+  int calcTeleOpIsDocked() => gameModel.teleOpIsDocked ? 6 : 0;
 
-  int calcTeleOpIsEngaged() => gameModel.teleOpIsEngaged ? 5 : 0;
+  int calcTeleOpIsEngaged() => gameModel.teleOpIsEngaged ? 4 : 0;
 
-  int calcTeleOpIsRobotParked() => gameModel.teleOpIsRobotParked ? 5 : 0;
+  int calcTeleOpIsRobotParked() => gameModel.teleOpIsRobotParked ? 2 : 0;
 
   int calcTeleOpTotalPoints() {
-    gameModel.teleOpTotalPoints = calcTopRow() + calcMiddleRow() + calcBottomRow() + calcLinks() + calcTeleOpIsDocked() + calcTeleOpIsEngaged() + calcTeleOpIsRobotParked();
+    gameModel.teleOpTotalPoints = calcTeleOpTopRow() + calcTeleOpMiddleRow() + calcTeleOpBottomRow() + calcTeleOpLinks() + calcTeleOpIsDocked() + calcTeleOpIsEngaged() + calcTeleOpIsRobotParked();
     return gameModel.teleOpTotalPoints;
   }
 

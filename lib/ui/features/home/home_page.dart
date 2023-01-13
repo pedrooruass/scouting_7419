@@ -220,8 +220,6 @@ class _HomePageState extends State<HomePage> {
                       gameProvider.teleOpIncreaseLinks();
                     },
                     color: autoColor,
-                    // create a blue constant color
-                    subTitle: "In",
                   ),
                 ],
               ),

@@ -11,12 +11,9 @@ import 'package:scoring_7419/ui/themee/colors.dart';
 class TeamAndScouterRow extends StatelessWidget {
   final TeamProvider teamProvider;
 
-  // final TournamentProvider tournamentProvider;
-
   const TeamAndScouterRow({
     Key? key,
     required this.teamProvider,
-    // required this.tournamentProvider,
   }) : super(key: key);
 
   @override
