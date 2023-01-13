@@ -102,9 +102,7 @@ class GameProvider extends ChangeNotifier {
     gameModel.autoIsEngaged = !gameModel.autoIsEngaged;
     notifyListeners();
   }
-
-  //TODO the time hold
-
+  
   int calcAutoTopRow() => gameModel.autoTopRowIn * 6;
 
   int calcAutoMiddleRow() => gameModel.autoMiddleRowIn * 4;

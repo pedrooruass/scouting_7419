@@ -11,19 +11,13 @@ class DataModel {
   final int autoTopRowIn;
   final int autoMiddleRowIn;
   final int autoBottomRowIn;
-
   final int autoTopRowOut;
-
   final int autoMiddleRowOut;
   final int autoBottomRowOut;
   final bool autoLeavesCommunity;
   final bool autoIsDocked;
-
   final bool autoIsEngaged;
-
   final int autoTotalPoints;
-
-  final double autoTimeToDock;
 
   // TeleOp
   final int teleOpTopRowIn;
@@ -34,7 +28,6 @@ class DataModel {
   final int teleOpBottomRowOut;
   final bool teleOpIsDocked;
   final bool teleOpIsEngaged;
-  final double teleOpTimeToDock;
   final int teleOpLinks;
   final bool teleOpIsRobotParked;
   final bool teleOpIsRobotDefensive;
@@ -64,7 +57,6 @@ class DataModel {
     required this.autoIsDocked,
     required this.autoIsEngaged,
     required this.autoTotalPoints,
-    required this.autoTimeToDock,
     required this.teleOpTopRowIn,
     required this.teleOpMiddleRowIn,
     required this.teleOpBottomRowIn,
@@ -73,7 +65,6 @@ class DataModel {
     required this.teleOpBottomRowOut,
     required this.teleOpIsDocked,
     required this.teleOpIsEngaged,
-    required this.teleOpTimeToDock,
     required this.teleOpLinks,
     required this.teleOpIsRobotParked,
     required this.teleOpIsRobotDefensive,
@@ -101,7 +92,6 @@ class DataModel {
         autoIsDocked: json["autoIsDocked"],
         autoIsEngaged: json["autoIsEngaged"],
         autoTotalPoints: json["autoTotalPoints"],
-        autoTimeToDock: json["autoTimeToDock"],
         teleOpTopRowIn: json["teleOpTopRowIn"],
         teleOpMiddleRowIn: json["teleOpMiddleRowIn"],
         teleOpBottomRowIn: json["teleOpBottomRowIn"],
@@ -110,7 +100,6 @@ class DataModel {
         teleOpBottomRowOut: json["teleOpBottomRowOut"],
         teleOpIsDocked: json["teleOpIsDocked"],
         teleOpIsEngaged: json["teleOpIsEngaged"],
-        teleOpTimeToDock: json["teleOpTimeToDock"],
         teleOpLinks: json["teleOpLinks"],
         teleOpIsRobotParked: json["teleOpIsRobotParked"],
         teleOpIsRobotDefensive: json["teleOpIsRobotDefensive"],

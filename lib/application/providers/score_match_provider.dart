@@ -39,8 +39,6 @@ class ScoreMatchProvider extends ChangeNotifier {
       autoLeavesCommunity: gameProvider.gameModel.autoLeavesCommunity,
       autoIsDocked: gameProvider.gameModel.autoIsDocked,
       autoIsEngaged: gameProvider.gameModel.autoIsEngaged,
-      autoTimeToDock: gameProvider.gameModel.autoTimeToDock,
-      //
       autoTotalPoints: gameProvider.gameModel.autoTotalPoints,
       teleOpTopRowIn: gameProvider.gameModel.teleOpTopRowIn,
       teleOpMiddleRowIn: gameProvider.gameModel.teleOpMiddleRowIn,
@@ -51,8 +49,6 @@ class ScoreMatchProvider extends ChangeNotifier {
       teleOpLinks: gameProvider.gameModel.teleOpLinks,
       teleOpIsDocked: gameProvider.gameModel.teleOpIsDocked,
       teleOpIsEngaged: gameProvider.gameModel.teleOpIsEngaged,
-      teleOpTimeToDock: gameProvider.gameModel.teleOpTimeToDock,
-      //
       teleOpIsRobotParked: gameProvider.gameModel.teleOpIsRobotParked,
       teleOpIsRobotDefensive: gameProvider.gameModel.teleOpIsRobotDefensive,
       teleOpTotalPoints: gameProvider.gameModel.teleOpTotalPoints,

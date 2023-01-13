@@ -10,14 +10,16 @@ class DataProvider extends ChangeNotifier {
   double averageAutonomousPoints = 0;
   double averageTeleOpPoints = 0;
 
+  List<dynamic> ldWins = []; // Win loss ratio
+
   // Use a for each and put this on the teams page, by doing this i will have all the data before with all the teams and i will be able to distribute and manipulate the lists however i want
-  getTeamDataInTournament({required int teamNumber, required String tournamentKey}) {
+  getTeamDataInTournament({required int teamNumber, required String tournamentKey}) async {
     ld = [];
     teamWins = 0;
     teamLoss = 0;
     averageAutonomousPoints = 0;
     averageTeleOpPoints = 0;
-    FirebaseFirestore.instance.collection('scoring').where("tournamentKey", isEqualTo: tournamentKey).where("teamNumber", isEqualTo: teamNumber).get().then((snapshot) => snapshot.docs.forEach((doc) {
+    await FirebaseFirestore.instance.collection('scoring').where("tournamentKey", isEqualTo: tournamentKey).where("teamNumber", isEqualTo: teamNumber).get().then((snapshot) => snapshot.docs.forEach((doc) {
           print(doc.id);
           ld += [DataModel.fromJson(doc.data())];
           _calculateTeamWins();
@@ -26,6 +28,19 @@ class DataProvider extends ChangeNotifier {
           notifyListeners();
         }));
   }
+
+  // getTheListForTeamWins(List<String> teamsInTournament, String tournamentKey) async {
+  //   dynamic listOfResults = [];
+  //   ldWins = [];
+  //   //how to store the values?
+  //   for (int i = 0; i < teamsInTournament.length; i++) {
+  //     await getTeamDataInTournament(teamNumber: int.parse(teamsInTournament[i].substring(3, teamsInTournament[i].length)), tournamentKey: tournamentKey);
+  //     listOfResults.add(teamsInTournament[i]); //just get the same index from the teamsStringList
+  //     listOfResults.add(teamWins);
+  //   }
+  //   ldWins += listOfResults;
+  //   notifyListeners();
+  // }
 
   _calculateTeamWins() {
     teamWins = 0;

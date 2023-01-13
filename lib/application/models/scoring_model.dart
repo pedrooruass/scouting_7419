@@ -18,7 +18,6 @@ class ScoringModel {
   final bool autoIsDocked;
   final bool autoIsEngaged;
   final int autoTotalPoints;
-  final double autoTimeToDock;
 
   // TeleOp
   final int teleOpTopRowIn;
@@ -29,7 +28,6 @@ class ScoringModel {
   final int teleOpBottomRowOut;
   final bool teleOpIsDocked;
   final bool teleOpIsEngaged;
-  final double teleOpTimeToDock;
   final int teleOpLinks;
   final bool teleOpIsRobotParked;
   final bool teleOpIsRobotDefensive;
@@ -58,7 +56,6 @@ class ScoringModel {
     required this.autoIsDocked,
     required this.autoIsEngaged,
     required this.autoTotalPoints,
-    required this.autoTimeToDock,
     required this.teleOpTopRowIn,
     required this.teleOpMiddleRowIn,
     required this.teleOpBottomRowIn,
@@ -67,7 +64,6 @@ class ScoringModel {
     required this.teleOpBottomRowOut,
     required this.teleOpIsDocked,
     required this.teleOpIsEngaged,
-    required this.teleOpTimeToDock,
     required this.teleOpLinks,
     required this.teleOpIsRobotParked,
     required this.teleOpIsRobotDefensive,
@@ -96,7 +92,6 @@ class ScoringModel {
       autoIsDocked: json['autoIsDocked'],
       autoIsEngaged: json['autoIsEngaged'],
       autoTotalPoints: json['autoTotalPoints'],
-      autoTimeToDock: json['autoTimeToDock'],
       teleOpTopRowIn: json['teleOpTopRowIn'],
       teleOpMiddleRowIn: json['teleOpMiddleRowIn'],
       teleOpBottomRowIn: json['teleOpBottomRowIn'],
@@ -105,7 +100,6 @@ class ScoringModel {
       teleOpBottomRowOut: json['teleOpBottomRowOut'],
       teleOpIsDocked: json['teleOpIsDocked'],
       teleOpIsEngaged: json['teleOpIsEngaged'],
-      teleOpTimeToDock: json['teleOpTimeToDock'],
       teleOpLinks: json['teleOpLinks'],
       teleOpIsRobotParked: json['teleOpIsRobotParked'],
       teleOpIsRobotDefensive: json['teleOpIsRobotDefensive'],
@@ -133,7 +127,6 @@ class ScoringModel {
         'autoIsDocked': autoIsDocked,
         'autoIsEngaged': autoIsEngaged,
         'autoTotalPoints': autoTotalPoints,
-        'autoTimeToDock': autoTimeToDock,
         'teleOpTopRowIn': teleOpTopRowIn,
         'teleOpMiddleRowIn': teleOpMiddleRowIn,
         'teleOpBottomRowIn': teleOpBottomRowIn,
@@ -142,7 +135,6 @@ class ScoringModel {
         'teleOpBottomRowOut': teleOpBottomRowOut,
         'teleOpIsDocked': teleOpIsDocked,
         'teleOpIsEngaged': teleOpIsEngaged,
-        'teleOpTimeToDock': teleOpTimeToDock,
         'teleOpLinks': teleOpLinks,
         'teleOpIsRobotParked': teleOpIsRobotParked,
         'teleOpIsRobotDefensive': teleOpIsRobotDefensive,

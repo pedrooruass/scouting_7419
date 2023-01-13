@@ -257,8 +257,6 @@ class _HomePageState extends State<HomePage> {
               gameProvider.teleOpToggleIsRobotDefensive(!gameProvider.gameModel.teleOpIsRobotDefensive);
             },
           ),
-          const SizedBox(height: 24),
-          Text("Time Hold Button"),
         ],
       );
     });
@@ -349,7 +347,6 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             const SizedBox(height: 24),
-            Text("Time Hold Button"),
           ],
         );
       },

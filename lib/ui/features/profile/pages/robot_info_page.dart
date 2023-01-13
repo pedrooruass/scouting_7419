@@ -47,169 +47,55 @@ class RobotInfo extends StatelessWidget {
             ),
           ),
           SizedBox(height: 24),
-          Container(
-            height: 70,
-            decoration: BoxDecoration(
-              color: grey,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Row(
-                children: [
-                  Expanded(child: AutoSizeText("Drive Train: ", maxLines: 2, minFontSize: 12, maxFontSize: 30, style: TextStyle(fontFamily: titleFont))),
-                  Expanded(flex: 3, child: Center(child: Text("West Coast Drive", style: TextStyle(fontSize: 20)))),
-                ],
-              ),
-            ),
-          ),
+          questionContainerWidget("Drive Trains", "West Coast Drive"),
           SizedBox(height: 24),
-          Container(
-            height: 70,
-            decoration: BoxDecoration(
-              color: grey,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
+          questionContainerWidget("Number", "7419"),
           SizedBox(height: 24),
-          Container(
-            height: 70,
-            decoration: BoxDecoration(
-              color: grey,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
+          questionContainerWidget("Name", "Tech Support"),
           SizedBox(height: 24),
-          Container(
-            height: 70,
-            decoration: BoxDecoration(
-              color: grey,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
+          questionContainerWidget("Motors", "Falcon"),
           SizedBox(height: 24),
-          Container(
-            height: 70,
-            decoration: BoxDecoration(
-              color: grey,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
+          questionContainerWidget("Intake", "775 && Neo"),
           SizedBox(height: 24),
-          Container(
-            height: 70,
-            decoration: BoxDecoration(
-              color: grey,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
+          questionContainerWidget("School", "The Quarry Lane"),
           SizedBox(height: 24),
-          Container(
-            height: 70,
-            decoration: BoxDecoration(
-              color: grey,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
+          questionContainerWidget("Location", "Dublin, CA"),
           SizedBox(height: 24),
-          Container(
-            height: 70,
-            decoration: BoxDecoration(
-              color: grey,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
+          questionContainerWidget("Shooter", "Falcon"),
           SizedBox(height: 24),
-          Container(
-            height: 70,
-            decoration: BoxDecoration(
-              color: grey,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
+          questionContainerWidget("Field Strategy", "Offensive and Defensive"),
           SizedBox(height: 24),
-          Container(
-            height: 70,
-            decoration: BoxDecoration(
-              color: grey,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
-
-
-          // questionRow(question1: "Drive Trains", question2: "Number", answer1: "West Coast Drive", answer2: "7419", isBigContainerLeft: true),
-          // SizedBox(height: 24),
-          // questionRow(question1: "Name", question2: "Motors", answer1: "Tech Support", answer2: "Falcon", isBigContainerLeft: false),
-          // SizedBox(height: 24),
-          // questionRow(question1: "Intake", question2: "School", answer1: "775 && Neo", answer2: "The Quarry Lane", isBigContainerLeft: true),
-          // SizedBox(height: 24),
-          // questionRow(question1: "Location", question2: "Shooter", answer1: "Dublin, CA", answer2: "Falcon", isBigContainerLeft: false),
-          // SizedBox(height: 24),
-          // questionRow(question1: "Field Strategy", question2: "Weight", answer1: "Offensive and defensive", answer2: "125 pounds", isBigContainerLeft: true),
-          // SizedBox(height: 24),
-          // questionRow(question1: "Climb", question2: "Scoring", answer1: "All of endgame → Traversal", answer2: "we usually score 15 points per game", isBigContainerLeft: false),
-          // SizedBox(height: 24),
-          // questionRow(question1: "AVG Auto Points", question2: "AVG TeleOp Points", answer1: "5", answer2: "10", isBigContainerLeft: true),
-          // SizedBox(
-          //   height: 24,
-          // ),
-          // SizedBox(height: 100, child: questionContainerWidget("Contact Information", "@7419tech : instagram", 1)),
-          // SizedBox(height: 24),
-
-          // questionAnswerWidget("Contact Information", "@7419tech : instagram"),
+          questionContainerWidget("Weight", "125 pounds"),
+          SizedBox(height: 24),
+          questionContainerWidget("Scoring", "usually score 15 points per game"),
+          SizedBox(height: 24),
+          questionContainerWidget("AVG Auto Points", "5"),
+          SizedBox(height: 24),
+          questionContainerWidget("AVG TeleOp Points", "10"),
+          SizedBox(height: 24),
+          questionContainerWidget("Contact Information", "@7419tech : instagram"),
+          SizedBox(height: 24),
         ],
       ),
     );
   }
 
-  Widget questionContainerWidget(String question, String answer, int flex) {
-    return Expanded(
-      flex: flex,
-      child: Container(
-        height: 100,
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(4),
-        decoration: BoxDecoration(
-          color: grey,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+  Widget questionContainerWidget(String question, String answer) {
+    return Container(
+      height: 50,
+      decoration: BoxDecoration(
+        color: grey,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
           children: [
-            Text(
-              "$question: ",
-              style: TextStyle(
-                fontSize: 16,
-                fontFamily: titleFont,
-                color: black,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 12),
-            Text(
-              answer,
-              style: TextStyle(
-                fontSize: 15,
-                fontFamily: bodyFont,
-                color: black,
-              ),
-            ),
-            // SizedBox(height: 12),
+            Expanded(child: AutoSizeText("$question", maxLines: 2, minFontSize: 4, style: TextStyle(fontFamily: titleFont))),
+            Expanded(flex: 3, child: Center(child: Text(answer, style: TextStyle(fontSize: 20)))),
           ],
         ),
       ),
-    );
-  }
-
-  Widget questionRow({required String question1, required String answer1, required String question2, required String answer2, required bool isBigContainerLeft}) {
-    return Row(
-      children: [
-        questionContainerWidget(question1, answer1, isBigContainerLeft ? 3 : 2),
-        SizedBox(width: 24),
-        questionContainerWidget(question2, answer2, isBigContainerLeft ? 2 : 3),
-      ],
     );
   }
 }

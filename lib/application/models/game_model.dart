@@ -16,7 +16,6 @@ class GameModel {
   bool autoIsDocked = false;
   bool autoIsEngaged = false;
   int autoTotalPoints = 0;
-  double autoTimeToDock = 0.0;
 
   // TeleOp
   int teleOpTopRowIn = 0;
@@ -27,7 +26,6 @@ class GameModel {
   int teleOpBottomRowOut = 0;
   bool teleOpIsDocked = false;
   bool teleOpIsEngaged = false;
-  double teleOpTimeToDock = 0.0;
   int teleOpLinks = 0;
   bool teleOpIsRobotParked = false;
   bool teleOpIsRobotDefensive = false;

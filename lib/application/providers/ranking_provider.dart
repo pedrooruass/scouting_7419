@@ -1,41 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:scoring_7419/application/models/data_model.dart';
 import 'package:scoring_7419/application/providers/data_provider.dart';
 
 class RankingProvider extends ChangeNotifier {
-  Map<String, double> listOfTeamsWLRatioInTournament = {};
-  double TeamLossRatio = 0.0;
-  List<DataModel> ldTop = []; // Win loss ratio
-  List<DataModel> ldTopAutoAverage = [];
-  List<DataModel> ldTopTeleOpAverage = [];
-  List<DataModel> ldTopEndGameAverage = [];
-  List<DataModel> ldTopHangerAverage = [];
+  int selectedRanking = 0;
+  Map<String, int> ldWins = {};
+  List<String> teamsSorted = [];
+  List<int> valueSorted = [];
 
-  calculateRankingLists() {
-    _calculateRankingWinList();
-    _calculateRankingAVGAutonomousList();
-    _calculateRankingAVGTeleOpList();
-    _calculateRankingAVGEndGameList();
-  }
-
-  _calculateRankingWinList() {}
-
-  _calculateRankingAVGAutonomousList() {}
-
-  _calculateRankingAVGTeleOpList() {}
-
-  _calculateRankingAVGEndGameList() {}
-
-
-  getTheListForTeamWins(DataProvider dt, List<String> teamsInTournament, String tournamentKey) async {
-    dynamic listOfResults = [];
+  getTheRankingList(DataProvider dt, List<String> teamsInTournament, String tournamentKey, int index) async {
+    ldWins = {};
+    teamsSorted = [];
+    valueSorted = [];
     //how to store the values?
     for (int i = 0; i < teamsInTournament.length; i++) {
       await dt.getTeamDataInTournament(teamNumber: int.parse(teamsInTournament[i].substring(3, teamsInTournament[i].length)), tournamentKey: tournamentKey);
-      listOfResults.add(teamsInTournament[i]); //just get the same index from the teamsStringList
-      listOfResults.add(dt.teamWins);
+      ldWins[teamsInTournament[i]] = index == 0
+          ? dt.teamWins
+          : index == 1
+              ? dt.averageAutonomousPoints.toInt()
+              : dt.averageTeleOpPoints.toInt(); //just get the same index from the teamsStringList
     }
-    return listOfResults;
+    List<MapEntry<String, int>> mapEntries = ldWins.entries.toList();
+    mapEntries.sort((a, b) => b.value.compareTo(a.value));
+    ldWins = Map.fromEntries(mapEntries);
+    teamsSorted = ldWins.keys.toList();
+    valueSorted = ldWins.values.toList();
+    notifyListeners();
+  }
+
+  changeSelectedRanking(int index) {
+    selectedRanking = index;
+    notifyListeners();
   }
 
 /*
