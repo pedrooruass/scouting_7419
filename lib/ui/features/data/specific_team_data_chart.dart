@@ -52,24 +52,18 @@ class _SpecificTeamDataChartState extends State<SpecificTeamDataChart> {
             ? autoColor
             : indexSelected == 1
                 ? teleOpColor
-                : indexSelected == 2
-                    ? endGameColor
-                    : grey,
+                : grey,
         yValueMapper: (DataModel data, _) => indexSelected == 0
             ? data.autoTotalPoints
             : indexSelected == 1
                 ? data.teleOpTotalPoints
-                : indexSelected == 2
-                    ? data.endGameTotalPoints
-                    : 0,
+                : 0,
         width: 2,
         name: (indexSelected == 0
                 ? '(Auto)'
                 : indexSelected == 1
                     ? '(TeleOp)'
-                    : indexSelected == 2
-                        ? '(End Game)'
-                        : '') +
+                    : '') +
             ' - Total Points',
         markerSettings: const MarkerSettings(isVisible: true),
       ),

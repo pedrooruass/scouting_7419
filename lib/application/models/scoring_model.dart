@@ -8,37 +8,37 @@ class ScoringModel {
   final bool isAllianceBlue;
 
   // Autonomous
-  final int autoUpperHubIn;
-  final int autoLowerHubIn;
-  final int autoUpperHubOut;
-  final int autoLowerHubOut;
-  final bool autoMovesOffTarmac;
+  final int autoTopRowIn;
+  final int autoMiddleRowIn;
+  final int autoBottomRowIn;
+  final int autoTopRowOut;
+  final int autoMiddleRowOut;
+  final int autoBottomRowOut;
+  final bool autoLeavesCommunity;
+  final bool autoIsDocked;
+  final bool autoIsEngaged;
   final int autoTotalPoints;
+  final double autoTimeToDock;
 
   // TeleOp
-  final int teleOpUpperHubIn;
-  final int teleOpLowerHubIn;
-  final int teleOpUpperHubOut;
-  final int teleOpLowerHubOut;
+  final int teleOpTopRowIn;
+  final int teleOpMiddleRowIn;
+  final int teleOpBottomRowIn;
+  final int teleOpTopRowOut;
+  final int teleOpMiddleRowOut;
+  final int teleOpBottomRowOut;
+  final bool teleOpIsDocked;
+  final bool teleOpIsEngaged;
+  final double teleOpTimeToDock;
+  final int teleOpLinks;
+  final bool teleOpIsRobotParked;
   final bool teleOpIsRobotDefensive;
   final int teleOpTotalPoints;
 
-  // End Game
-  final int endGameUpperHubIn;
-  final int endGameLowerHubIn;
-  final int endGameUpperHubOut;
-  final int endGameLowerHubOut;
-  final bool endGameIsRobotHanging;
-  final bool endGameHaveScoreBonus;
-  final bool endGameHaveHangerBonus;
-  final int endGameTimeHanging;
-  final int endGameHangerIndexSelected;
-  final int endGameTotalPoints;
-
   final bool isWinner;
-  final String commentsAuto;
-  final String commentsTeleOp;
-  final String commentsEndGame;
+  final String? commentsAuto;
+  final String? commentsTeleOp;
+  final String? commentsEndGame;
 
   //Comments
   ScoringModel({
@@ -48,28 +48,30 @@ class ScoringModel {
     required this.teamNumber,
     required this.matchNumber,
     required this.isAllianceBlue,
-    required this.autoUpperHubIn,
-    required this.autoLowerHubIn,
-    required this.autoUpperHubOut,
-    required this.autoLowerHubOut,
-    required this.autoMovesOffTarmac,
+    required this.autoTopRowIn,
+    required this.autoMiddleRowIn,
+    required this.autoBottomRowIn,
+    required this.autoTopRowOut,
+    required this.autoMiddleRowOut,
+    required this.autoBottomRowOut,
+    required this.autoLeavesCommunity,
+    required this.autoIsDocked,
+    required this.autoIsEngaged,
     required this.autoTotalPoints,
-    required this.teleOpUpperHubIn,
-    required this.teleOpLowerHubIn,
-    required this.teleOpUpperHubOut,
-    required this.teleOpLowerHubOut,
+    required this.autoTimeToDock,
+    required this.teleOpTopRowIn,
+    required this.teleOpMiddleRowIn,
+    required this.teleOpBottomRowIn,
+    required this.teleOpTopRowOut,
+    required this.teleOpMiddleRowOut,
+    required this.teleOpBottomRowOut,
+    required this.teleOpIsDocked,
+    required this.teleOpIsEngaged,
+    required this.teleOpTimeToDock,
+    required this.teleOpLinks,
+    required this.teleOpIsRobotParked,
     required this.teleOpIsRobotDefensive,
     required this.teleOpTotalPoints,
-    required this.endGameUpperHubIn,
-    required this.endGameLowerHubIn,
-    required this.endGameUpperHubOut,
-    required this.endGameLowerHubOut,
-    required this.endGameTotalPoints,
-    required this.endGameIsRobotHanging,
-    required this.endGameHaveScoreBonus,
-    required this.endGameHaveHangerBonus,
-    required this.endGameTimeHanging,
-    required this.endGameHangerIndexSelected,
     required this.isWinner,
     required this.commentsAuto,
     required this.commentsTeleOp,
@@ -84,28 +86,30 @@ class ScoringModel {
       teamNumber: json['teamNumber'],
       matchNumber: json['matchNumber'],
       isAllianceBlue: json['isAllianceBlue'],
-      autoUpperHubIn: json['autoUpperHubIn'],
-      autoLowerHubIn: json['autoLowerHubIn'],
-      autoUpperHubOut: json['autoUpperHubOut'],
-      autoLowerHubOut: json['autoLowerHubOut'],
+      autoTopRowIn: json['autoTopRowIn'],
+      autoMiddleRowIn: json['autoMiddleRowIn'],
+      autoBottomRowIn: json['autoBottomRowIn'],
+      autoTopRowOut: json['autoTopRowOut'],
+      autoMiddleRowOut: json['autoMiddleRowOut'],
+      autoBottomRowOut: json['autoBottomRowOut'],
+      autoLeavesCommunity: json['autoLeavesCommunity'],
+      autoIsDocked: json['autoIsDocked'],
+      autoIsEngaged: json['autoIsEngaged'],
       autoTotalPoints: json['autoTotalPoints'],
-      autoMovesOffTarmac: json['autoMovesOffTarmac'],
-      teleOpUpperHubIn: json['teleOpUpperHubIn'],
-      teleOpLowerHubIn: json['teleOpLowerHubIn'],
-      teleOpUpperHubOut: json['teleOpUpperHubOut'],
-      teleOpLowerHubOut: json['teleOpLowerHubOut'],
-      teleOpIsRobotDefensive: json["teleOpIsRobotDefensive"],
+      autoTimeToDock: json['autoTimeToDock'],
+      teleOpTopRowIn: json['teleOpTopRowIn'],
+      teleOpMiddleRowIn: json['teleOpMiddleRowIn'],
+      teleOpBottomRowIn: json['teleOpBottomRowIn'],
+      teleOpTopRowOut: json['teleOpTopRowOut'],
+      teleOpMiddleRowOut: json['teleOpMiddleRowOut'],
+      teleOpBottomRowOut: json['teleOpBottomRowOut'],
+      teleOpIsDocked: json['teleOpIsDocked'],
+      teleOpIsEngaged: json['teleOpIsEngaged'],
+      teleOpTimeToDock: json['teleOpTimeToDock'],
+      teleOpLinks: json['teleOpLinks'],
+      teleOpIsRobotParked: json['teleOpIsRobotParked'],
+      teleOpIsRobotDefensive: json['teleOpIsRobotDefensive'],
       teleOpTotalPoints: json['teleOpTotalPoints'],
-      endGameUpperHubIn: json['endGameUpperHubIn'],
-      endGameLowerHubIn: json['endGameLowerHubIn'],
-      endGameUpperHubOut: json['endGameUpperHubOut'],
-      endGameLowerHubOut: json['endGameLowerHubOut'],
-      endGameIsRobotHanging: json['endGameIsRobotHanging'],
-      endGameHaveScoreBonus: json['endGameHaveScoreBonus'],
-      endGameHaveHangerBonus: json['endGameHaveHangerBonus'],
-      endGameTimeHanging: json['endGameTimeHanging'],
-      endGameHangerIndexSelected: json['endGameHangerIndexSelected'],
-      endGameTotalPoints: json['endGameTotalPoints'],
       isWinner: json['isWinner'],
       commentsAuto: json['commentsAuto'],
       commentsTeleOp: json['commentsTeleOp'],
@@ -119,28 +123,30 @@ class ScoringModel {
         'teamNumber': teamNumber,
         'matchNumber': matchNumber,
         'isAllianceBlue': isAllianceBlue == true ? "Blue" : "Red",
-        'autoUpperHubIn': autoUpperHubIn,
-        'autoLowerHubIn': autoLowerHubIn,
-        'autoUpperHubOut': autoUpperHubOut,
-        'autoLowerHubOut': autoLowerHubOut,
-        'autoMovesOffTarmac': autoMovesOffTarmac,
+        'autoTopRowIn': autoTopRowIn,
+        'autoMiddleRowIn': autoMiddleRowIn,
+        'autoBottomRowIn': autoBottomRowIn,
+        'autoTopRowOut': autoTopRowOut,
+        'autoMiddleRowOut': autoMiddleRowOut,
+        'autoBottomRowOut': autoBottomRowOut,
+        'autoLeavesCommunity': autoLeavesCommunity,
+        'autoIsDocked': autoIsDocked,
+        'autoIsEngaged': autoIsEngaged,
         'autoTotalPoints': autoTotalPoints,
-        'teleOpUpperHubIn': teleOpUpperHubIn,
-        'teleOpLowerHubIn': teleOpLowerHubIn,
-        'teleOpUpperHubOut': teleOpUpperHubOut,
-        'teleOpLowerHubOut': teleOpLowerHubOut,
+        'autoTimeToDock': autoTimeToDock,
+        'teleOpTopRowIn': teleOpTopRowIn,
+        'teleOpMiddleRowIn': teleOpMiddleRowIn,
+        'teleOpBottomRowIn': teleOpBottomRowIn,
+        'teleOpTopRowOut': teleOpTopRowOut,
+        'teleOpMiddleRowOut': teleOpMiddleRowOut,
+        'teleOpBottomRowOut': teleOpBottomRowOut,
+        'teleOpIsDocked': teleOpIsDocked,
+        'teleOpIsEngaged': teleOpIsEngaged,
+        'teleOpTimeToDock': teleOpTimeToDock,
+        'teleOpLinks': teleOpLinks,
+        'teleOpIsRobotParked': teleOpIsRobotParked,
         'teleOpIsRobotDefensive': teleOpIsRobotDefensive,
         'teleOpTotalPoints': teleOpTotalPoints,
-        'endGameUpperHubIn': endGameUpperHubIn,
-        'endGameLowerHubIn': endGameLowerHubIn,
-        'endGameUpperHubOut': endGameUpperHubOut,
-        'endGameLowerHubOut': endGameLowerHubOut,
-        'endGameIsRobotHanging': endGameIsRobotHanging,
-        'endGameHangerIndexSelected': endGameHangerIndexSelected,
-        'endGameHaveScoreBonus': endGameHaveScoreBonus,
-        'endGameHaveHangerBonus': endGameHaveHangerBonus,
-        'endGameTimeHanging': endGameTimeHanging,
-        'endGameTotalPoints': endGameTotalPoints,
         'isWinner': isWinner,
         'commentsAuto': commentsAuto,
         'commentsTeleOp': commentsTeleOp,

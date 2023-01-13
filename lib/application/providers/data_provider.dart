@@ -9,7 +9,6 @@ class DataProvider extends ChangeNotifier {
   int teamLoss = 0;
   double averageAutonomousPoints = 0;
   double averageTeleOpPoints = 0;
-  double averageEndGamePoints = 0;
 
   // Use a for each and put this on the teams page, by doing this i will have all the data before with all the teams and i will be able to distribute and manipulate the lists however i want
   getTeamDataInTournament({required int teamNumber, required String tournamentKey}) {
@@ -18,14 +17,12 @@ class DataProvider extends ChangeNotifier {
     teamLoss = 0;
     averageAutonomousPoints = 0;
     averageTeleOpPoints = 0;
-    averageEndGamePoints = 0;
     FirebaseFirestore.instance.collection('scoring').where("tournamentKey", isEqualTo: tournamentKey).where("teamNumber", isEqualTo: teamNumber).get().then((snapshot) => snapshot.docs.forEach((doc) {
           print(doc.id);
           ld += [DataModel.fromJson(doc.data())];
           _calculateTeamWins();
           _calculateAverageAutonomousPoints();
           _calculateAverageTeleOpPoints();
-          _calculateAverageEndGamePoints();
           notifyListeners();
         }));
   }
@@ -58,17 +55,9 @@ class DataProvider extends ChangeNotifier {
     averageTeleOpPoints = averageTeleOpPoints / ld.length;
   }
 
-  _calculateAverageEndGamePoints() {
-    averageEndGamePoints = 0;
-    for (int i = 0; i < ld.length; i++) {
-      averageEndGamePoints += ld[i].endGameTotalPoints;
-    }
-    averageEndGamePoints = averageEndGamePoints / ld.length;
-  }
-
 //  Charts usage
   int chartIndexSelected = 0;
-  List<String> chartTitles = ["Autonomous", "TeleOp", "End Game"];
+  List<String> chartTitles = ["Autonomous", "TeleOp"];
 
   void changeChartIndex(int index) {
     chartIndexSelected = index;
@@ -83,7 +72,6 @@ class DataProvider extends ChangeNotifier {
           _calculateTeamWins();
           _calculateAverageAutonomousPoints();
           _calculateAverageTeleOpPoints();
-          _calculateAverageEndGamePoints();
           // _calculateTop8TeamsInTournament();
           notifyListeners();
         }));
