@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:provider/provider.dart';
 import 'package:scoring_7419/application/providers/game_provider.dart';
 import 'package:scoring_7419/application/providers/profile_provider.dart';
@@ -58,17 +56,13 @@ class _HomePageState extends State<HomePage> {
               // tournamentProvider: tournamentProvider,
             ),
             if (teamProvider.teamModel == null) ...[
-              Image.asset(
-                'assets/gif/7419_3.gif',
-                height: 500,
-                fit: BoxFit.cover,
+              Expanded(
+                child: Image.asset(
+                  'assets/gif/7419_3.gif',
+                  fit: BoxFit.cover,
+                ),
               ),
             ],
-            // if (teamProvider.teamModel != null) ...[
-            //   const SizedBox(height: 24),
-            //   TournamentSearchContainer(tournamentProvider: tournamentProvider, teamProvider: teamProvider),
-            // ],
-            // if (tournamentProvider.tournamentModel != null) ...[
             if (teamProvider.teamModel != null) ...[
               const SizedBox(height: 24),
               SecondRow(),
@@ -78,9 +72,6 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 24),
               // Tele Op
               teleOpContainer(),
-              const SizedBox(height: 24),
-              // End Game
-              endGameContainer(),
               const SizedBox(height: 24),
               // Additional Comments
               additionalCommentsContainer(context),
@@ -120,6 +111,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              const SizedBox(height: 24),
             ]
           ],
         ),
@@ -152,188 +144,123 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Consumer<GameProvider> endGameContainer() {
-    return Consumer<GameProvider>(builder: (context, gameProvider, widget) {
-      return ModeContainer(
-        totalPoints: gameProvider.calcEndGameTotal(),
-        modeTitle: "End Game",
-        widgets: [
-          PlusMinusTile(
-            title: "Upper Hub",
-            hubPointsIn: gameProvider.gameModel.endGameUpperHubIn,
-            hubPointsOut: gameProvider.gameModel.endGameUpperHubOut,
-            onPressedInMinus: () {
-              gameProvider.endGameDecreaseUpperHubIn();
-            },
-            onPressedInPlus: () {
-              gameProvider.endGameIncreaseUpperHubIn();
-            },
-            onPressedOutMinus: () {
-              gameProvider.endGameDecreaseUpperHubOut();
-            },
-            onPressedOutPlus: () {
-              gameProvider.endGameIncreaseUpperHubOut();
-            },
-          ),
-          const SizedBox(height: 24),
-          PlusMinusTile(
-            title: "Lower Hub",
-            hubPointsIn: gameProvider.gameModel.endGameLowerHubIn,
-            hubPointsOut: gameProvider.gameModel.endGameLowerHubOut,
-            onPressedInMinus: () {
-              gameProvider.endGameDecreaseLowerHubIn();
-            },
-            onPressedInPlus: () {
-              gameProvider.endGameIncreaseLowerHubIn();
-            },
-            onPressedOutMinus: () {
-              gameProvider.endGameDecreaseLowerHubOut();
-            },
-            onPressedOutPlus: () {
-              gameProvider.endGameIncreaseLowerHubOut();
-            },
-          ),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                "Hanger",
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
-              ),
-              GFToggle(
-                value: gameProvider.gameModel.endGameIsRobotHanging,
-                onChanged: (value) {
-                  gameProvider.endGameCheckIsRobotHanging(value!);
-                },
-                type: GFToggleType.square,
-                enabledThumbColor: darkGrey,
-                enabledTrackColor: grey,
-                disabledThumbColor: darkGrey,
-                disabledTrackColor: grey,
-              ),
-            ],
-          ),
-          Visibility(
-            visible: gameProvider.gameModel.endGameIsRobotHanging,
-            child: Column(
-              children: [
-                const SizedBox(height: 24),
-                FlutterToggleTab(
-                  borderRadius: 10,
-                  height: 40,
-                  selectedIndex: gameProvider.gameModel.endGameHangerIndexSelected,
-                  selectedBackgroundColors: gradient1,
-                  selectedTextStyle: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
-                  unSelectedTextStyle: const TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.w500),
-                  labels: const [
-                    "Low",
-                    "Mid",
-                    "High",
-                    "Traversal",
-                    "Traversal", // Scrollable
-                  ],
-                  selectedLabelIndex: (index) {
-                    gameProvider.endGameChangeHangerIndexSelected(index);
-                  },
-                  isScroll: false,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 24),
-          GameCheckBoxTile(
-            title: "Scoring Bonus",
-            icon: gameProvider.gameModel.endGameHaveScoreBonus ? Icons.check_box_outlined : Icons.check_box_outline_blank,
-            onPressed: () {
-              gameProvider.endGameCheckHaveScoreBonus(!gameProvider.gameModel.endGameHaveScoreBonus);
-            },
-          ),
-          const SizedBox(height: 24),
-          GameCheckBoxTile(
-            title: "Hanger Bonus",
-            icon: gameProvider.gameModel.endGameHaveHangerBonus ? Icons.check_box_outlined : Icons.check_box_outline_blank,
-            onPressed: () {
-              gameProvider.endGameCheckHaveHangerBonus(!gameProvider.gameModel.endGameHaveHangerBonus);
-            },
-          ),
-          const SizedBox(height: 24),
-          Row(
-            children: [
-              const Text(
-                "Time Hanging",
-                style: TextStyle(
-                  fontSize: 22,
-                ),
-              ),
-              const Spacer(),
-              PlusMinusWidget(
-                onPressedMinus: () {
-                  gameProvider.endGameDecreaseTimeHanging();
-                },
-                hubPoints: gameProvider.gameModel.endGameTimeHanging,
-                onPressedPlus: () {
-                  gameProvider.endGameIncreaseTimeHanging();
-                },
-                color: darkGrey,
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-        ],
-      );
-    });
-  }
-
   Consumer<GameProvider> teleOpContainer() {
     return Consumer<GameProvider>(builder: (context, gameProvider, widget) {
       return ModeContainer(
-        totalPoints: gameProvider.calcTeleOpTotal(),
+        totalPoints: gameProvider.calcTeleOpTotalPoints(),
         modeTitle: "Tele Op",
         widgets: [
           PlusMinusTile(
-            title: "Upper Hub",
-            hubPointsIn: gameProvider.gameModel.teleOpUpperHubIn,
-            hubPointsOut: gameProvider.gameModel.teleOpUpperHubOut,
+            title: "Top Row",
+            hubPointsIn: gameProvider.gameModel.teleOpTopRowIn,
+            hubPointsOut: gameProvider.gameModel.teleOpTopRowOut,
             onPressedInMinus: () {
-              gameProvider.teleOpDecreaseUpperHubIn();
+              gameProvider.teleOpDecreaseTopRowIn();
             },
             onPressedInPlus: () {
-              gameProvider.teleOpIncreaseUpperHubIn();
+              gameProvider.teleOpIncreaseTopRowIn();
             },
             onPressedOutMinus: () {
-              gameProvider.teleOpDecreaseUpperHubOut();
+              gameProvider.teleOpDecreaseTopRowOut();
             },
             onPressedOutPlus: () {
-              gameProvider.teleOpIncreaseUpperHubOut();
+              gameProvider.teleOpIncreaseTopRowOut();
             },
           ),
           const SizedBox(height: 24),
           PlusMinusTile(
-            title: "Lower Hub",
-            hubPointsIn: gameProvider.gameModel.teleOpLowerHubIn,
-            hubPointsOut: gameProvider.gameModel.teleOpLowerHubOut,
+            title: "Middle Row",
+            hubPointsIn: gameProvider.gameModel.teleOpMiddleRowIn,
+            hubPointsOut: gameProvider.gameModel.teleOpMiddleRowOut,
             onPressedInMinus: () {
-              gameProvider.teleOpDecreaseLowerHubIn();
+              gameProvider.teleOpDecreaseMiddleRowIn();
             },
             onPressedInPlus: () {
-              gameProvider.teleOpIncreaseLowerHubIn();
+              gameProvider.teleOpIncreaseMiddleRowIn();
             },
             onPressedOutMinus: () {
-              gameProvider.teleOpDecreaseLowerHubOut();
+              gameProvider.teleOpDecreaseMiddleRowOut();
             },
             onPressedOutPlus: () {
-              gameProvider.teleOpIncreaseLowerHubOut();
+              gameProvider.teleOpIncreaseMiddleRowOut();
+            },
+          ),
+          const SizedBox(height: 24),
+          PlusMinusTile(
+            title: "Bottom Row",
+            hubPointsIn: gameProvider.gameModel.teleOpBottomRowIn,
+            hubPointsOut: gameProvider.gameModel.teleOpBottomRowOut,
+            onPressedInMinus: () {
+              gameProvider.teleOpDecreaseBottomRowIn();
+            },
+            onPressedInPlus: () {
+              gameProvider.teleOpIncreaseBottomRowIn();
+            },
+            onPressedOutMinus: () {
+              gameProvider.teleOpDecreaseBottomRowOut();
+            },
+            onPressedOutPlus: () {
+              gameProvider.teleOpIncreaseBottomRowOut();
+            },
+          ),
+          const SizedBox(height: 24),
+          Column(
+            children: [
+              Text("Links", style: const TextStyle(fontSize: 22)),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  PlusMinusWidget(
+                    onPressedMinus: () {
+                      gameProvider.teleOpDecreaseLinks();
+                    },
+                    hubPoints: gameProvider.gameModel.teleOpLinks,
+                    onPressedPlus: () {
+                      gameProvider.teleOpIncreaseLinks();
+                    },
+                    color: autoColor,
+                    // create a blue constant color
+                    subTitle: "In",
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+          GameCheckBoxTile(
+            title: "Is Robot Docked?",
+            icon: gameProvider.gameModel.teleOpIsDocked ? Icons.check_box_outlined : Icons.check_box_outline_blank,
+            onPressed: () {
+              gameProvider.teleOpToggleIsDocked(!gameProvider.gameModel.teleOpIsDocked);
             },
           ),
           const SizedBox(height: 24),
           GameCheckBoxTile(
-            title: "Is Robot Defensive",
+            title: "Is Robot Engaged?",
+            icon: gameProvider.gameModel.teleOpIsEngaged ? Icons.check_box_outlined : Icons.check_box_outline_blank,
+            onPressed: () {
+              gameProvider.teleOpToggleIsEngaged(!gameProvider.gameModel.teleOpIsEngaged);
+            },
+          ),
+          const SizedBox(height: 24),
+          GameCheckBoxTile(
+            title: "Is Robot Parked?",
+            icon: gameProvider.gameModel.teleOpIsRobotParked ? Icons.check_box_outlined : Icons.check_box_outline_blank,
+            onPressed: () {
+              gameProvider.teleOpToggleIsRobotParked(!gameProvider.gameModel.teleOpIsRobotParked);
+            },
+          ),
+          const SizedBox(height: 24),
+          GameCheckBoxTile(
+            title: "Is Robot Defensive?",
             icon: gameProvider.gameModel.teleOpIsRobotDefensive ? Icons.check_box_outlined : Icons.check_box_outline_blank,
             onPressed: () {
               gameProvider.teleOpToggleIsRobotDefensive(!gameProvider.gameModel.teleOpIsRobotDefensive);
             },
           ),
+          const SizedBox(height: 24),
+          Text("Time Hold Button"),
         ],
       );
     });
@@ -347,49 +274,84 @@ class _HomePageState extends State<HomePage> {
           totalPoints: gameProvider.calcAutoTotal(),
           widgets: [
             PlusMinusTile(
-              title: "Upper Hub",
-              hubPointsIn: gameProvider.gameModel.autoUpperHubIn,
-              hubPointsOut: gameProvider.gameModel.autoUpperHubOut,
+              title: "Top Row",
+              hubPointsIn: gameProvider.gameModel.autoTopRowIn,
+              hubPointsOut: gameProvider.gameModel.autoTopRowOut,
               onPressedInMinus: () {
-                gameProvider.autoDecreaseUpperHubIn();
+                gameProvider.autoDecreaseTopRowIn();
               },
               onPressedInPlus: () {
-                gameProvider.autoIncreaseUpperHubIn();
+                gameProvider.autoIncreaseTopRowIn();
               },
               onPressedOutMinus: () {
-                gameProvider.autoDecreaseUpperHubOut();
+                gameProvider.autoDecreaseTopRowOut();
               },
               onPressedOutPlus: () {
-                gameProvider.autoIncreaseUpperHubOut();
+                gameProvider.autoIncreaseTopRowOut();
               },
             ),
             const SizedBox(height: 24),
             PlusMinusTile(
-              title: "Lower Hub",
-              hubPointsIn: gameProvider.gameModel.autoLowerHubIn,
-              hubPointsOut: gameProvider.gameModel.autoLowerHubOut,
+              title: "Middle Row",
+              hubPointsIn: gameProvider.gameModel.autoMiddleRowIn,
+              hubPointsOut: gameProvider.gameModel.autoMiddleRowOut,
               onPressedInMinus: () {
-                gameProvider.autoDecreaseLowerHubIn();
+                gameProvider.autoDecreaseMiddleRowIn();
               },
               onPressedInPlus: () {
-                gameProvider.autoIncreaseLowerHubIn();
+                gameProvider.autoIncreaseMiddleRowIn();
               },
               onPressedOutMinus: () {
-                gameProvider.autoDecreaseLowerHubOut();
+                gameProvider.autoDecreaseMiddleRowOut();
               },
               onPressedOutPlus: () {
-                gameProvider.autoIncreaseLowerHubOut();
+                gameProvider.autoIncreaseMiddleRowOut();
+              },
+            ),
+            const SizedBox(height: 24),
+            PlusMinusTile(
+              title: "Bottom Row",
+              hubPointsIn: gameProvider.gameModel.autoBottomRowIn,
+              hubPointsOut: gameProvider.gameModel.autoBottomRowOut,
+              onPressedInMinus: () {
+                gameProvider.autoDecreaseBottomRowIn();
+              },
+              onPressedInPlus: () {
+                gameProvider.autoIncreaseBottomRowIn();
+              },
+              onPressedOutMinus: () {
+                gameProvider.autoDecreaseBottomRowOut();
+              },
+              onPressedOutPlus: () {
+                gameProvider.autoIncreaseBottomRowOut();
               },
             ),
             const SizedBox(height: 24),
             GameCheckBoxTile(
-              title: "Moves Off Tarmac",
-              icon: gameProvider.gameModel.autoMovesOffTarmac ? Icons.check_box_outlined : Icons.check_box_outline_blank,
+              title: "Leaves Community?",
+              icon: gameProvider.gameModel.autoLeavesCommunity ? Icons.check_box_outlined : Icons.check_box_outline_blank,
               onPressed: () {
-                gameProvider.autoToggleTarmac();
+                gameProvider.autoToggleLeavesCommunity();
               },
             ),
             const SizedBox(height: 24),
+            GameCheckBoxTile(
+              title: "Is Robot Docked?",
+              icon: gameProvider.gameModel.autoIsDocked ? Icons.check_box_outlined : Icons.check_box_outline_blank,
+              onPressed: () {
+                gameProvider.autoToggleDocked();
+              },
+            ),
+            const SizedBox(height: 24),
+            GameCheckBoxTile(
+              title: "Is Robot Engaged?",
+              icon: gameProvider.gameModel.autoIsEngaged ? Icons.check_box_outlined : Icons.check_box_outline_blank,
+              onPressed: () {
+                gameProvider.autoToggleEngaged();
+              },
+            ),
+            const SizedBox(height: 24),
+            Text("Time Hold Button"),
           ],
         );
       },

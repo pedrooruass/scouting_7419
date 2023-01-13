@@ -31,30 +31,6 @@ class TournamentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  int? _year;
-
-  int? get year => _year;
-
-  set year(int? year) {
-    _year = year;
-    notifyListeners();
-  }
-
-  List<int> _years = [2022, 2023, 2024];
-
-  List<int> get years => _years;
-
-  set years(List<int> years) {
-    _years = years;
-    notifyListeners();
-  }
-
-  // void setYear(
-  //     int year, TeamModel teamModel, Function(String errorMessage) onError) {
-  //   this.year = year;
-  //   getTournamentModels(teamModel, onError);
-  // }
-
   Future<void> getTournamentModels() async {
     TournamentRepository tournamentRepository = TournamentRepository();
     var result = await tournamentRepository.getTournamentModels(/* teamModel, year!*/);
@@ -82,37 +58,6 @@ class TournamentProvider extends ChangeNotifier {
   void reset() {
     tournamentModel = null;
     teamsInTournament = [];
-    year = null;
     notifyListeners();
   }
 }
-//
-// class TournamentProvider extends ChangeNotifier {
-//   TournamentModel? _tournamentModel;
-//
-//   TournamentModel? get tournamentModel => _tournamentModel;
-//
-//   set tournamentModel(TournamentModel? tournamentModel) {
-//     _tournamentModel = tournamentModel;
-//     notifyListeners();
-//   }
-//
-//   List<TournamentModel> _tournamentModels = [
-//     "Capital Classic City",
-//     "Madtown Championship"
-//   ];
-//
-//   List<TournamentModel> get tournamentModels => _tournamentModels;
-//
-//   set tournamentModels(List<TournamentModel> tournamentModels) {
-//     tournamentModel = null;
-//     _tournamentModels = tournamentModels;
-//     notifyListeners();
-//   }
-//
-//   void reset() {
-//     tournamentModel = null;
-//     tournamentModels = [];
-//     notifyListeners();
-//   }
-// }

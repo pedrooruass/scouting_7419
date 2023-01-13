@@ -16,118 +16,210 @@ class GameProvider extends ChangeNotifier {
   }
 
   //Autonomous
-  void autoToggleTarmac() {
-    gameModel.autoMovesOffTarmac = !gameModel.autoMovesOffTarmac;
+  void autoIncreaseTopRowIn() {
+    gameModel.autoTopRowIn++;
     notifyListeners();
   }
 
-  void autoIncreaseUpperHubIn() {
-    gameModel.autoUpperHubIn++;
-    notifyListeners();
-  }
-
-  void autoDecreaseUpperHubIn() {
-    if (gameModel.autoUpperHubIn > 0) {
-      gameModel.autoUpperHubIn--;
+  void autoDecreaseTopRowIn() {
+    if (gameModel.autoTopRowIn > 0) {
+      gameModel.autoTopRowIn--;
       notifyListeners();
     }
   }
 
-  void autoIncreaseLowerHubIn() {
-    gameModel.autoLowerHubIn++;
+  void autoIncreaseMiddleRowIn() {
+    gameModel.autoMiddleRowIn++;
     notifyListeners();
   }
 
-  void autoDecreaseLowerHubIn() {
-    if (gameModel.autoLowerHubIn > 0) {
-      gameModel.autoLowerHubIn--;
+  void autoDecreaseMiddleRowIn() {
+    if (gameModel.autoMiddleRowIn > 0) {
+      gameModel.autoMiddleRowIn--;
       notifyListeners();
     }
   }
 
-  void autoIncreaseLowerHubOut() {
-    gameModel.autoLowerHubOut++;
+  void autoIncreaseBottomRowIn() {
+    gameModel.autoBottomRowIn++;
     notifyListeners();
   }
 
-  void autoDecreaseLowerHubOut() {
-    if (gameModel.autoLowerHubOut > 0) {
-      gameModel.autoLowerHubOut--;
+  void autoDecreaseBottomRowIn() {
+    if (gameModel.autoBottomRowIn > 0) {
+      gameModel.autoBottomRowIn--;
       notifyListeners();
     }
   }
 
-  void autoIncreaseUpperHubOut() {
-    gameModel.autoUpperHubOut++;
+  void autoIncreaseTopRowOut() {
+    gameModel.autoTopRowOut++;
     notifyListeners();
   }
 
-  void autoDecreaseUpperHubOut() {
-    if (gameModel.autoUpperHubOut > 0) {
-      gameModel.autoUpperHubOut--;
+  void autoDecreaseTopRowOut() {
+    if (gameModel.autoTopRowOut > 0) {
+      gameModel.autoTopRowOut--;
       notifyListeners();
     }
   }
 
-  int calcAutoUpperHub() => gameModel.autoUpperHubIn * 4;
+  void autoIncreaseMiddleRowOut() {
+    gameModel.autoMiddleRowOut++;
+    notifyListeners();
+  }
 
-  int calcAutoLowerHub() => gameModel.autoLowerHubIn * 2;
+  void autoDecreaseMiddleRowOut() {
+    if (gameModel.autoMiddleRowOut > 0) {
+      gameModel.autoMiddleRowOut--;
+      notifyListeners();
+    }
+  }
 
-  int calcAutoTarmac() => gameModel.autoMovesOffTarmac ? 2 : 0;
+  void autoIncreaseBottomRowOut() {
+    gameModel.autoBottomRowOut++;
+    notifyListeners();
+  }
+
+  void autoDecreaseBottomRowOut() {
+    if (gameModel.autoBottomRowOut > 0) {
+      gameModel.autoBottomRowOut--;
+      notifyListeners();
+    }
+  }
+
+  void autoToggleLeavesCommunity() {
+    gameModel.autoLeavesCommunity = !gameModel.autoLeavesCommunity;
+    notifyListeners();
+  }
+
+  void autoToggleDocked() {
+    gameModel.autoIsDocked = !gameModel.autoIsDocked;
+    notifyListeners();
+  }
+
+  void autoToggleEngaged() {
+    gameModel.autoIsEngaged = !gameModel.autoIsEngaged;
+    notifyListeners();
+  }
+
+  //TODO the time hold
+
+  int calcAutoTopRow() => gameModel.autoTopRowIn * 6;
+
+  int calcAutoMiddleRow() => gameModel.autoMiddleRowIn * 4;
+
+  int calcAutoBottomRow() => gameModel.autoBottomRowIn * 2;
+
+  int calcAutoLeavesCommunity() => gameModel.autoLeavesCommunity ? 3 : 0;
+
+  int calcAutoIsDocked() => gameModel.autoIsDocked ? 5 : 0;
+
+  int calcAutoIsEngaged() => gameModel.autoIsEngaged ? 5 : 0;
 
   int calcAutoTotal() {
-    gameModel.autoTotalPoints =
-        calcAutoUpperHub() + calcAutoLowerHub() + calcAutoTarmac();
+    gameModel.autoTotalPoints = calcAutoTopRow() + calcAutoMiddleRow() + calcAutoBottomRow() + calcAutoLeavesCommunity() + calcAutoIsDocked() + calcAutoIsEngaged();
     return gameModel.autoTotalPoints;
   }
 
   //TeleOp
-  void teleOpIncreaseUpperHubIn() {
-    gameModel.teleOpUpperHubIn++;
+  void teleOpIncreaseTopRowIn() {
+    gameModel.teleOpTopRowIn++;
     notifyListeners();
   }
 
-  void teleOpDecreaseUpperHubIn() {
-    if (gameModel.teleOpUpperHubIn > 0) {
-      gameModel.teleOpUpperHubIn--;
+  void teleOpDecreaseTopRowIn() {
+    if (gameModel.teleOpTopRowIn > 0) {
+      gameModel.teleOpTopRowIn--;
       notifyListeners();
     }
   }
 
-  void teleOpIncreaseLowerHubIn() {
-    gameModel.teleOpLowerHubIn++;
+  void teleOpIncreaseMiddleRowIn() {
+    gameModel.teleOpMiddleRowIn++;
     notifyListeners();
   }
 
-  void teleOpDecreaseLowerHubIn() {
-    if (gameModel.teleOpLowerHubIn > 0) {
-      gameModel.teleOpLowerHubIn--;
+  void teleOpDecreaseMiddleRowIn() {
+    if (gameModel.teleOpMiddleRowIn > 0) {
+      gameModel.teleOpMiddleRowIn--;
       notifyListeners();
     }
   }
 
-  void teleOpIncreaseLowerHubOut() {
-    gameModel.teleOpLowerHubOut++;
+  void teleOpIncreaseBottomRowIn() {
+    gameModel.teleOpBottomRowIn++;
     notifyListeners();
   }
 
-  void teleOpDecreaseLowerHubOut() {
-    if (gameModel.teleOpLowerHubOut > 0) {
-      gameModel.teleOpLowerHubOut--;
+  void teleOpDecreaseBottomRowIn() {
+    if (gameModel.teleOpBottomRowIn > 0) {
+      gameModel.teleOpBottomRowIn--;
       notifyListeners();
     }
   }
 
-  void teleOpIncreaseUpperHubOut() {
-    gameModel.teleOpUpperHubOut++;
+  void teleOpIncreaseTopRowOut() {
+    gameModel.teleOpTopRowOut++;
     notifyListeners();
   }
 
-  void teleOpDecreaseUpperHubOut() {
-    if (gameModel.teleOpUpperHubOut > 0) {
-      gameModel.teleOpUpperHubOut--;
+  void teleOpDecreaseTopRowOut() {
+    if (gameModel.teleOpTopRowOut > 0) {
+      gameModel.teleOpTopRowOut--;
       notifyListeners();
     }
+  }
+
+  void teleOpIncreaseBottomRowOut() {
+    gameModel.teleOpBottomRowOut++;
+    notifyListeners();
+  }
+
+  void teleOpDecreaseMiddleRowOut() {
+    if (gameModel.teleOpMiddleRowOut > 0) {
+      gameModel.teleOpMiddleRowOut--;
+      notifyListeners();
+    }
+  }
+
+  void teleOpIncreaseMiddleRowOut() {
+    gameModel.teleOpMiddleRowOut++;
+    notifyListeners();
+  }
+
+  void teleOpDecreaseBottomRowOut() {
+    if (gameModel.teleOpBottomRowOut > 0) {
+      gameModel.teleOpBottomRowOut--;
+      notifyListeners();
+    }
+  }
+
+  void teleOpIncreaseLinks() {
+    gameModel.teleOpLinks++;
+    notifyListeners();
+  }
+
+  void teleOpDecreaseLinks() {
+    if (gameModel.teleOpLinks > 0) {
+      gameModel.teleOpLinks--;
+      notifyListeners();
+    }
+  }
+
+  void teleOpToggleIsDocked(bool value) {
+    gameModel.teleOpIsDocked = value;
+    notifyListeners();
+  }
+
+  void teleOpToggleIsEngaged(bool value) {
+    gameModel.teleOpIsEngaged = value;
+    notifyListeners();
+  }
+
+  void teleOpToggleIsRobotParked(bool value) {
+    gameModel.teleOpIsRobotParked = value;
+    notifyListeners();
   }
 
   void teleOpToggleIsRobotDefensive(bool value) {
@@ -135,129 +227,23 @@ class GameProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  int calcTeleOpUpperHub() => gameModel.teleOpUpperHubIn * 2;
+  int calcTopRow() => gameModel.teleOpTopRowIn * 5;
 
-  int calcTeleOpLowerHub() => gameModel.teleOpLowerHubIn * 1;
+  int calcMiddleRow() => gameModel.teleOpMiddleRowIn * 3;
 
-  int calcTeleOpTotal() {
-    gameModel.teleOpTotalPoints = calcTeleOpUpperHub() + calcTeleOpLowerHub();
+  int calcBottomRow() => gameModel.teleOpBottomRowIn * 2;
+
+  int calcLinks() => gameModel.teleOpLinks * 2;
+
+  int calcTeleOpIsDocked() => gameModel.teleOpIsDocked ? 5 : 0;
+
+  int calcTeleOpIsEngaged() => gameModel.teleOpIsEngaged ? 5 : 0;
+
+  int calcTeleOpIsRobotParked() => gameModel.teleOpIsRobotParked ? 5 : 0;
+
+  int calcTeleOpTotalPoints() {
+    gameModel.teleOpTotalPoints = calcTopRow() + calcMiddleRow() + calcBottomRow() + calcLinks() + calcTeleOpIsDocked() + calcTeleOpIsEngaged() + calcTeleOpIsRobotParked();
     return gameModel.teleOpTotalPoints;
-  }
-
-// End Game
-  void endGameIncreaseUpperHubIn() {
-    gameModel.endGameUpperHubIn++;
-    notifyListeners();
-  }
-
-  void endGameDecreaseUpperHubIn() {
-    if (gameModel.endGameUpperHubIn > 0) {
-      gameModel.endGameUpperHubIn--;
-      notifyListeners();
-    }
-  }
-
-  void endGameIncreaseLowerHubIn() {
-    gameModel.endGameLowerHubIn++;
-    notifyListeners();
-  }
-
-  void endGameDecreaseLowerHubIn() {
-    if (gameModel.endGameLowerHubIn > 0) {
-      gameModel.endGameLowerHubIn--;
-      notifyListeners();
-    }
-  }
-
-  void endGameIncreaseLowerHubOut() {
-    gameModel.endGameLowerHubOut++;
-    notifyListeners();
-  }
-
-  void endGameDecreaseLowerHubOut() {
-    if (gameModel.endGameLowerHubOut > 0) {
-      gameModel.endGameLowerHubOut--;
-      notifyListeners();
-    }
-  }
-
-  void endGameIncreaseUpperHubOut() {
-    gameModel.endGameUpperHubOut++;
-    notifyListeners();
-  }
-
-  void endGameDecreaseUpperHubOut() {
-    if (gameModel.endGameUpperHubOut > 0) {
-      gameModel.endGameUpperHubOut--;
-      notifyListeners();
-    }
-  }
-
-  void endGameCheckIsRobotHanging(bool value) {
-    gameModel.endGameIsRobotHanging = value;
-    notifyListeners();
-  }
-
-  void endGameCheckHaveScoreBonus(bool value) {
-    gameModel.endGameHaveScoreBonus = value;
-    notifyListeners();
-  }
-
-  void endGameCheckHaveHangerBonus(bool value) {
-    gameModel.endGameHaveHangerBonus = value;
-    notifyListeners();
-  }
-
-  void endGameIncreaseTimeHanging() {
-    if (gameModel.endGameTimeHanging < 30) {
-      gameModel.endGameTimeHanging++;
-      notifyListeners();
-    }
-  }
-
-  void endGameDecreaseTimeHanging() {
-    if (gameModel.endGameTimeHanging > 0) {
-      gameModel.endGameTimeHanging--;
-      notifyListeners();
-    }
-  }
-
-  void endGameChangeHangerIndexSelected(int index) {
-    gameModel.endGameHangerIndexSelected = index;
-    notifyListeners();
-  }
-
-  int calcEndGameUpperHub() => gameModel.endGameUpperHubIn * 2;
-
-  int calcEndGameLowerHub() => gameModel.endGameLowerHubIn * 1;
-
-  int calcEndGameHanging() {
-    if (gameModel.endGameIsRobotHanging) {
-      if (gameModel.endGameHangerIndexSelected == 0) {
-        return 4;
-      } else if (gameModel.endGameHangerIndexSelected == 1) {
-        return 6;
-      } else if (gameModel.endGameHangerIndexSelected == 2) {
-        return 10;
-      } else if (gameModel.endGameHangerIndexSelected == 3 ||
-          gameModel.endGameHangerIndexSelected == 4) {
-        return 15;
-      }
-    }
-    return 0;
-  }
-
-  int calcEndGameScoreBonus() => gameModel.endGameHaveScoreBonus ? 1 : 0;
-
-  int calcEndGameHangerBonus() => gameModel.endGameHaveHangerBonus ? 1 : 0;
-
-  int calcEndGameTotal() {
-    gameModel.endGameTotalPoints = calcEndGameUpperHub() +
-        calcEndGameLowerHub() +
-        calcEndGameHanging() +
-        calcEndGameScoreBonus() +
-        calcEndGameHangerBonus();
-    return gameModel.endGameTotalPoints;
   }
 
   void isWinnerToggle() {
@@ -269,30 +255,30 @@ class GameProvider extends ChangeNotifier {
     gameModel.isAllianceBlue = true;
     gameModel.matchNumber = 0;
 
-    gameModel.autoUpperHubIn = 0;
-    gameModel.autoLowerHubIn = 0;
-    gameModel.autoUpperHubOut = 0;
-    gameModel.autoLowerHubOut = 0;
-    gameModel.autoMovesOffTarmac = false;
+    gameModel.autoTopRowIn = 0;
+    gameModel.autoMiddleRowIn = 0;
+    gameModel.autoBottomRowIn = 0;
+    gameModel.autoTopRowOut = 0;
+    gameModel.autoMiddleRowOut = 0;
+    gameModel.autoBottomRowOut = 0;
+    gameModel.autoLeavesCommunity = false;
+    gameModel.autoIsDocked = false;
+    gameModel.autoIsEngaged = false;
     gameModel.autoTotalPoints = 0;
+    // the time
 
-    gameModel.teleOpUpperHubIn = 0;
-    gameModel.teleOpLowerHubIn = 0;
-    gameModel.teleOpUpperHubOut = 0;
-    gameModel.teleOpLowerHubOut = 0;
+    gameModel.teleOpTopRowIn = 0;
+    gameModel.teleOpMiddleRowIn = 0;
+    gameModel.teleOpBottomRowIn = 0;
+    gameModel.teleOpTopRowOut = 0;
+    gameModel.teleOpMiddleRowOut = 0;
+    gameModel.teleOpBottomRowOut = 0;
+    gameModel.teleOpLinks = 0;
+    gameModel.teleOpIsDocked = false;
+    gameModel.teleOpIsEngaged = false;
+    gameModel.teleOpIsRobotParked = false;
     gameModel.teleOpIsRobotDefensive = false;
     gameModel.teleOpTotalPoints = 0;
-
-    gameModel.endGameUpperHubIn = 0;
-    gameModel.endGameLowerHubIn = 0;
-    gameModel.endGameUpperHubOut = 0;
-    gameModel.endGameLowerHubOut = 0;
-    gameModel.endGameIsRobotHanging = false;
-    gameModel.endGameHaveScoreBonus = false;
-    gameModel.endGameHaveHangerBonus = false;
-    gameModel.endGameTimeHanging = 0;
-    gameModel.endGameHangerIndexSelected = 0;
-    gameModel.endGameTotalPoints = 0;
 
     gameModel.isWinner = false;
     gameModel.commentsAutoController.text = "";

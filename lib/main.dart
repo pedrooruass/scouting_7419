@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scoring_7419/application/providers/game_provider.dart';
 import 'package:scoring_7419/application/providers/profile_provider.dart';
+import 'package:scoring_7419/application/providers/ranking_provider.dart';
 import 'package:scoring_7419/application/providers/score_match_provider.dart';
 import 'package:scoring_7419/application/providers/tournament_provider.dart';
 import 'package:scoring_7419/firebase_options.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ChangeNotifierProvider(create: (_) => ScoreMatchProvider()),
         ChangeNotifierProvider(create: (_) => DataProvider()),
+        ChangeNotifierProvider(create: (_) => RankingProvider()),
       ],
       child: MaterialApp(
         title: "7419 Scouting",

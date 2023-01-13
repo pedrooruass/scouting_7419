@@ -62,7 +62,7 @@ class _GeneralTeamDataChartState extends State<GeneralTeamDataChart> {
         xValueMapper: (DataModel teamData, _) => "AutoPoints",
         color: autoColor,
         yValueMapper: (DataModel teamData, _) => double.parse(dataProvider.averageAutonomousPoints.toString().substring(0, 3)),
-        dataLabelSettings: const DataLabelSettings(isVisible: true, textStyle: TextStyle(fontSize: 25, color: white, fontWeight: FontWeight.bold), labelAlignment: ChartDataLabelAlignment.middle),
+        dataLabelSettings: const DataLabelSettings(isVisible: true, textStyle: TextStyle(fontSize: 27, color: white, fontWeight: FontWeight.bold), labelAlignment: ChartDataLabelAlignment.middle),
       ),
       ColumnSeries<DataModel, String>(
         name: "TeleOp",
@@ -70,14 +70,6 @@ class _GeneralTeamDataChartState extends State<GeneralTeamDataChart> {
         color: teleOpColor,
         xValueMapper: (DataModel teamData, _) => "TeleOp Points",
         yValueMapper: (DataModel teamData, _) => double.parse(dataProvider.averageTeleOpPoints.toString().substring(0, 3)),
-        dataLabelSettings: const DataLabelSettings(isVisible: true, textStyle: TextStyle(fontSize: 27, color: white, fontWeight: FontWeight.bold), labelAlignment: ChartDataLabelAlignment.middle),
-      ),
-      ColumnSeries<DataModel, String>(
-        name: "EndGame",
-        dataSource: _chartData,
-        color: endGameColor,
-        xValueMapper: (DataModel teamData, _) => "EndGame Points",
-        yValueMapper: (DataModel teamData, _) => double.parse(dataProvider.averageEndGamePoints.toString().substring(0, 3)),
         dataLabelSettings: const DataLabelSettings(isVisible: true, textStyle: TextStyle(fontSize: 27, color: white, fontWeight: FontWeight.bold), labelAlignment: ChartDataLabelAlignment.middle),
       ),
     ];

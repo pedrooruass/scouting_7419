@@ -28,10 +28,14 @@ class TournamentSearchContainer extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: DropdownButton<TournamentModel>(
+              disabledHint: Text("No Tournaments"),
+              hint: Text(
+                "Select Tournament",
+                style: TextStyle(color: black),
+              ),
               value: tournamentProvider.tournamentModel,
+              underline: SizedBox.shrink(),
               style: const TextStyle(color: black, fontSize: 18),
-              elevation: 0,
-              hint: const Text("Choose Tournament"),
               items: tournamentProvider.tournamentModels.map((TournamentModel tournamentModel) {
                 return DropdownMenuItem<TournamentModel>(
                   value: tournamentModel,

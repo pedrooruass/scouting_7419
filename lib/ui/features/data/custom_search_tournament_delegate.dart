@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoring_7419/application/models/tournament_model.dart';
-import 'package:scoring_7419/ui/features/data/tournament_page.dart';
+import 'package:scoring_7419/ui/features/data/teams_page.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
 class CustomSearchTournamentDelegate extends SearchDelegate {
@@ -103,7 +103,7 @@ class SearchListTile extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => TournamentPage(tournament: tournament),
+                builder: (context) => TeamsPage(tournamentModel: tournament),
               ),
             );
           },

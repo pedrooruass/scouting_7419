@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:provider/provider.dart';
 import 'package:scoring_7419/application/providers/data_provider.dart';
-import 'package:scoring_7419/ui/features/data/general_team_data_chart.dart';
 import 'package:scoring_7419/ui/features/data/specific_team_data_chart.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 import 'package:scoring_7419/ui/themee/fonts.dart';
+
+import 'general_team_data_chart.dart';
 
 class TeamPage extends StatefulWidget {
   // final TeamModel team; // shouldnt be TeamDataModel?
@@ -66,10 +67,6 @@ class _TeamPageState extends State<TeamPage> {
               SizedBox(
                 height: 24,
               ),
-              // Text("List Length: " + dataProvider.ld.length.toString(), style: TextStyle(color: white)),
-              // Text("Team Loss: " + dataProvider.teamLoss.toString(), style: TextStyle(color: white)),
-              // Text("Team Wins: " + dataProvider.teamWins.toString(), style: TextStyle(color: white)),
-              // Text("Average Points Tele Op: " + dataProvider.averageTeleOpPoints.toString(), style: TextStyle(color: white)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -145,7 +142,7 @@ class _TeamPageState extends State<TeamPage> {
                       selectedBackgroundColors: gradient2,
                       selectedTextStyle: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
                       unSelectedTextStyle: const TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.w500),
-                      labels: const ["Auto", "TeleOp", "EndGame"],
+                      labels: const ["Auto", "TeleOp"],
                       selectedLabelIndex: (index) {
                         dataProvider.changeChartIndex(index);
                       },
