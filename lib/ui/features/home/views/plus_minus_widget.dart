@@ -28,8 +28,7 @@ class PlusMinusWidget extends StatelessWidget {
               onPressed: onPressedMinus,
             ),
             const SizedBox(width: 12),
-            Text(hubPoints.toString(),
-                style: TextStyle(fontSize: 22, color: color)),
+            Text(hubPoints.toString(), style: TextStyle(fontSize: 22, color: color)),
             const SizedBox(width: 12),
             IconButton(
               icon: const Icon(FontAwesomeIcons.squarePlus),
@@ -37,9 +36,7 @@ class PlusMinusWidget extends StatelessWidget {
             ),
           ],
         ),
-        subTitle != null
-            ? Text(subTitle!, style: TextStyle(fontSize: 12))
-            : SizedBox.shrink(),
+        subTitle != null ? Text(subTitle!, style: TextStyle(fontSize: 12)) : SizedBox.shrink(),
       ],
     );
   }

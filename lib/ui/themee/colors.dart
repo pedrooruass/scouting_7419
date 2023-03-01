@@ -7,9 +7,9 @@ const Color darkGrey = Color(0xFF414141);
 const Color green = Color(0xFF43A047);
 const Color red = Color(0xFFE53935);
 const Color yellow = Color(0xFFFEBF0A);
-
+const Color orange = Color(0xFFFFA500);
+const Color purple = Color(0xFF4C00B0);
 const Color autoColor = Color(0xFF5084bc);
 const Color teleOpColor = Color(0xFFFEBF0A);
-
 const List<Color> gradient1 = [black, darkGrey];
 const List<Color> gradient2 = [darkGrey, black, darkGrey];

@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:provider/provider.dart';
 import 'package:scoring_7419/application/providers/data_provider.dart';
 import 'package:scoring_7419/ui/features/data/specific_team_data_chart.dart';
@@ -133,23 +132,27 @@ class _TeamPageState extends State<TeamPage> {
                   children: [
                     GeneralTeamDataChart(title: "Average Points Data View"),
                     //TODO should i do this ? hahahahaha
-                    SizedBox(height: 24),
-                    FlutterToggleTab(
-                      borderRadius: 10,
-                      height: 40,
-                      unSelectedBackgroundColors: [darkGrey, grey, darkGrey],
-                      selectedIndex: dataProvider.chartIndexSelected,
-                      selectedBackgroundColors: gradient2,
-                      selectedTextStyle: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
-                      unSelectedTextStyle: const TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.w500),
-                      labels: const ["Auto", "TeleOp"],
-                      selectedLabelIndex: (index) {
-                        dataProvider.changeChartIndex(index);
-                      },
-                      isScroll: false,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Divider(color: grey),
                     ),
-                    SizedBox(height: 24),
-                    SpecificTeamDataChart(title: "Specific", indexSelected: dataProvider.chartIndexSelected),
+                    SizedBox(height: 12),
+                    // FlutterToggleTab(
+                    //   borderRadius: 10,
+                    //   height: 40,
+                    //   unSelectedBackgroundColors: [darkGrey, grey, darkGrey],
+                    //   selectedIndex: dataProvider.chartIndexSelected,
+                    //   selectedBackgroundColors: gradient2,
+                    //   selectedTextStyle: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
+                    //   unSelectedTextStyle: const TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.w500),
+                    //   labels: const ["Auto", "TeleOp"],
+                    //   selectedLabelIndex: (index) {
+                    //     dataProvider.changeChartIndex(index);
+                    //   },
+                    //   isScroll: false,
+                    // ),
+                    // SizedBox(height: 24),
+                    SpecificTeamDataChart(title: "Specific"),
                   ],
                 ),
                 replacement: Column(

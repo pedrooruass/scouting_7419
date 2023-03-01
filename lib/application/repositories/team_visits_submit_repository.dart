@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gsheets/gsheets.dart';
-import 'package:scoring_7419/application/models/scoring_model.dart';
 
-class ScoringRepository {
+import '../models/team_visits_submit_model.dart';
+
+class TeamVisitsSubmitRepository {
   final _credentials = r'''
 {
   "type": "service_account",
@@ -20,25 +20,18 @@ class ScoringRepository {
 
   final _spreadSheetId = "1R0Il5LIjUnzXalyPzP2nz6uzG502k1iqacdwDc7sXjw";
 
-  Future<bool> submitScoring(ScoringModel scoring) async {
-    return _put(scoring.id, scoring.toJson(), scoring.tournamentKey);
+  Future<bool> submitVisits(TeamVisitsSubmitModel visit) async {
+    return _put(visit.toJson(), visit.tournamentKey);
   }
 
-  Future<bool> _put(String id, Map<String, dynamic> map, String tournamentKey) async {
-    CollectionReference collectionReference = FirebaseFirestore.instance.collection('scoring');
-    WriteBatch batch = FirebaseFirestore.instance.batch();
-    batch.set(collectionReference.doc(id), map);
-    await batch.commit();
+  Future<bool> _put(Map<String, dynamic> map, String tournamentKey) async {
     // submit google sheets
     //Init Gsheets
     final gsheets = GSheets(_credentials);
     final ss = await gsheets.spreadsheet(_spreadSheetId);
-    final sheet = ss.worksheetByTitle(tournamentKey);
+    final sheet = ss.worksheetByTitle("${tournamentKey}Visits");
     //update a cell
     await sheet!.values.appendRow(map.values.toList());
-
-    // send to notion
-    
     return true;
   }
 }

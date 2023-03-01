@@ -36,84 +36,84 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Consumer<TeamProvider>(
         //TODO Make it Consumer2, with the tournament provider
         builder: (context, teamProvider, widget) {
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 22),
-        color: black,
-        child: ListView(
-          children: [
-            TitleAndProfile(),
-            const SizedBox(height: 24),
-            TournamentSearchContainer(
-              tournamentProvider: Provider.of<TournamentProvider>(context),
-              teamProvider: teamProvider,
-            ),
-            const SizedBox(height: 24),
-            TeamAndScouterRow(
-              teamProvider: teamProvider,
-              // tournamentProvider: tournamentProvider,
-            ),
-            if (teamProvider.teamModel == null) ...[
-              Expanded(
-                child: Image.asset(
+      return GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 22),
+          color: black,
+          child: ListView(
+            children: [
+              TitleAndProfile(),
+              const SizedBox(height: 24),
+              TournamentSearchContainer(
+                tournamentProvider: Provider.of<TournamentProvider>(context),
+              ),
+              const SizedBox(height: 24),
+              TeamAndScouterRow(
+                teamProvider: teamProvider,
+                // tournamentProvider: tournamentProvider,
+              ),
+              if (teamProvider.teamModel == null) ...[
+                Image.asset(
                   'assets/gif/7419_3.gif',
+                  height: height > 667 ? 500 : 350,
                   fit: BoxFit.cover,
                 ),
-              ),
-            ],
-            if (teamProvider.teamModel != null) ...[
-              const SizedBox(height: 24),
-              SecondRow(),
-              const SizedBox(height: 24),
-              // Autonomous
-              autonomousContainer(),
-              const SizedBox(height: 24),
-              // Tele Op
-              teleOpContainer(),
-              const SizedBox(height: 24),
-              // Additional Comments
-              additionalCommentsContainer(context),
-              const SizedBox(height: 24),
-              // Submit
-              GestureDetector(
-                onTap: () {
-                  context.read<ScoreMatchProvider>().submitScore(
-                        teamProvider: teamProvider,
-                        tournamentProvider: context.read<TournamentProvider>(),
-                        profileProvider: context.read<ProfileProvider>(),
-                        // secondRowProvider: context.read<SecondRowProvider>(),
-                        gameProvider: context.read<GameProvider>(),
-                        context: context,
-                      );
-                  // Navigator.pop(context);
-                },
-                child: Container(
-                  height: 64,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    // color: Colors.green,
-                    borderRadius: BorderRadius.circular(10),
-                    gradient: const LinearGradient(
-                      colors: gradient2,
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+              ],
+              if (teamProvider.teamModel != null) ...[
+                const SizedBox(height: 24),
+                SecondRow(),
+                const SizedBox(height: 24),
+                // Autonomous
+                autonomousContainer(),
+                const SizedBox(height: 24),
+                // Tele Op
+                teleOpContainer(),
+                const SizedBox(height: 24),
+                // Additional Comments
+                additionalCommentsContainer(context),
+                const SizedBox(height: 24),
+                // Submit
+                GestureDetector(
+                  onTap: () {
+                    context.read<ScoreMatchProvider>().submitScore(
+                          teamProvider: teamProvider,
+                          tournamentProvider: context.read<TournamentProvider>(),
+                          profileProvider: context.read<ProfileProvider>(),
+                          gameProvider: context.read<GameProvider>(),
+                          context: context,
+                        );
+                  },
+                  child: Container(
+                    height: 64,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      // color: Colors.green,
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: const LinearGradient(
+                        colors: gradient2,
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                     ),
-                  ),
-                  child: Text(
-                    "Submit",
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: white,
-                      fontFamily: titleFont,
+                    child: Text(
+                      "Submit",
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: white,
+                        fontFamily: titleFont,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 24),
-            ]
-          ],
+                const SizedBox(height: 24),
+              ]
+            ],
+          ),
         ),
       );
     });
@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
     return Consumer<GameProvider>(builder: (context, gameProvider, widget) {
       return ModeContainer(
         isComments: true,
-        modeTitle: "Aditional Info",
+        modeTitle: "Additional Info",
         widgets: [
           GameCheckBoxTile(
             title: "Is winner?",
@@ -152,55 +152,55 @@ class _HomePageState extends State<HomePage> {
         widgets: [
           PlusMinusTile(
             title: "Top Row",
-            hubPointsIn: gameProvider.gameModel.teleOpTopRowIn,
-            hubPointsOut: gameProvider.gameModel.teleOpTopRowOut,
-            onPressedInMinus: () {
-              gameProvider.teleOpDecreaseTopRowIn();
+            hubPointsCube: gameProvider.gameModel.teleOpTopRowCube,
+            hubPointsCone: gameProvider.gameModel.teleOpTopRowCone,
+            onPressedCubeMinus: () {
+              gameProvider.teleOpDecreaseTopRowCube();
             },
-            onPressedInPlus: () {
-              gameProvider.teleOpIncreaseTopRowIn();
+            onPressedCubePlus: () {
+              gameProvider.teleOpIncreaseTopRowCube();
             },
-            onPressedOutMinus: () {
-              gameProvider.teleOpDecreaseTopRowOut();
+            onPressedConeMinus: () {
+              gameProvider.teleOpDecreaseTopRowCone();
             },
-            onPressedOutPlus: () {
-              gameProvider.teleOpIncreaseTopRowOut();
+            onPressedConePlus: () {
+              gameProvider.teleOpIncreaseTopRowCone();
             },
           ),
           const SizedBox(height: 24),
           PlusMinusTile(
             title: "Middle Row",
-            hubPointsIn: gameProvider.gameModel.teleOpMiddleRowIn,
-            hubPointsOut: gameProvider.gameModel.teleOpMiddleRowOut,
-            onPressedInMinus: () {
-              gameProvider.teleOpDecreaseMiddleRowIn();
+            hubPointsCube: gameProvider.gameModel.teleOpMiddleRowCube,
+            hubPointsCone: gameProvider.gameModel.teleOpMiddleRowCone,
+            onPressedCubeMinus: () {
+              gameProvider.teleOpDecreaseMiddleRowCube();
             },
-            onPressedInPlus: () {
-              gameProvider.teleOpIncreaseMiddleRowIn();
+            onPressedCubePlus: () {
+              gameProvider.teleOpIncreaseMiddleRowCube();
             },
-            onPressedOutMinus: () {
-              gameProvider.teleOpDecreaseMiddleRowOut();
+            onPressedConeMinus: () {
+              gameProvider.teleOpDecreaseMiddleRowCone();
             },
-            onPressedOutPlus: () {
-              gameProvider.teleOpIncreaseMiddleRowOut();
+            onPressedConePlus: () {
+              gameProvider.teleOpIncreaseMiddleRowCone();
             },
           ),
           const SizedBox(height: 24),
           PlusMinusTile(
             title: "Bottom Row",
-            hubPointsIn: gameProvider.gameModel.teleOpBottomRowIn,
-            hubPointsOut: gameProvider.gameModel.teleOpBottomRowOut,
-            onPressedInMinus: () {
-              gameProvider.teleOpDecreaseBottomRowIn();
+            hubPointsCube: gameProvider.gameModel.teleOpBottomRowCube,
+            hubPointsCone: gameProvider.gameModel.teleOpBottomRowCone,
+            onPressedCubeMinus: () {
+              gameProvider.teleOpDecreaseBottomRowCube();
             },
-            onPressedInPlus: () {
-              gameProvider.teleOpIncreaseBottomRowIn();
+            onPressedCubePlus: () {
+              gameProvider.teleOpIncreaseBottomRowCube();
             },
-            onPressedOutMinus: () {
-              gameProvider.teleOpDecreaseBottomRowOut();
+            onPressedConeMinus: () {
+              gameProvider.teleOpDecreaseBottomRowCone();
             },
-            onPressedOutPlus: () {
-              gameProvider.teleOpIncreaseBottomRowOut();
+            onPressedConePlus: () {
+              gameProvider.teleOpIncreaseBottomRowCone();
             },
           ),
           const SizedBox(height: 24),
@@ -271,55 +271,55 @@ class _HomePageState extends State<HomePage> {
           widgets: [
             PlusMinusTile(
               title: "Top Row",
-              hubPointsIn: gameProvider.gameModel.autoTopRowIn,
-              hubPointsOut: gameProvider.gameModel.autoTopRowOut,
-              onPressedInMinus: () {
-                gameProvider.autoDecreaseTopRowIn();
+              hubPointsCube: gameProvider.gameModel.autoTopRowCube,
+              hubPointsCone: gameProvider.gameModel.autoTopRowCone,
+              onPressedCubeMinus: () {
+                gameProvider.autoDecreaseTopRowCube();
               },
-              onPressedInPlus: () {
-                gameProvider.autoIncreaseTopRowIn();
+              onPressedCubePlus: () {
+                gameProvider.autoIncreaseTopRowCube();
               },
-              onPressedOutMinus: () {
-                gameProvider.autoDecreaseTopRowOut();
+              onPressedConeMinus: () {
+                gameProvider.autoDecreaseTopRowCone();
               },
-              onPressedOutPlus: () {
-                gameProvider.autoIncreaseTopRowOut();
+              onPressedConePlus: () {
+                gameProvider.autoIncreaseTopRowCone();
               },
             ),
             const SizedBox(height: 24),
             PlusMinusTile(
               title: "Middle Row",
-              hubPointsIn: gameProvider.gameModel.autoMiddleRowIn,
-              hubPointsOut: gameProvider.gameModel.autoMiddleRowOut,
-              onPressedInMinus: () {
-                gameProvider.autoDecreaseMiddleRowIn();
+              hubPointsCube: gameProvider.gameModel.autoMiddleRowCube,
+              hubPointsCone: gameProvider.gameModel.autoMiddleRowCone,
+              onPressedCubeMinus: () {
+                gameProvider.autoDecreaseMiddleRowCube();
               },
-              onPressedInPlus: () {
-                gameProvider.autoIncreaseMiddleRowIn();
+              onPressedCubePlus: () {
+                gameProvider.autoIncreaseMiddleRowCube();
               },
-              onPressedOutMinus: () {
-                gameProvider.autoDecreaseMiddleRowOut();
+              onPressedConeMinus: () {
+                gameProvider.autoDecreaseMiddleRowCone();
               },
-              onPressedOutPlus: () {
-                gameProvider.autoIncreaseMiddleRowOut();
+              onPressedConePlus: () {
+                gameProvider.autoIncreaseMiddleRowCone();
               },
             ),
             const SizedBox(height: 24),
             PlusMinusTile(
               title: "Bottom Row",
-              hubPointsIn: gameProvider.gameModel.autoBottomRowIn,
-              hubPointsOut: gameProvider.gameModel.autoBottomRowOut,
-              onPressedInMinus: () {
-                gameProvider.autoDecreaseBottomRowIn();
+              hubPointsCube: gameProvider.gameModel.autoBottomRowCub,
+              hubPointsCone: gameProvider.gameModel.autoBottomRowCone,
+              onPressedCubeMinus: () {
+                gameProvider.autoDecreaseBottomRowCube();
               },
-              onPressedInPlus: () {
-                gameProvider.autoIncreaseBottomRowIn();
+              onPressedCubePlus: () {
+                gameProvider.autoIncreaseBottomRowCube();
               },
-              onPressedOutMinus: () {
-                gameProvider.autoDecreaseBottomRowOut();
+              onPressedConeMinus: () {
+                gameProvider.autoDecreaseBottomRowCone();
               },
-              onPressedOutPlus: () {
-                gameProvider.autoIncreaseBottomRowOut();
+              onPressedConePlus: () {
+                gameProvider.autoIncreaseBottomRowCone();
               },
             ),
             const SizedBox(height: 24),

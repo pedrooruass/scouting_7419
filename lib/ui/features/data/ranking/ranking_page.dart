@@ -25,7 +25,7 @@ class RankingPage extends StatefulWidget {
 class _RankingPageState extends State<RankingPage> {
   @override
   void initState() {
-    context.read<RankingProvider>().getTheRankingList(context.read<DataProvider>(), widget.teamsList, widget.tournamentKey, 0);
+    context.read<RankingProvider>().getTheRankingList(context.read<DataProvider>(), widget.teamsList, widget.tournamentKey, context.read<RankingProvider>().selectedRanking);
     // print(widget.dataList);
     super.initState();
   }
@@ -91,6 +91,14 @@ class _RankingPageState extends State<RankingPage> {
                                       child: Text("Tele Op"),
                                       value: 2,
                                     ),
+                                    DropdownMenuItem(
+                                      child: Text("Most Cones"),
+                                      value: 3,
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text("Most Cubes"),
+                                      value: 4,
+                                    ),
                                   ],
                                   onChanged: (value) {
                                     rankingProvider.changeSelectedRanking(value!);
@@ -153,7 +161,10 @@ class _RankingPageState extends State<RankingPage> {
                             itemCount: rankingProvider.ldWins.length,
                           ),
                         )
-                      : Center(child: CircularProgressIndicator(color: darkGrey)),
+                      : Center(
+                          child: CircularProgressIndicator(
+                          color: darkGrey,
+                        )),
                 ),
               ),
               SizedBox(height: 54),

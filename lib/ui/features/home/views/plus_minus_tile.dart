@@ -4,22 +4,22 @@ import 'package:scoring_7419/ui/themee/colors.dart';
 
 class PlusMinusTile extends StatelessWidget {
   final String title;
-  final int hubPointsIn;
-  final int hubPointsOut;
-  final void Function() onPressedInMinus;
-  final void Function() onPressedOutPlus;
-  final void Function() onPressedInPlus;
-  final void Function() onPressedOutMinus;
+  final int hubPointsCube;
+  final int hubPointsCone;
+  final void Function() onPressedCubeMinus;
+  final void Function() onPressedConePlus;
+  final void Function() onPressedCubePlus;
+  final void Function() onPressedConeMinus;
 
   const PlusMinusTile({
     Key? key,
     required this.title,
-    required this.hubPointsIn,
-    required this.hubPointsOut,
-    required this.onPressedInMinus,
-    required this.onPressedOutPlus,
-    required this.onPressedInPlus,
-    required this.onPressedOutMinus,
+    required this.hubPointsCube,
+    required this.hubPointsCone,
+    required this.onPressedCubeMinus,
+    required this.onPressedConePlus,
+    required this.onPressedCubePlus,
+    required this.onPressedConeMinus,
   }) : super(key: key);
 
   @override
@@ -32,19 +32,19 @@ class PlusMinusTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             PlusMinusWidget(
-              onPressedMinus: onPressedOutMinus,
-              hubPoints: hubPointsOut,
-              onPressedPlus: onPressedOutPlus,
-              color: red,
-              subTitle: "Out",
+              onPressedMinus: onPressedConeMinus,
+              hubPoints: hubPointsCone,
+              onPressedPlus: onPressedConePlus,
+              color: orange,
+              subTitle: "Cones",
             ),
             const SizedBox(width: 16),
             PlusMinusWidget(
-              onPressedMinus: onPressedInMinus,
-              hubPoints: hubPointsIn,
-              onPressedPlus: onPressedInPlus,
-              color: green,
-              subTitle: "In",
+              onPressedMinus: onPressedCubeMinus,
+              hubPoints: hubPointsCube,
+              onPressedPlus: onPressedCubePlus,
+              color: purple,
+              subTitle: "Cubes",
             ),
           ],
         ),

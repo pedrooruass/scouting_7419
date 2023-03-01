@@ -9,6 +9,8 @@ class DataProvider extends ChangeNotifier {
   int teamLoss = 0;
   double averageAutonomousPoints = 0;
   double averageTeleOpPoints = 0;
+  int conesScored = 0;
+  int cubeScored = 0;
 
   List<dynamic> ldWins = []; // Win loss ratio
 
@@ -19,12 +21,16 @@ class DataProvider extends ChangeNotifier {
     teamLoss = 0;
     averageAutonomousPoints = 0;
     averageTeleOpPoints = 0;
+    conesScored = 0;
+    cubeScored = 0;
     await FirebaseFirestore.instance.collection('scoring').where("tournamentKey", isEqualTo: tournamentKey).where("teamNumber", isEqualTo: teamNumber).get().then((snapshot) => snapshot.docs.forEach((doc) {
           print(doc.id);
           ld += [DataModel.fromJson(doc.data())];
           _calculateTeamWins();
           _calculateAverageAutonomousPoints();
           _calculateAverageTeleOpPoints();
+          _calculateMostCones();
+          _calculateMostCubes();
           notifyListeners();
         }));
   }
@@ -62,21 +68,26 @@ class DataProvider extends ChangeNotifier {
     averageAutonomousPoints = averageAutonomousPoints / ld.length;
   }
 
+  _calculateMostCones() {
+    conesScored = 0;
+    for (int i = 0; i < ld.length; i++) {
+      conesScored += ld[i].autoTopRowCone + ld[i].autoMiddleRowCone + ld[i].autoMiddleRowCone + ld[i].teleOpTopRowCone + ld[i].teleOpMiddleRowCone + ld[i].teleOpBottomRowCone;
+    }
+  }
+
+  _calculateMostCubes() {
+    cubeScored = 0;
+    for (int i = 0; i < ld.length; i++) {
+      cubeScored += ld[i].autoTopRowCube + ld[i].autoMiddleRowCube + ld[i].autoMiddleRowCube + ld[i].teleOpTopRowCube + ld[i].teleOpMiddleRowCube + ld[i].teleOpBottomRowCube;
+    }
+  }
+
   _calculateAverageTeleOpPoints() {
     averageTeleOpPoints = 0;
     for (int i = 0; i < ld.length; i++) {
       averageTeleOpPoints += ld[i].teleOpTotalPoints;
     }
     averageTeleOpPoints = averageTeleOpPoints / ld.length;
-  }
-
-//  Charts usage
-  int chartIndexSelected = 0;
-  List<String> chartTitles = ["Autonomous", "TeleOp"];
-
-  void changeChartIndex(int index) {
-    chartIndexSelected = index;
-    notifyListeners();
   }
 
   getGeneralTournamentData() {

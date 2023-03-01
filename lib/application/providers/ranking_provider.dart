@@ -18,7 +18,11 @@ class RankingProvider extends ChangeNotifier {
           ? dt.teamWins
           : index == 1
               ? dt.averageAutonomousPoints.toInt()
-              : dt.averageTeleOpPoints.toInt(); //just get the same index from the teamsStringList
+              : index == 2
+                  ? dt.averageTeleOpPoints.toInt()
+                  : index == 3
+                      ? dt.conesScored
+                      : dt.cubeScored; //just get the same index from the teamsStringList
     }
     List<MapEntry<String, int>> mapEntries = ldWins.entries.toList();
     mapEntries.sort((a, b) => b.value.compareTo(a.value));

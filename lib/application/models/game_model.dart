@@ -6,24 +6,24 @@ class GameModel {
   bool isAllianceBlue = true;
 
   // Autonomous
-  int autoTopRowIn = 0;
-  int autoMiddleRowIn = 0;
-  int autoBottomRowIn = 0;
-  int autoTopRowOut = 0;
-  int autoMiddleRowOut = 0;
-  int autoBottomRowOut = 0;
+  int autoTopRowCube = 0; //In = Cube
+  int autoMiddleRowCube = 0;
+  int autoBottomRowCub = 0;
+  int autoTopRowCone = 0; //Out = Cone
+  int autoMiddleRowCone = 0;
+  int autoBottomRowCone = 0;
   bool autoLeavesCommunity = false;
   bool autoIsDocked = false;
   bool autoIsEngaged = false;
   int autoTotalPoints = 0;
 
   // TeleOp
-  int teleOpTopRowIn = 0;
-  int teleOpMiddleRowIn = 0;
-  int teleOpBottomRowIn = 0;
-  int teleOpTopRowOut = 0;
-  int teleOpMiddleRowOut = 0;
-  int teleOpBottomRowOut = 0;
+  int teleOpTopRowCube = 0;
+  int teleOpMiddleRowCube = 0;
+  int teleOpBottomRowCube = 0;
+  int teleOpTopRowCone = 0;
+  int teleOpMiddleRowCone = 0;
+  int teleOpBottomRowCone = 0;
   bool teleOpIsDocked = false;
   bool teleOpIsEngaged = false;
   int teleOpLinks = 0;

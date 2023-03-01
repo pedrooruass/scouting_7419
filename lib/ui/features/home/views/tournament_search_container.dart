@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:scoring_7419/application/models/tournament_model.dart';
-import 'package:scoring_7419/application/providers/team_provider.dart';
 import 'package:scoring_7419/application/providers/tournament_provider.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
 
@@ -9,12 +8,10 @@ import 'package:scoring_7419/ui/themee/colors.dart';
 
 class TournamentSearchContainer extends StatelessWidget {
   final TournamentProvider tournamentProvider;
-  final TeamProvider teamProvider;
 
   const TournamentSearchContainer({
     super.key,
     required this.tournamentProvider,
-    required this.teamProvider,
   });
 
   @override

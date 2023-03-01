@@ -16,7 +16,6 @@ class PageViewer extends StatefulWidget {
 
 class _PageViewerState extends State<PageViewer> {
   final _controller = PageController(initialPage: 1);
-  var heart = false;
 
   @override
   void dispose() {
@@ -27,6 +26,7 @@ class _PageViewerState extends State<PageViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: PageView(
         controller: _controller,
         children: <Widget>[

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:scoring_7419/ui/features/profile/pages/robot_info_page.dart';
 import 'package:scoring_7419/ui/features/profile/pages/support_page.dart';
 import 'package:scoring_7419/ui/features/profile/views/profile_tile_sub_screens.dart';
 import 'package:scoring_7419/ui/themee/colors.dart';
@@ -43,8 +42,7 @@ class ProfileWhiteBackground extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               "7419",
-              style:
-                  TextStyle(fontSize: 56, fontFamily: titleFont, color: black),
+              style: TextStyle(fontSize: 56, fontFamily: titleFont, color: black),
             ),
           ),
         ],
@@ -62,17 +60,17 @@ class SubPagesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        ProfileTileSubScreens(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const RobotInfo(),
-                ),
-              );
-            },
-            title: 'Robot Info',
-            icon: FontAwesomeIcons.robot),
+        // ProfileTileSubScreens(
+        //     onTap: () {
+        //       Navigator.push(
+        //         context,
+        //         MaterialPageRoute(
+        //           builder: (context) => const RobotInfo(),
+        //         ),
+        //       );
+        //     },
+        //     title: 'Robot Info',
+        //     icon: FontAwesomeIcons.robot),
         ProfileTileSubScreens(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {

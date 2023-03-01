@@ -16,74 +16,74 @@ class GameProvider extends ChangeNotifier {
   }
 
   //Autonomous
-  void autoIncreaseTopRowIn() {
-    gameModel.autoTopRowIn++;
+  void autoIncreaseTopRowCube() {
+    gameModel.autoTopRowCube++;
     notifyListeners();
   }
 
-  void autoDecreaseTopRowIn() {
-    if (gameModel.autoTopRowIn > 0) {
-      gameModel.autoTopRowIn--;
+  void autoDecreaseTopRowCube() {
+    if (gameModel.autoTopRowCube > 0) {
+      gameModel.autoTopRowCube--;
       notifyListeners();
     }
   }
 
-  void autoIncreaseMiddleRowIn() {
-    gameModel.autoMiddleRowIn++;
+  void autoIncreaseMiddleRowCube() {
+    gameModel.autoMiddleRowCube++;
     notifyListeners();
   }
 
-  void autoDecreaseMiddleRowIn() {
-    if (gameModel.autoMiddleRowIn > 0) {
-      gameModel.autoMiddleRowIn--;
+  void autoDecreaseMiddleRowCube() {
+    if (gameModel.autoMiddleRowCube > 0) {
+      gameModel.autoMiddleRowCube--;
       notifyListeners();
     }
   }
 
-  void autoIncreaseBottomRowIn() {
-    gameModel.autoBottomRowIn++;
+  void autoIncreaseBottomRowCube() {
+    gameModel.autoBottomRowCub++;
     notifyListeners();
   }
 
-  void autoDecreaseBottomRowIn() {
-    if (gameModel.autoBottomRowIn > 0) {
-      gameModel.autoBottomRowIn--;
+  void autoDecreaseBottomRowCube() {
+    if (gameModel.autoBottomRowCub > 0) {
+      gameModel.autoBottomRowCub--;
       notifyListeners();
     }
   }
 
-  void autoIncreaseTopRowOut() {
-    gameModel.autoTopRowOut++;
+  void autoIncreaseTopRowCone() {
+    gameModel.autoTopRowCone++;
     notifyListeners();
   }
 
-  void autoDecreaseTopRowOut() {
-    if (gameModel.autoTopRowOut > 0) {
-      gameModel.autoTopRowOut--;
+  void autoDecreaseTopRowCone() {
+    if (gameModel.autoTopRowCone > 0) {
+      gameModel.autoTopRowCone--;
       notifyListeners();
     }
   }
 
-  void autoIncreaseMiddleRowOut() {
-    gameModel.autoMiddleRowOut++;
+  void autoIncreaseMiddleRowCone() {
+    gameModel.autoMiddleRowCone++;
     notifyListeners();
   }
 
-  void autoDecreaseMiddleRowOut() {
-    if (gameModel.autoMiddleRowOut > 0) {
-      gameModel.autoMiddleRowOut--;
+  void autoDecreaseMiddleRowCone() {
+    if (gameModel.autoMiddleRowCone > 0) {
+      gameModel.autoMiddleRowCone--;
       notifyListeners();
     }
   }
 
-  void autoIncreaseBottomRowOut() {
-    gameModel.autoBottomRowOut++;
+  void autoIncreaseBottomRowCone() {
+    gameModel.autoBottomRowCone++;
     notifyListeners();
   }
 
-  void autoDecreaseBottomRowOut() {
-    if (gameModel.autoBottomRowOut > 0) {
-      gameModel.autoBottomRowOut--;
+  void autoDecreaseBottomRowCone() {
+    if (gameModel.autoBottomRowCone > 0) {
+      gameModel.autoBottomRowCone--;
       notifyListeners();
     }
   }
@@ -102,12 +102,12 @@ class GameProvider extends ChangeNotifier {
     gameModel.autoIsEngaged = !gameModel.autoIsEngaged;
     notifyListeners();
   }
-  
-  int calcAutoTopRow() => gameModel.autoTopRowIn * 6;
 
-  int calcAutoMiddleRow() => gameModel.autoMiddleRowIn * 4;
+  int calcAutoTopRow() => (gameModel.autoTopRowCube * 6) + (gameModel.autoTopRowCone * 6);
 
-  int calcAutoBottomRow() => gameModel.autoBottomRowIn * 3;
+  int calcAutoMiddleRow() => (gameModel.autoMiddleRowCube * 4) + (gameModel.autoMiddleRowCone * 4);
+
+  int calcAutoBottomRow() => (gameModel.autoBottomRowCub * 3) + (gameModel.autoBottomRowCone * 3);
 
   int calcAutoLeavesCommunity() => gameModel.autoLeavesCommunity ? 3 : 0;
 
@@ -121,74 +121,74 @@ class GameProvider extends ChangeNotifier {
   }
 
   //TeleOp
-  void teleOpIncreaseTopRowIn() {
-    gameModel.teleOpTopRowIn++;
+  void teleOpIncreaseTopRowCube() {
+    gameModel.teleOpTopRowCube++;
     notifyListeners();
   }
 
-  void teleOpDecreaseTopRowIn() {
-    if (gameModel.teleOpTopRowIn > 0) {
-      gameModel.teleOpTopRowIn--;
+  void teleOpDecreaseTopRowCube() {
+    if (gameModel.teleOpTopRowCube > 0) {
+      gameModel.teleOpTopRowCube--;
       notifyListeners();
     }
   }
 
-  void teleOpIncreaseMiddleRowIn() {
-    gameModel.teleOpMiddleRowIn++;
+  void teleOpIncreaseMiddleRowCube() {
+    gameModel.teleOpMiddleRowCube++;
     notifyListeners();
   }
 
-  void teleOpDecreaseMiddleRowIn() {
-    if (gameModel.teleOpMiddleRowIn > 0) {
-      gameModel.teleOpMiddleRowIn--;
+  void teleOpDecreaseMiddleRowCube() {
+    if (gameModel.teleOpMiddleRowCube > 0) {
+      gameModel.teleOpMiddleRowCube--;
       notifyListeners();
     }
   }
 
-  void teleOpIncreaseBottomRowIn() {
-    gameModel.teleOpBottomRowIn++;
+  void teleOpIncreaseBottomRowCube() {
+    gameModel.teleOpBottomRowCube++;
     notifyListeners();
   }
 
-  void teleOpDecreaseBottomRowIn() {
-    if (gameModel.teleOpBottomRowIn > 0) {
-      gameModel.teleOpBottomRowIn--;
+  void teleOpDecreaseBottomRowCube() {
+    if (gameModel.teleOpBottomRowCube > 0) {
+      gameModel.teleOpBottomRowCube--;
       notifyListeners();
     }
   }
 
-  void teleOpIncreaseTopRowOut() {
-    gameModel.teleOpTopRowOut++;
+  void teleOpIncreaseTopRowCone() {
+    gameModel.teleOpTopRowCone++;
     notifyListeners();
   }
 
-  void teleOpDecreaseTopRowOut() {
-    if (gameModel.teleOpTopRowOut > 0) {
-      gameModel.teleOpTopRowOut--;
+  void teleOpDecreaseTopRowCone() {
+    if (gameModel.teleOpTopRowCone > 0) {
+      gameModel.teleOpTopRowCone--;
       notifyListeners();
     }
   }
 
-  void teleOpIncreaseBottomRowOut() {
-    gameModel.teleOpBottomRowOut++;
+  void teleOpIncreaseBottomRowCone() {
+    gameModel.teleOpBottomRowCone++;
     notifyListeners();
   }
 
-  void teleOpDecreaseMiddleRowOut() {
-    if (gameModel.teleOpMiddleRowOut > 0) {
-      gameModel.teleOpMiddleRowOut--;
+  void teleOpDecreaseMiddleRowCone() {
+    if (gameModel.teleOpMiddleRowCone > 0) {
+      gameModel.teleOpMiddleRowCone--;
       notifyListeners();
     }
   }
 
-  void teleOpIncreaseMiddleRowOut() {
-    gameModel.teleOpMiddleRowOut++;
+  void teleOpIncreaseMiddleRowCone() {
+    gameModel.teleOpMiddleRowCone++;
     notifyListeners();
   }
 
-  void teleOpDecreaseBottomRowOut() {
-    if (gameModel.teleOpBottomRowOut > 0) {
-      gameModel.teleOpBottomRowOut--;
+  void teleOpDecreaseBottomRowCone() {
+    if (gameModel.teleOpBottomRowCone > 0) {
+      gameModel.teleOpBottomRowCone--;
       notifyListeners();
     }
   }
@@ -225,11 +225,11 @@ class GameProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  int calcTeleOpTopRow() => gameModel.teleOpTopRowIn * 5;
+  int calcTeleOpTopRow() => (gameModel.teleOpTopRowCube * 5) + (gameModel.teleOpTopRowCone * 5);
 
-  int calcTeleOpMiddleRow() => gameModel.teleOpMiddleRowIn * 3;
+  int calcTeleOpMiddleRow() => (gameModel.teleOpMiddleRowCube * 3) + (gameModel.teleOpMiddleRowCone * 3);
 
-  int calcTeleOpBottomRow() => gameModel.teleOpBottomRowIn * 2;
+  int calcTeleOpBottomRow() => (gameModel.teleOpBottomRowCube * 2) + (gameModel.teleOpBottomRowCone * 2);
 
   int calcTeleOpLinks() => gameModel.teleOpLinks * 5;
 
@@ -253,24 +253,24 @@ class GameProvider extends ChangeNotifier {
     gameModel.isAllianceBlue = true;
     gameModel.matchNumber = 0;
 
-    gameModel.autoTopRowIn = 0;
-    gameModel.autoMiddleRowIn = 0;
-    gameModel.autoBottomRowIn = 0;
-    gameModel.autoTopRowOut = 0;
-    gameModel.autoMiddleRowOut = 0;
-    gameModel.autoBottomRowOut = 0;
+    gameModel.autoTopRowCube = 0;
+    gameModel.autoMiddleRowCube = 0;
+    gameModel.autoBottomRowCub = 0;
+    gameModel.autoTopRowCone = 0;
+    gameModel.autoMiddleRowCone = 0;
+    gameModel.autoBottomRowCone = 0;
     gameModel.autoLeavesCommunity = false;
     gameModel.autoIsDocked = false;
     gameModel.autoIsEngaged = false;
     gameModel.autoTotalPoints = 0;
     // the time
 
-    gameModel.teleOpTopRowIn = 0;
-    gameModel.teleOpMiddleRowIn = 0;
-    gameModel.teleOpBottomRowIn = 0;
-    gameModel.teleOpTopRowOut = 0;
-    gameModel.teleOpMiddleRowOut = 0;
-    gameModel.teleOpBottomRowOut = 0;
+    gameModel.teleOpTopRowCube = 0;
+    gameModel.teleOpMiddleRowCube = 0;
+    gameModel.teleOpBottomRowCube = 0;
+    gameModel.teleOpTopRowCone = 0;
+    gameModel.teleOpMiddleRowCone = 0;
+    gameModel.teleOpBottomRowCone = 0;
     gameModel.teleOpLinks = 0;
     gameModel.teleOpIsDocked = false;
     gameModel.teleOpIsEngaged = false;

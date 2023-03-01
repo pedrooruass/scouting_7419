@@ -5,8 +5,7 @@ class CommentsColumnForm extends StatelessWidget {
   final String title;
   final TextEditingController commentsController;
 
-  const CommentsColumnForm(
-      {super.key, this.title = "Title", required this.commentsController});
+  const CommentsColumnForm({super.key, this.title = "Title", required this.commentsController});
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +22,20 @@ class CommentsColumnForm extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.only(left: 16),
-          height: 40,
+          height: 55,
           decoration: BoxDecoration(
             color: white,
             border: Border.all(color: black),
           ),
           child: TextFormField(
             controller: commentsController,
+            textInputAction: TextInputAction.done,
             decoration: const InputDecoration(
               border: InputBorder.none,
               hintText: "Enter Comments",
             ),
             cursorColor: darkGrey,
+            maxLines: null,
           ),
         ),
       ],

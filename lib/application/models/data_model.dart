@@ -8,24 +8,24 @@ class DataModel {
   final String? isAllianceBlue;
 
   // Autonomous
-  final int autoTopRowIn;
-  final int autoMiddleRowIn;
-  final int autoBottomRowIn;
-  final int autoTopRowOut;
-  final int autoMiddleRowOut;
-  final int autoBottomRowOut;
+  final int autoTopRowCube;
+  final int autoMiddleRowCube;
+  final int autoBottomRowCube;
+  final int autoTopRowCone;
+  final int autoMiddleRowCone;
+  final int autoBottomRowCone;
   final bool autoLeavesCommunity;
   final bool autoIsDocked;
   final bool autoIsEngaged;
   final int autoTotalPoints;
 
   // TeleOp
-  final int teleOpTopRowIn;
-  final int teleOpMiddleRowIn;
-  final int teleOpBottomRowIn;
-  final int teleOpTopRowOut;
-  final int teleOpMiddleRowOut;
-  final int teleOpBottomRowOut;
+  final int teleOpTopRowCube;
+  final int teleOpMiddleRowCube;
+  final int teleOpBottomRowCube;
+  final int teleOpTopRowCone;
+  final int teleOpMiddleRowCone;
+  final int teleOpBottomRowCone;
   final bool teleOpIsDocked;
   final bool teleOpIsEngaged;
   final int teleOpLinks;
@@ -47,22 +47,22 @@ class DataModel {
     required this.teamNumber,
     required this.matchNumber,
     required this.isAllianceBlue,
-    required this.autoTopRowIn,
-    required this.autoMiddleRowIn,
-    required this.autoBottomRowIn,
-    required this.autoTopRowOut,
-    required this.autoMiddleRowOut,
-    required this.autoBottomRowOut,
+    required this.autoTopRowCube,
+    required this.autoMiddleRowCube,
+    required this.autoBottomRowCube,
+    required this.autoTopRowCone,
+    required this.autoMiddleRowCone,
+    required this.autoBottomRowCone,
     required this.autoLeavesCommunity,
     required this.autoIsDocked,
     required this.autoIsEngaged,
     required this.autoTotalPoints,
-    required this.teleOpTopRowIn,
-    required this.teleOpMiddleRowIn,
-    required this.teleOpBottomRowIn,
-    required this.teleOpTopRowOut,
-    required this.teleOpMiddleRowOut,
-    required this.teleOpBottomRowOut,
+    required this.teleOpTopRowCube,
+    required this.teleOpMiddleRowCube,
+    required this.teleOpBottomRowCube,
+    required this.teleOpTopRowCone,
+    required this.teleOpMiddleRowCone,
+    required this.teleOpBottomRowCone,
     required this.teleOpIsDocked,
     required this.teleOpIsEngaged,
     required this.teleOpLinks,
@@ -82,22 +82,22 @@ class DataModel {
         teamNumber: json["teamNumber"],
         matchNumber: json["matchNumber"],
         isAllianceBlue: json["isAllianceBlue"] ?? "",
-        autoTopRowIn: json["autoTopRowIn"],
-        autoMiddleRowIn: json["autoMiddleRowIn"],
-        autoBottomRowIn: json["autoBottomRowIn"],
-        autoTopRowOut: json["autoTopRowOut"],
-        autoMiddleRowOut: json["autoMiddleRowOut"],
-        autoBottomRowOut: json["autoBottomRowOut"],
+        autoTopRowCube: json["autoTopRowCube"],
+        autoMiddleRowCube: json["autoMiddleRowCube"],
+        autoBottomRowCube: json["autoBottomRowCube"],
+        autoTopRowCone: json["autoTopRowCone"],
+        autoMiddleRowCone: json["autoMiddleRowCone"],
+        autoBottomRowCone: json["autoBottomRowCone"],
         autoLeavesCommunity: json["autoLeavesCommunity"],
         autoIsDocked: json["autoIsDocked"],
         autoIsEngaged: json["autoIsEngaged"],
         autoTotalPoints: json["autoTotalPoints"],
-        teleOpTopRowIn: json["teleOpTopRowIn"],
-        teleOpMiddleRowIn: json["teleOpMiddleRowIn"],
-        teleOpBottomRowIn: json["teleOpBottomRowIn"],
-        teleOpTopRowOut: json["teleOpTopRowOut"],
-        teleOpMiddleRowOut: json["teleOpMiddleRowOut"],
-        teleOpBottomRowOut: json["teleOpBottomRowOut"],
+        teleOpTopRowCube: json["teleOpTopRowCube"],
+        teleOpMiddleRowCube: json["teleOpMiddleRowCube"],
+        teleOpBottomRowCube: json["teleOpBottomRowCube"],
+        teleOpTopRowCone: json["teleOpTopRowCone"],
+        teleOpMiddleRowCone: json["teleOpMiddleRowCone"],
+        teleOpBottomRowCone: json["teleOpBottomRowCone"],
         teleOpIsDocked: json["teleOpIsDocked"],
         teleOpIsEngaged: json["teleOpIsEngaged"],
         teleOpLinks: json["teleOpLinks"],
